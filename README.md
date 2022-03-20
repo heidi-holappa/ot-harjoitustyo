@@ -4,9 +4,10 @@
 Tähän rakentuu myöhemmin pikasiirtymät README.md - tiedoston sisältöihin
 
 ## Tehtävät
-Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
 
 ### Viikko 1
+Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
+
 [gitlog.txt](laskarit/viikko1/gitlog.txt)
 
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
