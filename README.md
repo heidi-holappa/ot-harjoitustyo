@@ -30,3 +30,5 @@ Tai numeroituja listoja
 1. ensimmäinen asia
 2. toinen asia
 3. ~~neljäs~~ *kolmas* asia
+
+Tehtävä 17: epäsynkroonin harjoittelu. Tämä muutos on tehty paikallisessa repositoriossa. 
