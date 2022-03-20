@@ -111,3 +111,5 @@ Date:   Sun Mar 20 10:06:12 2022 +0200
 
  tiedosto.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
+
+Tehtävä 17: epäsynkroonin harjoittelua. Tämä muutos on tehty GitHub.com - etärepositoriossa. 
