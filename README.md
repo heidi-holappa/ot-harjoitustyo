@@ -8,6 +8,7 @@ Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua 
 
 # Viikko 1
 [gitlog.txt](laskarit/viikko1/gitlog.txt)
+
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 
 Alla olevan sitaatin muinainen viisaus kertoo, että
