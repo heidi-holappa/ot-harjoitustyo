@@ -1,16 +1,26 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-## Sisältö
-Tähän rakentuu myöhemmin pikasiirtymät README.md - tiedoston sisältöihin
+## Content
+A structured  overview of the project will be added here during the course
 
-## Tehtävät
+## Weekly assignments
 
-### Viikko 1
+### Week 1
 Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
 
 [gitlog.txt](laskarit/viikko1/gitlog.txt)
 
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
+
+### Week 2
+
+[vaatimusmäärittely (requirements_specification.md)](documentation/requirements_specification.md)
+
+[työaikakirjanpito (working-hours-record.md)](documentaion/working-hours-record.md)
+
+
+## Week 1 - markdown syntax assignment
+**Note:** A part of the assignments for week 1 was to showcase different features of markdown language. These will be removed in future updates. 
 
 Alla olevan sitaatin muinainen viisaus kertoo, että
 
