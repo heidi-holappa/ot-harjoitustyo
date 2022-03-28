@@ -6,7 +6,6 @@ A structured  overview of the project will be added here during the course
 ## Weekly assignments
 
 ### Week 1
-Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
 
 [gitlog.txt](laskarit/viikko1/gitlog.txt)
 
@@ -21,6 +20,8 @@ Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua 
 
 ## Week 1 - markdown syntax assignment
 **Note:** A part of the assignments for week 1 was to showcase different features of markdown language. These will be removed in future updates. 
+
+Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
 
 Alla olevan sitaatin muinainen viisaus kertoo, että
 
