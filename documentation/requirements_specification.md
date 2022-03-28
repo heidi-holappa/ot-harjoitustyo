@@ -15,10 +15,10 @@ The initial plan is to have for user screens:
 - A counselor view for submitting data
 - A supervisor screen for reviewing and managing submitted data
 
-![login screen](/images/req-spec-login.png)
-![create account screen](/images/req-spec-create-account.png)
-![counselor-submit-data-screen](/images/req-spec-submit-content.png)
-![supervisor-review-and-manage-content-screen](/images/req-spec-supervisor-browse.png)
+![login screen](/documentation/images/req-spec-login.png)
+![create account screen](/documentation/images/req-spec-create-account.png)
+![counselor-submit-data-screen](/documentation/images/req-spec-submit-content.png)
+![supervisor-review-and-manage-content-screen](/documentation/images/req-spec-supervisor-browse.png)
 
 
 ## Basic functionalities
