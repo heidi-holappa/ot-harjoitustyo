@@ -15,7 +15,7 @@ A structured  overview of the project will be added here during the course
 
 [vaatimusmäärittely (requirements_specification.md)](documentation/requirements_specification.md)
 
-[työaikakirjanpito (working-hours-record.md)](documentaion/working-hours-record.md)
+[työaikakirjanpito (working-hours-record.md)](documentation/working-hours-record.md)
 
 
 ## Week 1 - markdown syntax assignment
