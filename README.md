@@ -17,6 +17,8 @@ A structured  overview of the project will be added here during the course
 
 [työaikakirjanpito (working-hours-record.md)](documentation/working-hours-record.md)
 
+[testiraportin kuvakaappaus](laskarit/viikko2/testiraportti.png)
+
 
 ## Week 1 - markdown syntax assignment
 **Note:** A part of the assignments for week 1 was to showcase different features of markdown language. These will be removed in future updates. 
