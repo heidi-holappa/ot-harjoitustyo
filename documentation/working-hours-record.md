@@ -8,3 +8,5 @@
 | 2 | Sun 27.3.2022  |Writing requirements specification | 1 |
 | 2 | Sun 27.3.2022  |Creating layouts | 2 |
 | 2 | Mon 28.3.2022 | Polishing documentation | 1 |
+| 3 | Thu 31.3.2022 | Studying the reference project | 2 |
+| 3 | Fri 1.4.2022 | Building first version of UI | 3 |
