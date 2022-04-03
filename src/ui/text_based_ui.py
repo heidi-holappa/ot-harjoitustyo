@@ -1,4 +1,5 @@
 from services.console_io import ConsoleIO
+from entities.user import User
 import os
 
 class TextBasedUi:
@@ -9,7 +10,6 @@ class TextBasedUi:
     def start(self):
         StartScreen().start()
         
-
 class StartScreen:
 
     def __init__(self):
@@ -44,14 +44,22 @@ class Login:
         self._io = ConsoleIO()
     
     def start(self):
+        self._io.output("----")
+        self._io.output("LOGIN (PRESS ENTER TO CANCEL)")
         self._io.output("ENTER USERNAME")
         username = self._io.read_command()
+        if len(username) == 0:
+            start_screen = StartScreen()
+            start_screen.start()
         self._io.output("ENTER PASSWORD")
         password = self._io.read_command()
+        self._user = User(username, password)
 
-        # VALIDATE LOGIN HERE
-
-        CounselorStart().start()
+        if self._user.login():
+            CounselorStart().start()
+        else:
+            print("LOGIN FAILED. CHECK USERNAME AND PASSWORD")
+            self.start()
     
 
 class CreateAccount:
@@ -60,19 +68,30 @@ class CreateAccount:
         self._io = ConsoleIO()
     
     def start(self):
+        self._io.output("----")
+        self._io.output("CREATE ACCOUNT (PRESS ENTER TO CANCEL)")
         self._io.output("ENTER USERNAME")
         username = self._io.read_command()
+        if len(username) == 0:
+            start_screen = StartScreen()
+            start_screen.start()
         self._io.output("ENTER PASSWORD")
         password = self._io.read_command()
         self._io.output("RE-ENTER PASSWORD")
-        password2 = self._io.read_command
+        password2 = self._io.read_command()
 
         if not bool(password == password2):
+            self._io.output("----")
             self._io.output("ERROR: PASSWORDS DO NOT MATCH. START AGAIN.")
+            self._io.output("----")
             self.start()
+        new_user = User(username, password)
+        if new_user.create_user():
+            start_screen = StartScreen()
+            start_screen.start()
         else:
-            self._io.output("SUCCESS. YOU CAN NOW LOGIN.")
-            StartScreen().start()
+            print("CREATING NEW ACCOUNT FAILED. TRY AGAIN")
+            self.start()
             
             
 
@@ -137,7 +156,7 @@ class CounselorSubmit:
             "1": "girl",
             "2": "boy",
             "3": "something else",
-            "3": "unknown",
+            "4": "unknown",
             "B": "GO BACK",
             "X": "CANCEL SUBMISSION",
         }
