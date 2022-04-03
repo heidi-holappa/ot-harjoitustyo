@@ -56,12 +56,11 @@ class Login:
         self._user = User(username, password)
 
         if self._user.login():
-            CounselorStart().start()
+            CounselorStart(self._user).start()
         else:
             print("LOGIN FAILED. CHECK USERNAME AND PASSWORD")
             self.start()
     
-
 class CreateAccount:
 
     def __init__(self):
@@ -97,12 +96,13 @@ class CreateAccount:
 
 class CounselorStart:
 
-    def __init__(self):
+    def __init__(self, user: User):
         self._io = ConsoleIO()
         self.commands_counselor = {
             "X" : "LOGOUT",
             "1" : "SUBMIT DATA"
         }
+        self._user = user
 
     def start(self):
         while True:
@@ -114,12 +114,13 @@ class CounselorStart:
             elif command == "X":
                 exit()
             else:
-                CounselorSubmit().start()
+                CounselorSubmit(self._user).start()
 
 class CounselorSubmit:
 
-    def __init__(self):      
+    def __init__(self, user: User):      
         self._io = ConsoleIO()
+        self._user = user
         self._data = {
             "channel": "",
             "type": "",
@@ -177,7 +178,7 @@ class CounselorSubmit:
             if not command in commands:
                 print("ERROR: INVALID COMMAND. TRY AGAIN")
             elif command == "X":
-                CounselorStart().start()
+                CounselorStart(self._user).start()
             else:
                 self._data["channel"] = commands[command]
                 self.submit_type()
@@ -261,11 +262,11 @@ class CounselorSubmit:
                 self.save_data()
                 self._io.output("DATA SUCCESSFULLY STORED")
                 self.clear_data()
-                CounselorStart().start()
+                CounselorStart(self._user).start()
             else:
                 self._io.output("CANCELLING. NO DATA STORED")
                 self.clear_data()
-                CounselorStart().start()
+                CounselorStart(self._user).start()
 
     def save_data(self):
         try:
