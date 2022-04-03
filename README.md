@@ -5,7 +5,7 @@ This application is created for storing data from answered helpline contacts. Th
 
 ## Documentation
 
-* [Requirements specification)](documentation/requirements_specification.md)
+* [Requirements specification](documentation/requirements_specification.md)
 * [Changelog](documentation/changelog.md)
 * [Working hours record](documentation/working-hours-record.md)
 
