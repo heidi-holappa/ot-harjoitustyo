@@ -1,47 +1,37 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Back-up data-submission application
+University course task - Spring 2022
 
-## Content
-A structured  overview of the project will be added here during the course
+This application is created for storing data from answered helpline contacts. The purpose of this application is to provide a backup-tool for collecting data in events in which the main data collection application is unusable. 
 
-## Weekly assignments
+## Documentation
 
-### Week 1
+* [Requirements specification)](documentation/requirements_specification.md)
+* [Changelog](documentation/changelog.md)
+* [Working hours record](documentation/working-hours-record.md)
 
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-### Week 2
-
-[vaatimusmäärittely (requirements_specification.md)](documentation/requirements_specification.md)
-
-[työaikakirjanpito (working-hours-record.md)](documentation/working-hours-record.md)
-
-[testiraportin kuvakaappaus](laskarit/viikko2/testiraportti.png)
-
-
-## Week 1 - markdown syntax assignment
-**Note:** A part of the assignments for week 1 was to showcase different features of markdown language. These will be removed in future updates. 
-
-Ensimmäisissä laskareissa harjoitellaan perusteita. Tarkoituksena on tutustua tekstin muotoiluun ~~**_markdown_-syntaksia**~~ **markdown**-syntaksia käyttäen. 
-
-Alla olevan sitaatin muinainen viisaus kertoo, että
-
-> Those who don't git, don't git gud. 
-
-Myöhemmin saatamme myös lisätä sitaatteina koodia/komentoja, esim.
+## Installation
+1. Install dependencies with the command 
 ```
-git commit
+poetry install
 ```
 
-Saatamme myös lisätä listoja
-- ensimmäinen asia
-- toinen asia
-- kolmas asia
+2. Run the project with the command
+```
+poetry run invoke start
+```
 
-Tai numeroituja listoja
-1. ensimmäinen asia
-2. toinen asia
-3. ~~neljäs~~ *kolmas* asia
-
-Tehtävä 17: epäsynkroonin harjoittelu. Tämä muutos on tehty paikallisessa repositoriossa. 
+## Usable command promtp commands
+The following commands are usable:
+1. Run the application with
+```
+poetry run invoke start
+```
+2. Run tests with
+```
+poetry run invoke test
+```
+3. Create an HTML report of tests with coverage with
+```
+poetry run invoke coverage-report
+```
+You can locate the generated file in the folder htmlcov
