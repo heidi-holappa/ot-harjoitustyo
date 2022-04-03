@@ -1,5 +1,3 @@
-
-
 class User:
 
     def __init__(self, username: str,  password: str):
@@ -50,9 +48,13 @@ class User:
 
     def __str__(self):
         users = self.get_users()
+        result = ""
+        result += "USERS AND ROLES:\n"
+        result += "----------------\n"
         for user in users:
-            print(user + ",role: " + users[user][1])
-        return str(users)
+            result += "username: " + user + ", role: " + users[user][1] + "\n"
+        result += "----------------"
+        return result
 
 
 
