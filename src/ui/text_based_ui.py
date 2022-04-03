@@ -1,5 +1,5 @@
 from services.console_io import ConsoleIO
-
+import os
 
 class TextBasedUi:
 
@@ -110,49 +110,47 @@ class CounselorSubmit:
 
         }
         self.commands_channel = {
+            "1": "phone",
+            "2": "chat",
+            "3": "e-letter",
             "X": "CANCEL SUBMISSION",
-            "1": "PHONE",
-            "2": "CHAT",
-            "3": "E-LETTER",
         }
         self.commands_type = {
+            "1": "counseling",
+            "2": "non-counseling",
+            "3": "silent",
+            "4": "non-target group",
             "X": "CANCEL SUBMISSION",
-            "1": "COUNSELING",
-            "2": "NON-COUNSELING",
-            "3": "SILENT",
-            "4": "NON-TARGET GROUP",
         }
         self.commands_age = {
-            "X": "CANCEL SUBMISSION",
+            "1": "under 9",
+            "2": "9-11 y",
+            "3": "12-14 y",
+            "4": "15-17 y",
+            "5": "18-21 y",
+            "6": "22-25 y",
+            "7": "over 25",
             "B": "GO BACK",
-            "1": "UNDER 9",
-            "2": "9-11 Y",
-            "3": "12-14 Y",
-            "4": "15-17 Y",
-            "5": "18-21 Y",
-            "6": "22-25 Y",
-            "7": "OVER 25"
+            "X": "CANCEL SUBMISSION",
         }
         self.commands_gender  = {
-            "X": "CANCEL SUBMISSION",
+            "1": "girl",
+            "2": "boy",
+            "3": "something else",
+            "3": "unknown",
             "B": "GO BACK",
-            "1": "GIRL",
-            "2": "BOY",
-            "3": "SOMETHING ELSE",
-            "3": "UNKNOWN"
-        }
-        self.commands_confirm = {
             "X": "CANCEL SUBMISSION",
-            "Y": "SUBMIT",
-            "B": "GO BACK"
         }
 
+
     def start(self):
-        self._io.output("SUBMIT NEW CONTACT")
+        self._io.output("NOW SUBMITTING A NEW CONTACT")
         self.submit_channel()
 
         
     def submit_channel(self):
+        self._io.output("")
+        self._io.output("CHANNEL:")
         while True:
             commands = self.commands_channel
             self._io.print_guide(commands)
@@ -166,6 +164,8 @@ class CounselorSubmit:
                 self.submit_type()
 
     def submit_type(self):
+        self._io.output("")
+        self._io.output("TYPE:")
         while True:
             commands = self.commands_type
             self._io.print_guide(commands)
@@ -181,6 +181,8 @@ class CounselorSubmit:
                 self.submit_age()
     
     def submit_age(self):
+        self._io.output("")
+        self._io.output("AGE:")
         while True:
             commands = self.commands_age
             self._io.print_guide(commands)
@@ -196,6 +198,8 @@ class CounselorSubmit:
                 self.submit_gender()
 
     def submit_gender(self):
+        self._io.output("")
+        self._io.output("GENDER:")
         while True:
             commands = self.commands_gender
             self._io.print_guide(commands)
@@ -211,34 +215,54 @@ class CounselorSubmit:
                 self.submit_content()
     
     def submit_content(self):
-        while True:
-            self._io.output("INPUT CONTENT")
-            content = self._io.read_command()
-            if len(content) == 0:
-                print("ERROR: CONTENT CANNOT BE EMPTY. TRY AGAIN")
-            else:
-                self._data["content"] = content
-                self.confirm_submit()
+        self._io.output("")
+        self._io.output("WRITE A DESCRIPTION OF THE CONTACT:")
+        content = self._io.read_command()
+        if len(content) == 0:
+            self._io.output("ERROR: CONTENT CANNOT BE EMPTY. TRY AGAIN")
+            self._io.output("")
+            self.submit_content
+        else:
+            self._data["content"] = content
+            self.confirm_submit()
 
     def confirm_submit(self):
-        self._io.print_guide(self._data)
         self._io.output("")
+        self._io.output("REVIEW SUBMITTED DATA: ")
+        self._io.output("----")
+        self._io.print_guide(self._data)
+        self._io.output("----")
         self._io.output("1: CONFIRM DATA")
         self._io.output("2: CANCEL AND RESTART DATA SUBMISSION")
         while True:
             command = self._io.read_command()
             if command != "1" and command != "2":
                 self._io.output("ERROR. INVALID COMMAND. TRY AGAIN.")
-            elif command == 1:
-                # SAVE DATA TO REPOSITORY
+            elif command == "1":
+                self.save_data()
                 self._io.output("DATA SUCCESSFULLY STORED")
                 self.clear_data()
                 CounselorStart().start()
             else:
-                # DO SAVE DATA
-                self._io.output("DATA SUCCESSFULLY STORED")
+                self._io.output("CANCELLING. NO DATA STORED")
                 self.clear_data()
                 CounselorStart().start()
+
+    def save_data(self):
+        try:
+            save_path = "src/repositories"
+            file_name = "db_contacts.csv"
+            path_and_file = os.path.join(save_path, file_name)
+            with open(path_and_file, "a") as file:
+                line = ""
+                for key in self._data:
+                    line += self._data[key] + ";"
+                line += "\n"
+                file.write(line)
+                file.close()
+        except IOError as exception:
+            raise IOError("ERROR: WRITING DATA FAILED.")
+
 
     def clear_data(self):
         for key in self._data:
