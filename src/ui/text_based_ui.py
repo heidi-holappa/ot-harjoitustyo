@@ -26,6 +26,12 @@ class StartScreen:
         }
 
     def start(self):
+        self._io.output("BACKUP DATA-SUBMISSION APPLICATION")
+        self._io.output("------")
+        self._io.output("IMPORTANT: At the current demo-stage all information is stored into CSV-files")
+        self._io.output("without encryption, including user information.")
+        self._io.output("Please do not store any sensitive information in this demo.")
+        self._io.output("------")
         self._io.print_guide(self.guide)
         while True:
             command = self._io.read_command()
