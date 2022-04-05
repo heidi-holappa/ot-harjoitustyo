@@ -20,6 +20,7 @@ sequenceDiagram
   deactivate Engine
   Machine->>Engine: is_running()
   activate Engine
+  Engine->>FuelTank: fuel_contents > 10
   Engine-->>Machine: True
   deactivate Engine
   Machine->>Engine: use_energy()
