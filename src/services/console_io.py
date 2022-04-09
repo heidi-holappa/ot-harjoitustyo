@@ -11,6 +11,6 @@ class ConsoleIO:
 
     def read_command(self):
         return input("> ")
-    
+
     def output(self, printout):
         print(printout)

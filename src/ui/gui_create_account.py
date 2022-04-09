@@ -93,18 +93,5 @@ class CreateAccountView:
                 else:
                     label_creation_error = ttk.Label(master=self._frame, text="Error: passwords do not match. Try again.", foreground="red")        
                     label_creation_error.grid(row=1, column=0, columnspan=4)
-
-                
-
-         
-            
-            
-            # Try to create
-            # ... 
-            # If success:
-            # back to main screen
-            # If not success
-            # Inform of error and try again
-
         except:
             print("Error, tried login with nonetype")

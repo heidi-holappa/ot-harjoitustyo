@@ -2,6 +2,7 @@ from services.console_io import ConsoleIO
 from entities.user import User
 import os
 
+
 class TextBasedUi:
 
     def __init__(self):
@@ -9,7 +10,8 @@ class TextBasedUi:
 
     def start(self):
         StartScreen().start()
-        
+
+
 class StartScreen:
 
     def __init__(self):
@@ -28,9 +30,11 @@ class StartScreen:
     def start(self):
         self._io.output("BACKUP DATA-SUBMISSION APPLICATION")
         self._io.output("------")
-        self._io.output("IMPORTANT: At the current demo-stage all information is stored into CSV-files")
+        self._io.output(
+            "IMPORTANT: At the current demo-stage all information is stored into CSV-files")
         self._io.output("without encryption, including user information.")
-        self._io.output("Please do not store any sensitive information in this demo.")
+        self._io.output(
+            "Please do not store any sensitive information in this demo.")
         self._io.output("------")
         self._io.print_guide(self.guide)
         while True:
@@ -48,7 +52,7 @@ class Login:
 
     def __init__(self):
         self._io = ConsoleIO()
-    
+
     def start(self):
         self._io.output("----")
         self._io.output("LOGIN (PRESS ENTER TO CANCEL)")
@@ -66,12 +70,13 @@ class Login:
         else:
             print("LOGIN FAILED. CHECK USERNAME AND PASSWORD")
             self.start()
-    
+
+
 class CreateAccount:
 
     def __init__(self):
         self._io = ConsoleIO()
-    
+
     def start(self):
         self._io.output("----")
         self._io.output("CREATE ACCOUNT (PRESS ENTER TO CANCEL)")
@@ -97,16 +102,15 @@ class CreateAccount:
         else:
             print("CREATING NEW ACCOUNT FAILED. TRY AGAIN")
             self.start()
-            
-            
+
 
 class CounselorStart:
 
     def __init__(self, user: User):
         self._io = ConsoleIO()
         self.commands_counselor = {
-            "X" : "LOGOUT",
-            "1" : "SUBMIT DATA"
+            "X": "LOGOUT",
+            "1": "SUBMIT DATA"
         }
         self._user = user
 
@@ -122,9 +126,10 @@ class CounselorStart:
             else:
                 CounselorSubmit(self._user).start()
 
+
 class CounselorSubmit:
 
-    def __init__(self, user: User):      
+    def __init__(self, user: User):
         self._io = ConsoleIO()
         self._user = user
         self._data = {
@@ -159,7 +164,7 @@ class CounselorSubmit:
             "B": "GO BACK",
             "X": "CANCEL SUBMISSION",
         }
-        self.commands_gender  = {
+        self.commands_gender = {
             "1": "girl",
             "2": "boy",
             "3": "something else",
@@ -168,12 +173,10 @@ class CounselorSubmit:
             "X": "CANCEL SUBMISSION",
         }
 
-
     def start(self):
         self._io.output("NOW SUBMITTING A NEW CONTACT")
         self.submit_channel()
 
-        
     def submit_channel(self):
         self._io.output("")
         self._io.output("CHANNEL:")
@@ -205,7 +208,7 @@ class CounselorSubmit:
             else:
                 self._data["type"] = commands[command]
                 self.submit_age()
-    
+
     def submit_age(self):
         self._io.output("")
         self._io.output("AGE:")
@@ -239,7 +242,7 @@ class CounselorSubmit:
             else:
                 self._data["gender"] = commands[command]
                 self.submit_content()
-    
+
     def submit_content(self):
         self._io.output("")
         self._io.output("WRITE A DESCRIPTION OF THE CONTACT:")
@@ -288,7 +291,6 @@ class CounselorSubmit:
                 file.close()
         except IOError as exception:
             raise IOError("ERROR: WRITING DATA FAILED.")
-
 
     def clear_data(self):
         for key in self._data:

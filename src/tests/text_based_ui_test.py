@@ -3,6 +3,7 @@ from ui.text_based_ui import CounselorSubmit, StartScreen
 from services.console_io import ConsoleIO
 from entities.user import User
 
+
 class TestTextBasedUI(unittest.TestCase):
     def setUp(self):
         print("Set up goes here")
@@ -14,5 +15,3 @@ class TestTextBasedUI(unittest.TestCase):
             data_submit._data[key] = "test content"
         data_submit.clear_data()
         self.assertEqual(0, len(data_submit._data["channel"]))
-
-
