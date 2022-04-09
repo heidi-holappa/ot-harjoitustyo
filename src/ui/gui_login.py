@@ -1,6 +1,5 @@
 from tkinter import ttk, constants, StringVar
-
-from matplotlib.pyplot import text
+from entities.user import User
 
 
 class LoginView:
@@ -78,10 +77,13 @@ class LoginView:
                 password_given = self._entry_password_var.get()
                 username_given = self._entry_username_var.get()
                 print(username_given, password_given)
-            # Login
-            # ... 
-            # If success:
+                self._user = User(username_given, password_given)
+                if self._user.login():
+                    self._counselor_view()
+                else:
+                    print("LOGIN FAILED. CHECK USERNAME AND PASSWORD")
+                    self._main_view()
 
         except:
-            print("Error, tried login with nonetype")
+            print("A descriptive error log - message here")
         

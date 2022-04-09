@@ -1,8 +1,8 @@
 from tkinter import Tk
-from gui_main_view import MainView
-from gui_login import LoginView
-from gui_create_account import CreateAccountView
-
+from ui.gui_main_view import MainView
+from ui.gui_login import LoginView
+from ui.gui_create_account import CreateAccountView
+from ui.gui_counselor import CounselorView
 
 class UI:
 
@@ -51,6 +51,15 @@ class UI:
 
         self._current_view.pack()
     
+    def _show_counselor_view(self):
+        self._hide_current_view()
+        self._current_view = CounselorView(
+            self._root,
+            self._handle_main_view
+        )
+
+        self._current_view.pack()
+
     def _handle_login(self):
         self._show_login_view()
     
@@ -61,17 +70,19 @@ class UI:
         self._show_main_view()
     
     def _handle_counselor_view(self):
-        self._show_main_view()
+        self._show_counselor_view()
 
     def _handle_admin_view(self):
         self._show_main_view()
 
 
 # Launch the GUI
-window = Tk()
-window.title("Backup data submission application")
 
-ui = UI(window)
-ui.start()
+def main():
+    window = Tk()
+    window.title("Backup data submission application")
 
-window.mainloop()
+    ui = UI(window)
+    ui.start()
+
+    window.mainloop()
