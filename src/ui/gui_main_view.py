@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 
+
 class MainView:
     def __init__(self, root, login, create_account):
         self._root = root
@@ -14,15 +15,14 @@ class MainView:
             self._frame.pack(fill=constants.X)
 
     def destroy(self):
-        print("OMNOMNOMNOMNOM")
         if self._frame:
             self._frame.destroy()
-    
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        # self._root.geometry("600x300")
-        label = ttk.Label(master=self._frame, text="Welcome to the backup data submission application!")
-        
+        label = ttk.Label(
+            master=self._frame, text="Welcome to the backup data submission application!")
+
         button_login = ttk.Button(
             master=self._frame,
             text="Login",
@@ -30,7 +30,7 @@ class MainView:
         )
         button_create_account = ttk.Button(
             master=self._frame,
-            text="Logout",
+            text="Create account",
             command=self._create_account
         )
 
