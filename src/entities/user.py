@@ -2,8 +2,8 @@ class User:
 
     def __init__(self, username: str,  password: str):
         self.username = username
-        self.password =  password
-        self.role = ""
+        self.password = password
+        self.role = "counselor"
         self.logged = False
 
     def login(self):
@@ -16,6 +16,9 @@ class User:
                 is_valid = True
         return is_valid
     
+    def set_admin(self):
+        self.role = "admin"
+
     def get_users(self):
         try:
             with open("src/repositories/db_users.csv") as file:
@@ -23,7 +26,7 @@ class User:
                 for row in file:
                     row = row.replace("\n", "")
                     parts = row.split(";")
-                    users[parts[0]] = (parts[1], parts[2])            
+                    users[parts[0]] = (parts[1], parts[2])
                 return users
         except:
             print("USER.PY.GET_USERS(). CRITICAL DATABASE ERROR. CAN NOT FETCH USERDATA")
@@ -37,14 +40,13 @@ class User:
         else:
             try:
                 with open("src/repositories/db_users.csv", "a") as file:
-                    line = self.username + ";" + self.password + ";counselor\n"
+                    line = self.username + ";" + self.password + ";" + self.role + "\n"
                     file.write(line)
                     file.close
                 return True
             except:
                 print("USER.PY.CREATE_USER(). CRITICAL DATABASE ERROR. NO USER CREATED")
                 return False
-
 
     def __str__(self):
         users = self.get_users()
@@ -55,7 +57,6 @@ class User:
             result += "username: " + user + ", role: " + users[user][1] + "\n"
         result += "----------------"
         return result
-
 
 
 if __name__ == "__main__":
