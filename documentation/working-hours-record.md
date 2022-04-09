@@ -14,3 +14,6 @@
 | 3 | Sat 2.4.2022 | Reading documentation | 1 |
 | 3 | Sun 3.4.2022 | Creating account management, first tests, improving text-based-UI | 4 |
 | **3** | --- | **Total** | **10** |
+| 4 | Wed 6.4.2022 | Getting to know Tkinter basics  | 3 |
+| 4 | Fri 8.4.2022 | Building GUI main view and learning Tkinter | 2 |
+| 4 | Sat 9.4.2022 | Building GUI: login, account creation and counselor view | 5 |
