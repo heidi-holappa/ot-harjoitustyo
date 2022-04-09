@@ -9,7 +9,7 @@ class UI:
     def __init__(self, root):
         self._root = root
         self._current_view = None
-        self._root.geometry("600x300")
+        # self._root.geometry("600x300")
 
     def start(self):
         self._show_main_view()
@@ -28,7 +28,7 @@ class UI:
             self._handle_login,
             self._handle_create_account
         )
-
+       
         self._current_view.pack()
 
     def _show_login_view(self):

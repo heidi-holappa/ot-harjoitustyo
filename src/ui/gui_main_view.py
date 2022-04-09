@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, Frame
 
 
 class MainView:
@@ -19,7 +19,7 @@ class MainView:
             self._frame.destroy()
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(self._root, padx=50, pady=50)
         label = ttk.Label(
             master=self._frame, text="Welcome to the backup data submission application!")
 
