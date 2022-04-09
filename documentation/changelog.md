@@ -16,3 +16,10 @@
   - test: runs tests with pytest
   - coverage-report: creates an html-version of tests with coverage
 
+## Week 4
+* An initial version of GUI has been added. GUI now includes
+  - main view
+  - login view
+  - account creation view
+  - user role 'counselor' view for data submission
+* User can move between GUI views and can logout
