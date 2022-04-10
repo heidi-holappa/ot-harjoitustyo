@@ -1,5 +1,6 @@
 from entities.user import User
 
+
 class Contact:
 
     def __init__(self, user: User, channel, c_type, age, gender, content):
@@ -9,4 +10,3 @@ class Contact:
         self.age = age
         self.gender = gender
         self.content = content
-    
