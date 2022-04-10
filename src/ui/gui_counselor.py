@@ -1,6 +1,7 @@
 from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text
 from functools import partial
 
+
 class CounselorView:
     def __init__(self, root, main_view):
         self._root = root
@@ -13,7 +14,7 @@ class CounselorView:
         self._age_var = None
         self._content_var = None
         self._content_field = None
-        
+
         self._initialize()
 
     def pack(self):
@@ -28,7 +29,7 @@ class CounselorView:
         self._frame = Frame(master=self._root, padx=50, pady=50)
         label = ttk.Label(
             master=self._frame, text="You are now in the Counselor View")
-        
+
         button_logout = ttk.Button(
             master=self._frame,
             text="Logout",
@@ -36,29 +37,37 @@ class CounselorView:
         )
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
-        button_logout.grid(row=0, column=1, padx=10, pady=5, sticky=constants.E)
-        
+        button_logout.grid(row=0, column=1, padx=10,
+                           pady=5, sticky=constants.E)
+
         # Select channel
         self._channel_var = IntVar()
         channel_label = ttk.Label(
             master=self._frame, text="Select channel")
-        channel_R1 = Radiobutton(self._frame, text="phone", variable=self._channel_var, value=1)
-        channel_R2 = Radiobutton(self._frame, text="chat", variable=self._channel_var, value=2)
-        channel_R3 = Radiobutton(self._frame, text="e-letter", variable=self._channel_var, value=3)
-        
+        channel_R1 = Radiobutton(
+            self._frame, text="phone", variable=self._channel_var, value=1)
+        channel_R2 = Radiobutton(
+            self._frame, text="chat", variable=self._channel_var, value=2)
+        channel_R3 = Radiobutton(
+            self._frame, text="e-letter", variable=self._channel_var, value=3)
+
         channel_label.grid(row=1, column=0, sticky=constants.W)
         channel_R1.grid(row=2, column=0, sticky=constants.W)
         channel_R2.grid(row=3, column=0, sticky=constants.W)
         channel_R3.grid(row=4, column=0, sticky=constants.W)
 
-        #Select type
+        # Select type
         self._type_var = IntVar()
         type_label = ttk.Label(
             master=self._frame, text="Select type")
-        type_R1 = Radiobutton(self._frame, text="counseling", variable=self._type_var, value=1)
-        type_R2 = Radiobutton(self._frame, text="non-counseling", variable=self._type_var, value=2)
-        type_R3 = Radiobutton(self._frame, text="silent", variable=self._type_var, value=3)
-        type_R4 = Radiobutton(self._frame, text="non-target group", variable=self._type_var, value=4)
+        type_R1 = Radiobutton(self._frame, text="counseling",
+                              variable=self._type_var, value=1)
+        type_R2 = Radiobutton(
+            self._frame, text="non-counseling", variable=self._type_var, value=2)
+        type_R3 = Radiobutton(self._frame, text="silent",
+                              variable=self._type_var, value=3)
+        type_R4 = Radiobutton(
+            self._frame, text="non-target group", variable=self._type_var, value=4)
 
         type_label.grid(row=6, column=0, sticky=constants.W)
         type_R1.grid(row=7, column=0, sticky=constants.W)
@@ -70,11 +79,15 @@ class CounselorView:
         self._gender_var = IntVar()
         gender_label = ttk.Label(
             master=self._frame, text="Select gender")
-        gender_R1 = Radiobutton(self._frame, text="girl", variable=self._gender_var, value=1)
-        gender_R2 = Radiobutton(self._frame, text="boy", variable=self._gender_var, value=2)
-        gender_R3 = Radiobutton(self._frame, text="something else", variable=self._gender_var, value=3)
-        gender_R4 = Radiobutton(self._frame, text="unknown", variable=self._gender_var, value=4)        
-        
+        gender_R1 = Radiobutton(self._frame, text="girl",
+                                variable=self._gender_var, value=1)
+        gender_R2 = Radiobutton(self._frame, text="boy",
+                                variable=self._gender_var, value=2)
+        gender_R3 = Radiobutton(
+            self._frame, text="something else", variable=self._gender_var, value=3)
+        gender_R4 = Radiobutton(
+            self._frame, text="unknown", variable=self._gender_var, value=4)
+
         gender_label.grid(row=1, column=1, sticky=constants.W)
         gender_R1.grid(row=2, column=1, sticky=constants.W)
         gender_R2.grid(row=3, column=1, sticky=constants.W)
@@ -85,13 +98,20 @@ class CounselorView:
         self._age_var = IntVar()
         age_label = ttk.Label(
             master=self._frame, text="Select age")
-        age_R1 = Radiobutton(self._frame, text="under 9", variable=self._age_var, value=1)
-        age_R2 = Radiobutton(self._frame, text="9-11", variable=self._age_var, value=2)
-        age_R3 = Radiobutton(self._frame, text="12-14", variable=self._age_var, value=3)
-        age_R4 = Radiobutton(self._frame, text="15-17", variable=self._age_var, value=4)
-        age_R5 = Radiobutton(self._frame, text="18-21", variable=self._age_var, value=5)
-        age_R6 = Radiobutton(self._frame, text="22-25", variable=self._age_var, value=6)
-        age_R7 = Radiobutton(self._frame, text="over 25", variable=self._age_var, value=7)
+        age_R1 = Radiobutton(self._frame, text="under 9",
+                             variable=self._age_var, value=1)
+        age_R2 = Radiobutton(self._frame, text="9-11",
+                             variable=self._age_var, value=2)
+        age_R3 = Radiobutton(self._frame, text="12-14",
+                             variable=self._age_var, value=3)
+        age_R4 = Radiobutton(self._frame, text="15-17",
+                             variable=self._age_var, value=4)
+        age_R5 = Radiobutton(self._frame, text="18-21",
+                             variable=self._age_var, value=5)
+        age_R6 = Radiobutton(self._frame, text="22-25",
+                             variable=self._age_var, value=6)
+        age_R7 = Radiobutton(self._frame, text="over 25",
+                             variable=self._age_var, value=7)
 
         age_label.grid(row=7, column=1, sticky=constants.W)
         age_R1.grid(row=8, column=1, sticky=constants.W)
@@ -109,19 +129,15 @@ class CounselorView:
         content_label.grid(row=15, column=0, pady=10, sticky=constants.W)
         self._content_field.grid(row=16, column=0, sticky=constants.W)
 
-        
-
         # submit = partial(self.try_submit, content=content_field.get("1.0"))
-        
+
         button_submit = ttk.Button(
             master=self._frame,
             text="Submit",
             command=self._try_submit
         )
         button_submit.grid(row=17, column=1, sticky=constants.E, padx=20)
-    
 
-    
     def _try_submit(self):
         print("trying to submit")
         if self._content_field:
@@ -132,12 +148,3 @@ class CounselorView:
         print("content field: ", input)
         print("Next line")
         pass
-
-
-
-
-    
-
-    
-        
-        

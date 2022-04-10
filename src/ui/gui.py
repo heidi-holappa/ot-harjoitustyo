@@ -4,6 +4,7 @@ from ui.gui_login import LoginView
 from ui.gui_create_account import CreateAccountView
 from ui.gui_counselor import CounselorView
 
+
 class UI:
 
     def __init__(self, root):
@@ -28,7 +29,7 @@ class UI:
             self._handle_login,
             self._handle_create_account
         )
-       
+
         self._current_view.pack()
 
     def _show_login_view(self):
@@ -50,7 +51,7 @@ class UI:
         )
 
         self._current_view.pack()
-    
+
     def _show_counselor_view(self):
         self._hide_current_view()
         self._current_view = CounselorView(
@@ -62,13 +63,13 @@ class UI:
 
     def _handle_login(self):
         self._show_login_view()
-    
+
     def _handle_create_account(self):
         self._show_create_account_view()
-    
+
     def _handle_main_view(self):
         self._show_main_view()
-    
+
     def _handle_counselor_view(self):
         self._show_counselor_view()
 
