@@ -1,16 +1,16 @@
 import unittest
 from entities.user import User
 from services.user_management import default_user_management
+from initialize_database import initialize_database
 
 
 class TestUserManagement(unittest.TestCase):
     def setUp(self):
         self.user_management = default_user_management
-        self.testuser = User("testuser", "salasana")
-        print("Set up goes here")
+        self.testuser = User("testuser1", "salasana")
+        self.db = initialize_database()
 
     def test_create_user(self):
-        # Incase testuser does not exist, create user account
         self.user_management.create_user(self.testuser)
         result = self.user_management.login(self.testuser)
         self.assertEqual(True, result)
@@ -37,6 +37,27 @@ class TestUserManagement(unittest.TestCase):
         self.user_management.create_user(self.testuser)
         fetched_user = self.user_management.get_user(self.testuser.username)
         self.assertEqual(self.testuser.username, fetched_user.username)
+    
+    def test_create_multiple_users(self):
+        self.user_management.add_user(User("user1", "password"))
+        self.user_management.add_user(User("user2", "password"))
+        self.user_management.add_user(User("user3", "password"))
+        user_count = len(self.user_management.get_all_users())
+        self.assertEqual(3, user_count)
+
+    def test_try_to_add_username_already_in_use(self):
+        self.user_management.add_user(User("user1", "password"))
+        result = self.user_management.add_user(User("user1", "password"))
+        self.assertEqual(False, result)
+    
+    def test_try_to_create_username_already_in_use(self):
+        self.user_management.add_user(User("user1", "password"))
+        result = self.user_management.create_user(User("user1", "password"))
+        self.assertEqual(False, result)
+    
+
+
+
 
 
         
