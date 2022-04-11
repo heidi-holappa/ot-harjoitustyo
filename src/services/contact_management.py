@@ -2,7 +2,7 @@ from entities.user import User
 from entities.contact import Contact
 
 from repositories.contact_data_repository import default_contact_repository
-from repositories.user_repository import UserRepository as default_user_repository
+from repositories.user_repository import default_user_repository
 from services.user_management import default_user_management
 
 class ContactManagement:
