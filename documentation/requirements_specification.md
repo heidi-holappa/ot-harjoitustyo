@@ -10,9 +10,9 @@ The application can be used in two different roles: as a counselor and as a supe
 
 ## User Interface (UI) design
 The initial plan is to have four user screens:
-- A login screen
-- A screen for creating a new counselor account
-- A counselor view for submitting data
+- **Initial version done:** A login screen
+- **Initial version done:** A screen for creating a new counselor account
+- **Initial version done:** A counselor view for submitting data
 - A supervisor screen for reviewing and managing submitted data
 
 ![login screen](/documentation/images/req-spec-login.png)
@@ -24,15 +24,15 @@ The initial plan is to have four user screens:
 ## Basic functionalities
 
 **Before logging in**
-- User can create an account with the role 'counselor'. 
-- Account creation has validation (username must have atleast three characters, passwords have to match, name cannot be empty)
-- User can login into the system
-- If login fails, user is notified
+- **Initial version done:** User can create an account with the role 'counselor'. 
+- **Initial version done:** Account creation has validation (username must have atleast three characters, passwords have to match, name cannot be empty)
+- **Done:** User can login into the system
+- **Done:** If login fails, user is notified
 
 **After logging in (role counselor)**
-- User with role counselor can submit new data entries
+- **Done:** User with role counselor can submit new data entries
 - Form contains validation (some fields are mandatory, depending on the selections made)
-- User can logout
+- **Initial version done:** User can logout
 
 **After logging in (role supervisor)**
 - User with role supervisor can review all data submissions
