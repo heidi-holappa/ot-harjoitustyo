@@ -44,12 +44,12 @@ class ContactDataRepository:
             cursor = self._connection.cursor()
             cursor.execute('''INSERT INTO CONTACTS
                     (username, channel, type, age, gender, content) VALUES (?,?,?,?,?,?)''',
-                           [str(user.username),
-                            str(contact.channel),
-                            str(contact.type),
-                            str(contact.age),
-                            str(contact.gender),
-                            str(contact.content)]
+                           [user.username,
+                            contact.channel,
+                            contact.type,
+                            contact.age,
+                            contact.gender,
+                            contact.content]
                            )
             self._connection.commit()
         except Exception as ex:
