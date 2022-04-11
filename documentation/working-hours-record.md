@@ -25,5 +25,6 @@
 | 4 | Mon 11.4.2022 | Read on poetry.lock, update remote-repository and .gitignore | 1 |
 | 4 | Mon 11.4.2022 | Work on refactoring the application service logic | 2 |
 | 4 | Mon 11.4.2022 | Adjust database queries and initalization, test database usage. | 2 |
-| **4** | --- | **Total** | **21** |
-| **All**| --- | **Total** | **42** |
+| 4 | Mon 11.4.2022 | Add dotenv and test database, write tests | 3,5 |
+| **4** | --- | **Total** | **24,5** |
+| **All**| --- | **Total** | **45,5** |
