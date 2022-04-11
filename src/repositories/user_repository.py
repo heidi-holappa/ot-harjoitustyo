@@ -50,4 +50,4 @@ class UserRepository:
             return False
 
 
-user_repository = UserRepository(get_database_connection())
+default_user_repository = UserRepository(get_database_connection())

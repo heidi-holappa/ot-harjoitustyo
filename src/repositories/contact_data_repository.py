@@ -39,17 +39,17 @@ class ContactDataRepository:
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):
-        print("Now in contact repository. Content: ", contact.content, "User: ", user.username)
+        print("Now in contact repository. Content: ", contact.content, "User: ", user.username, "user: ", user)
         try:
             cursor = self._connection.cursor()
             cursor.execute('''INSERT INTO CONTACTS
                     (username, channel, type, age, gender, content) VALUES (?,?,?,?,?,?)''',
-                           [user.username,
-                            contact.channel,
-                            contact.type,
-                            contact.age,
-                            contact.gender,
-                            contact.content]
+                           [str(user.username),
+                            str(contact.channel),
+                            str(contact.type),
+                            str(contact.age),
+                            str(contact.gender),
+                            str(contact.content)]
                            )
             self._connection.commit()
         except Exception as ex:
