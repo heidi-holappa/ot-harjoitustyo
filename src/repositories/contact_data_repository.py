@@ -18,17 +18,32 @@ class ContactDataRepository:
 
         rows = cursor.fetchall()
         for row in rows:
-            # Perhaps create a contact object and populate it's attributes?
+            self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
+                row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
+                ";" + row["content"]
+        return self._all_data
+
+    def fetch_contacts_by_user(self, user: User):
+        self._all_data = {}
+        cursor = self._connection.cursor()
+
+        cursor.execute('''SELECT ROWID, username, datetime, channel,
+                type, gender, age, content FROM CONTACTS
+                WHERE username=?''', [user.username])
+
+        rows = cursor.fetchall()
+        for row in rows:
             self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
                 row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
                 ";" + row["content"]
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):
+        print("Now in contact repository. Content: ", contact.content, "User: ", user.username)
         try:
             cursor = self._connection.cursor()
             cursor.execute('''INSERT INTO CONTACTS
-                    (username, channel, type, age, gender, content) VALUES (?,?,?,?,?)''',
+                    (username, channel, type, age, gender, content) VALUES (?,?,?,?,?,?)''',
                            [user.username,
                             contact.channel,
                             contact.type,
@@ -36,9 +51,10 @@ class ContactDataRepository:
                             contact.gender,
                             contact.content]
                            )
-            cursor.commit()
+            self._connection.commit()
         except Exception as ex:
             print("An error occured. Message: ", ex)
 
 
-contact_repository = ContactDataRepository(get_database_connection())
+
+default_contact_repository = ContactDataRepository(get_database_connection())

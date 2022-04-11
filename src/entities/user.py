@@ -9,6 +9,6 @@ class User:
     def set_admin(self):
         self.role = "admin"
 
-    def __str__(self):
-        result = f"username: {self.username}, role: {self.role}"
-        return result
+    # def __str__(self):
+    #     result = f"username: {self.username}, role: {self.role}"
+    #     return result
