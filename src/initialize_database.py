@@ -5,7 +5,11 @@ def drop_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute('''
-        drop table if exists users;
+        DROP TABLE IF EXISTS USERS;
+    ''')
+
+    cursor.execute('''
+        DROP TABLE IF EXISTS CONTACTS;
     ''')
 
     connection.commit()
@@ -16,21 +20,21 @@ def create_tables(connection):
 
     cursor.execute('''
         CREATE TABLE USERS (
-            USERNAME TEXT PRIMARY KEY,
-            PASSWORD TEXT,
-            ROLE TEXT
+            username TEXT PRIMARY KEY,
+            password TEXT,
+            role TEXT
         );
     ''')
 
     cursor.execute('''
         CREATE TABLE CONTACTS (
-            USERNAME TEXT,
-            DATETIME TEXT,
-            CHANNEL TEXT,
-            TYPE TEXT,
-            GENDER TEXT,
-            AGE TEXT,
-            CONTENT TEXT
+            username TEXT,
+            datetime TEXT,
+            channel TEXT,
+            type TEXT,
+            gender TEXT,
+            age TEXT,
+            content TEXT
         )
     ''')
 
