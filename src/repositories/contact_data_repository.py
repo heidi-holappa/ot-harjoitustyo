@@ -13,12 +13,12 @@ class ContactDataRepository:
         self._all_data = {}
         cursor = self._connection.cursor()
 
-        cursor.execute('''SELECT ROWID, username, datetime, channel,
+        cursor.execute('''SELECT ROWID, username, channel,
                 type, gender, age, content FROM CONTACTS''')
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
+            self._all_data[row["ROWID"]] = row["username"] + ";" + \
                 row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
                 ";" + row["content"]
         return self._all_data
@@ -27,13 +27,13 @@ class ContactDataRepository:
         self._all_data = {}
         cursor = self._connection.cursor()
 
-        cursor.execute('''SELECT ROWID, username, datetime, channel,
+        cursor.execute('''SELECT ROWID, username, channel,
                 type, gender, age, content FROM CONTACTS
                 WHERE username=?''', [user.username])
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
+            self._all_data[row["ROWID"]] = row["username"] + ";" + \
                 row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
                 ";" + row["content"]
         return self._all_data
