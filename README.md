@@ -24,25 +24,29 @@ poetry run invoke start
 
 ## Usable command promtp commands
 The following commands are usable:
-1. Run the application with
+1. Initialize the application with
+```
+poetry run invoke build
+```
+2. Run the application with
 ```
 poetry run invoke start
 ```
-2. Run tests with
+3. Run tests with
 ```
 poetry run invoke test
 ```
-3. Create an HTML report of tests with coverage with
+4. Create an HTML report of tests with coverage with
 ```
 poetry run invoke coverage-report
 ```
 You can locate the generated file in the folder htmlcov
 
-4. Run pylint with 
+5. Run pylint with 
 ```
 poetry run invoke lint
 ```
-5. Run autopep8 with
+6. Run autopep8 with
 ```
 poetry run invoke format
 ```
