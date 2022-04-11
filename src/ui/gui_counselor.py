@@ -142,16 +142,17 @@ class CounselorView:
         button_submit.grid(row=17, column=1, sticky=constants.E, padx=20)
 
     def _try_submit(self):
-        print("Logged user: ", self._user_management.get_logged_user(), self._user_management)
-        print("trying to submit")
         if self._content_field:
             input = self._content_field.get(1.0, constants.END)
             input = input.strip()
         else:
             input = ""
-        print("content field: ", input)
-        print("Next line")
-        contact = Contact(self._channel_var, self._type_var, self._age_var, self._gender_var, input)
-        self._contact_management.submit_contact(contact)
+        if self._channel_var and self._type_var and self._age_var and self._gender_var:
+            c_channel = self._channel_var.get()
+            c_type = self._type_var.get()
+            c_age = self._age_var.get()
+            c_gender = self._gender_var.get()
+            contact = Contact(c_channel, c_type, c_age, c_gender, input)
+            self._contact_management.submit_contact(contact)
 
         
