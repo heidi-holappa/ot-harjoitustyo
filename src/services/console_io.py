@@ -1,5 +1,5 @@
 
-
+# This class was used in the initial text-based-ui. Will be either repurposed or deleted in week 5
 class ConsoleIO:
 
     def __init__(self):
