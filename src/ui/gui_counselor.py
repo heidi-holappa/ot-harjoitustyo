@@ -1,9 +1,12 @@
 from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text
-from functools import partial
+from entities.contact import Contact
+from services.contact_management import ContactManagement
+from services.user_management import default_user_management
 
 
 class CounselorView:
-    def __init__(self, root, main_view):
+    def __init__(self, root, main_view,
+            user_management = default_user_management):
         self._root = root
         self._main_view = main_view
         self._frame = None
@@ -16,6 +19,8 @@ class CounselorView:
         self._content_field = None
 
         self._initialize()
+        self._contact_management = ContactManagement()
+        self._user_management = user_management
 
     def pack(self):
         if self._frame:
@@ -129,8 +134,6 @@ class CounselorView:
         content_label.grid(row=15, column=0, pady=10, sticky=constants.W)
         self._content_field.grid(row=16, column=0, sticky=constants.W)
 
-        # submit = partial(self.try_submit, content=content_field.get("1.0"))
-
         button_submit = ttk.Button(
             master=self._frame,
             text="Submit",
@@ -139,6 +142,7 @@ class CounselorView:
         button_submit.grid(row=17, column=1, sticky=constants.E, padx=20)
 
     def _try_submit(self):
+        print("Logged user: ", self._user_management.get_logged_user(), self._user_management)
         print("trying to submit")
         if self._content_field:
             input = self._content_field.get(1.0, constants.END)
@@ -147,4 +151,7 @@ class CounselorView:
             input = ""
         print("content field: ", input)
         print("Next line")
-        pass
+        contact = Contact(self._channel_var, self._type_var, self._age_var, self._gender_var, input)
+        self._contact_management.submit_contact(contact)
+
+        

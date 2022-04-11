@@ -6,6 +6,7 @@ class UserManagement:
     def __init__(self,
                  user_repository=default_user_repository):
         self._user_repository = user_repository
+        self._logged_user = None
 
     def password_is_valid(self, password1: str, password2: str):
         # Password validation can be expanded easily
@@ -44,4 +45,11 @@ class UserManagement:
                 user.role = users[user.username][1]
                 user.logged = True
                 is_valid = True
+        self._logged_user = user
+        print("logged: ", self._logged_user, self)
         return is_valid
+    
+    def get_logged_user(self):
+        return self._logged_user
+
+default_user_management = UserManagement()

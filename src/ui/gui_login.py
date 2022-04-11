@@ -1,10 +1,11 @@
 from tkinter import ttk, constants, StringVar, Frame
 from entities.user import User
-from services.user_management import UserManagement
+from services.user_management import default_user_management
 
 
 class LoginView:
-    def __init__(self, root, main_view, counselor_view, admin_view):
+    def __init__(self, root, main_view, counselor_view, admin_view, 
+                    user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._counselor_view = counselor_view
@@ -13,6 +14,8 @@ class LoginView:
 
         self._entry_username_var = None
         self._entry_password_var = None
+
+        self._user_management = user_management
 
         self._initialize()
 
@@ -68,9 +71,8 @@ class LoginView:
                 password_given = self._entry_password_var.get()
                 username_given = self._entry_username_var.get()
                 print(username_given, password_given)
-                user_management = UserManagement()
                 user = User(username_given, password_given)
-                if user_management.login(user):
+                if self._user_management.login(user):
                     self._counselor_view()
                 else:
                     label_login_error = ttk.Label(
