@@ -23,3 +23,12 @@
   - account creation view
   - user role 'counselor' view for data submission
 * User can move between GUI views and can logout
+* Data is now stored in SQLite-database
+  - database has two tables: users, contacts
+  - user- and contactdata can be stored into the database
+* Application re-structured. The structure now includes
+  - Entities: user and contact objects
+  - Service classes for user and contact management
+  - repository classes for database queries
+  - gui-classes to create different GUI-views
+
