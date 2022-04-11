@@ -6,8 +6,10 @@ This application is created for storing data from answered helpline contacts. Th
 ## Documentation
 
 * [Requirements specification](documentation/requirements_specification.md)
+* [Application architecture](documentation/architecture.md)
 * [Changelog](documentation/changelog.md)
 * [Working hours record](documentation/working-hours-record.md)
+
 
 ## Installation
 1. Install dependencies with the command 
@@ -35,3 +37,12 @@ poetry run invoke test
 poetry run invoke coverage-report
 ```
 You can locate the generated file in the folder htmlcov
+
+4. Run pylint with 
+```
+poetry run invoke lint
+```
+5. Run autopep8 with
+```
+poetry run invoke format
+```
