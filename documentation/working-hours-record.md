@@ -23,5 +23,7 @@
 | 4 | Sun 10.4.2022 | Refactor service classes, repositories, entities | 2 |
 | 4 | Sun 10.4.2022 | Add SQLite database | 2 |
 | 4 | Mon 11.4.2022 | Read on poetry.lock, update remote-repository and .gitignore | 1 |
-| **4** | --- | **Total** | **17** |
-| **All**| --- | **Total** | **38** |
+| 4 | Mon 11.4.2022 | Work on refactoring the application service logic | 2 |
+| 4 | Mon 11.4.2022 | Adjust database queries and initalization, test database usage. | 2 |
+| **4** | --- | **Total** | **21** |
+| **All**| --- | **Total** | **42** |
