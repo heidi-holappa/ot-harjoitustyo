@@ -145,6 +145,7 @@ class CounselorView:
         if self._content_field:
             input = self._content_field.get(1.0, constants.END)
             input = input.strip()
+            self._content_field.delete(1.0, constants.END)
         else:
             input = ""
         if self._channel_var and self._type_var and self._age_var and self._gender_var:
@@ -154,5 +155,15 @@ class CounselorView:
             c_gender = self._gender_var.get()
             contact = Contact(c_channel, c_type, c_age, c_gender, input)
             self._contact_management.submit_contact(contact)
+            label_success = ttk.Label(
+                master=self._frame, text="Contact stored successfully.", foreground="green")
+            label_success.grid(row=1, column=0, columnspan=4)
+            label_success.after(3000, lambda: label_success.destroy() )
+            self._channel_var.set(0)
+            self._type_var.set(0)
+            self._gender_var.set(0)
+            self._age_var.set(0)
+            
+            
 
         
