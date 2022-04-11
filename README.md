@@ -16,8 +16,11 @@ This application is created for storing data from answered helpline contacts. Th
 ```
 poetry install
 ```
-
-2. Run the project with the command
+2. Initialize the application database with
+```
+poetry run invoke build
+```
+3. Run the project with the command
 ```
 poetry run invoke start
 ```
