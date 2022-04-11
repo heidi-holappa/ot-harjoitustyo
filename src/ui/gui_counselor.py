@@ -6,7 +6,7 @@ from services.user_management import default_user_management
 
 class CounselorView:
     def __init__(self, root, main_view,
-            user_management = default_user_management):
+                 user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._frame = None
@@ -158,12 +158,8 @@ class CounselorView:
             label_success = ttk.Label(
                 master=self._frame, text="Contact stored successfully.", foreground="green")
             label_success.grid(row=1, column=0, columnspan=4)
-            label_success.after(3000, lambda: label_success.destroy() )
+            label_success.after(3000, lambda: label_success.destroy())
             self._channel_var.set(0)
             self._type_var.set(0)
             self._gender_var.set(0)
             self._age_var.set(0)
-            
-            
-
-        

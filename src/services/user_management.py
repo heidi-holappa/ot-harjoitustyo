@@ -48,8 +48,9 @@ class UserManagement:
         self._logged_user = user
         print("logged: ", self._logged_user, self)
         return is_valid
-    
+
     def get_logged_user(self):
         return self._logged_user
+
 
 default_user_management = UserManagement()

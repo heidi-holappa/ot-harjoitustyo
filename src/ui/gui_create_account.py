@@ -76,6 +76,7 @@ class CreateAccountView:
         button_cancel.grid(row=6, column=4)
 
     def _try_create(self):
+        # Try/except will be refactored
         try:
             if self._entry_password_var and self._entry_username_var and self._entry_role_var and self._entry_password_2_var:
                 username_given = self._entry_username_var.get()

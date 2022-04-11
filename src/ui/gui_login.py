@@ -4,8 +4,8 @@ from services.user_management import default_user_management
 
 
 class LoginView:
-    def __init__(self, root, main_view, counselor_view, admin_view, 
-                    user_management=default_user_management):
+    def __init__(self, root, main_view, counselor_view, admin_view,
+                 user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._counselor_view = counselor_view

@@ -39,7 +39,9 @@ class ContactDataRepository:
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):
-        print("Now in contact repository. Content: ", contact.content, "User: ", user.username, "user: ", user)
+        print("Now in contact repository. Content: ", contact.content,
+              "User: ", user.username, "user: ", user)
+        # Try/except will be refactored
         try:
             cursor = self._connection.cursor()
             cursor.execute('''INSERT INTO CONTACTS
@@ -54,7 +56,6 @@ class ContactDataRepository:
             self._connection.commit()
         except Exception as ex:
             print("An error occured. Message: ", ex)
-
 
 
 default_contact_repository = ContactDataRepository(get_database_connection())

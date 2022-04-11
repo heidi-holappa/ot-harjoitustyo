@@ -18,6 +18,7 @@ class UserRepository:
         return fetched_used
 
     def fetch_all_users(self):
+        # Try/except will be refactored
         try:
             cursor = self._connection.cursor()
 
@@ -34,6 +35,7 @@ class UserRepository:
             return None
 
     def add_user(self, new_user: User):
+        # Try/except will be refactored
         try:
             cursor = self._connection.cursor()
             cursor.execute('''INSERT INTO USERS
