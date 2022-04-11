@@ -20,7 +20,6 @@ class TestUserManagement(unittest.TestCase):
         role = self.testuser.role
         self.assertEqual("admin", role)
 
-
     def test_valid_password_false(self):
         password_1 = "password"
         password_2 = "passwoerd"
@@ -37,7 +36,7 @@ class TestUserManagement(unittest.TestCase):
         self.user_management.create_user(self.testuser)
         fetched_user = self.user_management.get_user(self.testuser.username)
         self.assertEqual(self.testuser.username, fetched_user.username)
-    
+
     def test_create_multiple_users(self):
         self.user_management.add_user(User("user1", "password"))
         self.user_management.add_user(User("user2", "password"))
@@ -49,16 +48,8 @@ class TestUserManagement(unittest.TestCase):
         self.user_management.add_user(User("user1", "password"))
         result = self.user_management.add_user(User("user1", "password"))
         self.assertEqual(False, result)
-    
+
     def test_try_to_create_username_already_in_use(self):
         self.user_management.add_user(User("user1", "password"))
         result = self.user_management.create_user(User("user1", "password"))
         self.assertEqual(False, result)
-    
-
-
-
-
-
-        
-
