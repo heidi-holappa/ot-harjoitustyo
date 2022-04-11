@@ -13,8 +13,15 @@
 | 3 | Fri 1.4.2022 | Building first version of UI | 3 |
 | 3 | Sat 2.4.2022 | Reading documentation | 1 |
 | 3 | Sun 3.4.2022 | Creating account management, first tests, improving text-based-UI | 4 |
-| **3** | --- | **Total** | **10** |
+| 3 | Tue 5.4.2022 | Update README.md | 1 |
+| **3** | --- | **Total** | **11** |
 | 4 | Wed 6.4.2022 | Getting to know Tkinter basics  | 3 |
 | 4 | Fri 8.4.2022 | Building GUI main view and learning Tkinter | 2 |
 | 4 | Sat 9.4.2022 | Building GUI: login, account creation and counselor view | 5 |
+| 4 | Sat 9.4.2022 | Study SQLite | 1 |
 | 4 | Sun 10.4.2022 | Go through code with pylint | 1 |
+| 4 | Sun 10.4.2022 | Refactor service classes, repositories, entities | 2 |
+| 4 | Sun 10.4.2022 | Add SQLite database | 2 |
+| 4 | Mon 11.4.2022 | Read on poetry.lock, update remote-repository and .gitignore | 1 |
+| **4** | --- | **Total** | **17** |
+| **All**| --- | **Total** | **38** |
