@@ -27,7 +27,7 @@ The structure of the application follows the layered architecture framework.  At
     UI --> Entities: this will be refactored
     Repositories --> Entities
 ```
-The package UI includes the classes responsible for created the objects that create the graphical user interface and it's functionalities. The package Service works as a hub controlling the logic of the application. 
+The package UI includes the classes responsible for creating the objects that create the graphical user interface and it's functionalities. The package Service works as a hub controlling the logic of the application. 
 
 Package Entities contains the objects that contain the different data structures used by the application. The package Repositories handles the database queries (retrieving and storing data).
 
