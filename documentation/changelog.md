@@ -26,11 +26,11 @@
 * Data is now stored in SQLite-database
   - database has two tables: users, contacts
   - user- and contactdata can be stored into the database
-* Application re-structured. The structure now includes
+* Application re-structured. The structure now includes packages
   - Entities: user and contact objects
-  - Service classes for user and contact management
-  - repository classes for database queries
-  - gui-classes to create different GUI-views
+  - Services: classes for user and contact management
+  - Repositories: classes for database queries
+  - UI: classes to create different GUI-views
 * Application has new tests, testing uses test-database. Tests include:
   - creating objects from package entities (User, Contact)
   - testing service class methods
