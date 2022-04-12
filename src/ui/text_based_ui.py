@@ -1,3 +1,4 @@
+# To be erased after all features have been transferred to the updated app logic
 from services.console_io import ConsoleIO
 from entities.user import User
 import os

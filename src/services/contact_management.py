@@ -18,10 +18,10 @@ class ContactManagement:
         self._user_management = user_management
 
     def submit_contact(self, contact: Contact):
-        print("Now in ContactManagement. Contact content: ",
-              contact.content, contact, self._user_management)
+        # print("Now in ContactManagement. Contact content: ",
+        #       contact.content, contact, self._user_management)
         fetch_user = self._user_management.get_logged_user()
-        print("user: ", fetch_user, "contact: ", contact)
+        # print("user: ", fetch_user, "contact: ", contact)
         self._contact_repository.add_contact(fetch_user, contact)
 
     def fetch_all_contacts(self):

@@ -46,7 +46,7 @@ class UserManagement:
                 user.logged = True
                 is_valid = True
         self._logged_user = user
-        print("logged: ", self._logged_user, self)
+        # print("logged: ", self._logged_user, self)
         return is_valid
 
     def get_logged_user(self):
