@@ -1,7 +1,7 @@
 # Architecture
 
 ## Structure
-The structure of the application follows the layered architecture framework.  At the current initial stage the structure has open issues that will be fixed in the future. For instance in the next phase UI will be disconnected from the Entities-package. 
+The structure of the application follows the layered architecture framework. At the current initial stage the structure has open issues that will be fixed in the future. For instance in the next phase the goal is to disconnet UI from the Entities-package. 
 
 ```mermaid
     stateDiagram
