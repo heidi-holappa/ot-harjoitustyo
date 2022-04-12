@@ -32,6 +32,6 @@
   - Repositories: classes for database queries
   - UI: classes to create different GUI-views
 * Application has new tests, testing uses test-database. Tests include:
-  - creating objects from package entities (User, Contact)
-  - testing service class methods
-  - testing repository method (through service class)
+  - creating objects from package Entities classes User and Contact
+  - testing methods from classes in Service package
+  - testing method from classes in the Repositories package (through Service package)
