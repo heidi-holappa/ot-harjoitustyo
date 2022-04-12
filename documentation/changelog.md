@@ -31,4 +31,8 @@
   - Service classes for user and contact management
   - repository classes for database queries
   - gui-classes to create different GUI-views
+* Application has new tests, testing uses test-database. Tests include:
+  - creating objects from package entities (User, Contact)
+  - testing service class methods
+  - testing repository method (through service class)
 
