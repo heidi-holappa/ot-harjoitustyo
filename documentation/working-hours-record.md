@@ -26,5 +26,6 @@
 | 4 | Mon 11.4.2022 | Work on refactoring the application service logic | 2 |
 | 4 | Mon 11.4.2022 | Adjust database queries and initalization, test database usage. | 2 |
 | 4 | Mon 11.4.2022 | Add dotenv and test database, write tests | 3,5 |
-| **4** | --- | **Total** | **24,5** |
-| **All**| --- | **Total** | **45,5** |
+| 4 | Tue 12.4.2022 | Proof read documentation, test app in virtual environment | 2 |
+| **4** | --- | **Total** | **26,5** |
+| **All**| --- | **Total** | **47,5** |
