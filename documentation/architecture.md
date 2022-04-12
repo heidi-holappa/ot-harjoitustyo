@@ -37,6 +37,8 @@ Below is a visualization of the current class diagram and dependencies. The visi
 
 At the time being the application uses one object instance of the classes in UI, service and repository classes. UI-classes 'remember' the service classes they use and the service classes 'remember' the repositories used. None of the GUI, service or repository classes 'remember' objects from the entities classes, even if many of them use them temporarily. 
 
+Please note that at the moment some UI classes also handle objects from the Entities package. This will be refactored during week 5 and I omitted this from the class diagram. 
+
 ```mermaid
     classDiagram
         class User
