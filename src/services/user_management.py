@@ -38,16 +38,13 @@ class UserManagement:
         return True
 
     def login(self, user: User):
-        is_valid = False
         users = self.get_all_users()
-        if user.username in users:
-            if user.password == users[user.username][0]:
-                user.role = users[user.username][1]
-                user.logged = True
-                is_valid = True
-        self._logged_user = user
-        # print("logged: ", self._logged_user, self)
-        return is_valid
+        if user.username in users and user.password == users[user.username][0]:
+            user.role = users[user.username][1]
+            user.logged = True
+            self._logged_user = user
+            return (True, user.role)
+        return (False, None)
 
     def get_logged_user(self):
         return self._logged_user
