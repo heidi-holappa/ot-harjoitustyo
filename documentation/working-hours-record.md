@@ -28,4 +28,5 @@
 | 4 | Mon 11.4.2022 | Add dotenv and test database, write tests | 3,5 |
 | 4 | Tue 12.4.2022 | Proof read documentation, test app in virtual environment | 2 |
 | **4** | --- | **Total** | **26,5** |
+| 5 | Thu 14.4.2022 | Add initial admin view, refactor login method in service class | 1 |
 | **All**| --- | **Total** | **47,5** |
