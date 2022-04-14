@@ -72,8 +72,12 @@ class LoginView:
                 username_given = self._entry_username_var.get()
                 # print(username_given, password_given)
                 user = User(username_given, password_given)
-                if self._user_management.login(user):
-                    self._counselor_view()
+                login_attempt = self._user_management.login(user)
+                if login_attempt[0]:
+                    if login_attempt[1] == "counselor":
+                        self._counselor_view()
+                    else:
+                        self._admin_view()
                 else:
                     label_login_error = ttk.Label(
                         master=self._frame, text="Error: username or password incorrect. Try again.", foreground="red")

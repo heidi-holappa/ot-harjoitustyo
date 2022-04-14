@@ -3,6 +3,7 @@ from ui.gui_main_view import MainView
 from ui.gui_login import LoginView
 from ui.gui_create_account import CreateAccountView
 from ui.gui_counselor import CounselorView
+from ui.gui_admin import AdminView
 
 
 class UI:
@@ -61,6 +62,16 @@ class UI:
 
         self._current_view.pack()
 
+    def _show_admin_view(self):
+        self._hide_current_view()
+        self._current_view = AdminView(
+            self._root,
+            self._handle_main_view,
+            self._handle_counselor_view
+        )
+
+        self._current_view.pack()
+
     def _handle_login(self):
         self._show_login_view()
 
@@ -74,7 +85,7 @@ class UI:
         self._show_counselor_view()
 
     def _handle_admin_view(self):
-        self._show_main_view()
+        self._show_admin_view()
 
 
 # Launch the GUI
