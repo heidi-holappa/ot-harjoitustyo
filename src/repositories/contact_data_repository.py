@@ -56,6 +56,12 @@ class ContactDataRepository:
             self._connection.commit()
         except Exception as ex:
             print("An error occured. Message: ", ex)
+    
+    def delete_contact(self, id):
+        cursor = self._connection.cursor()
+        cursor.execute('''DELETE FROM CONTACTS
+                        WHERE ROWID = ?''', [id])
+        self._connection.commit()
 
 
 default_contact_repository = ContactDataRepository(get_database_connection())
