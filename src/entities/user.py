@@ -6,6 +6,9 @@ class User:
         self.role = role
         self.logged = False
 
+    def get_role(self):
+        return self.role
+
     def set_admin(self):
         self.role = "admin"
 
