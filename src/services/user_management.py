@@ -14,6 +14,12 @@ class UserManagement:
 
     def get_user(self, username: str):
         return self._user_repository.fetch_selected_user(username)
+    
+    def get_logged_user_role(self):
+        if self._logged_user:
+            return self._logged_user.get_role()
+        return None
+        
 
     def get_all_users(self):
         return self._user_repository.fetch_all_users()
