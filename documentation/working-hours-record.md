@@ -29,4 +29,7 @@
 | 4 | Tue 12.4.2022 | Proof read documentation, test app in virtual environment | 2 |
 | **4** | --- | **Total** | **26,5** |
 | 5 | Thu 14.4.2022 | Add initial admin view, refactor login method in service class | 1 |
-| **All**| --- | **Total** | **47,5** |
+| 5 | Fri 15.4.2022 | Improve admin view, add initial view for dummy data creation | 2 |
+| 5 | Fri 15.4.2022 | Review the GitHub-repository of package lorem-text | 0,5 |
+| **5** | --- | **Total** | 3,5 |
+| **All**| --- | **Total** | **51** |
