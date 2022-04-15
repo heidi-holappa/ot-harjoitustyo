@@ -9,12 +9,15 @@ class AdminView:
                 main_view, 
                 counselor_view,
                 admin_view,
+                dummy_data,
                 user_management=default_user_management):
         
         self._root = root
         self._main_view = main_view
-        self._admin_view = admin_view
         self._counselor_view = counselor_view
+        self._admin_view = admin_view
+        self._create_dummy_data = dummy_data
+        
                 
         self._frame = None
 
@@ -50,8 +53,8 @@ class AdminView:
 
         button_admin_stuff = ttk.Button(
             master=self._frame,
-            text="Do admin stuff",
-            command=self._do_admin_stuff
+            text="Create dummy data",
+            command=self._create_dummy_data
         )
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
@@ -94,7 +97,3 @@ class AdminView:
         print("Now in delete_contact - method. Contact-id: ", c_id)
         self._contact_management.delete_contact(c_id)
         self._admin_view
-
-
-    def _do_admin_stuff(self):
-        print("Hello admin world!")

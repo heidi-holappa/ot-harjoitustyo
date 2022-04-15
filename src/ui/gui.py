@@ -1,9 +1,11 @@
 from tkinter import Tk
+from ui.gui_create_dummy_data import CreateDummyData
 from ui.gui_main_view import MainView
 from ui.gui_login import LoginView
 from ui.gui_create_account import CreateAccountView
 from ui.gui_counselor import CounselorView
 from ui.gui_admin import AdminView
+from ui.gui_create_dummy_data import CreateDummyData
 
 
 class UI:
@@ -69,9 +71,19 @@ class UI:
             self._root,
             self._handle_main_view,
             self._handle_counselor_view,
-            self._handle_admin_view
+            self._handle_admin_view,
+            self._handle_create_dummy_data_view
         )
 
+        self._current_view.pack()
+
+    def _show_create_dummy_data_view(self):
+        self._hide_current_view()
+        self._current_view = CreateDummyData(
+            self._root,
+            self._handle_main_view,
+            self._handle_admin_view
+        )
         self._current_view.pack()
 
     def _handle_login(self):
@@ -88,6 +100,9 @@ class UI:
 
     def _handle_admin_view(self):
         self._show_admin_view()
+    
+    def _handle_create_dummy_data_view(self):
+        self._show_create_dummy_data_view()
 
 
 # Launch the GUI
