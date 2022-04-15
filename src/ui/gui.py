@@ -57,7 +57,8 @@ class UI:
         self._hide_current_view()
         self._current_view = CounselorView(
             self._root,
-            self._handle_main_view
+            self._handle_main_view,
+            self._handle_admin_view
         )
 
         self._current_view.pack()
@@ -67,7 +68,8 @@ class UI:
         self._current_view = AdminView(
             self._root,
             self._handle_main_view,
-            self._handle_counselor_view
+            self._handle_counselor_view,
+            self._handle_admin_view
         )
 
         self._current_view.pack()
