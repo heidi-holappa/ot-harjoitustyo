@@ -5,10 +5,13 @@ from services.user_management import default_user_management
 
 
 class CounselorView:
-    def __init__(self, root, main_view,
-                 user_management=default_user_management):
+    def __init__(self, root, 
+                main_view,
+                admin_view,
+                user_management=default_user_management):
         self._root = root
         self._main_view = main_view
+        self._admin_view = admin_view
         self._frame = None
 
         self._channel_var = None
@@ -18,9 +21,10 @@ class CounselorView:
         self._content_var = None
         self._content_field = None
 
-        self._initialize()
         self._contact_management = ContactManagement()
         self._user_management = user_management
+
+        self._initialize()
 
     def pack(self):
         if self._frame:
@@ -32,6 +36,8 @@ class CounselorView:
 
     def _initialize(self):
         self._frame = Frame(master=self._root, padx=50, pady=50)
+        
+        # Label and navigation buttons
         label = ttk.Label(
             master=self._frame, text="You are now in the Counselor View")
 
@@ -41,9 +47,21 @@ class CounselorView:
             command=self._main_view
         )
 
+        if self._user_management.get_logged_user_role() == "admin":
+            button_admin_view = ttk.Button(
+                master=self._frame,
+                text="Admin view",
+                command=self._admin_view
+            )
+            button_admin_view.grid(row=0, column=2,
+                            padx=10, pady=5,
+                            sticky=constants.E)
+
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
-        button_logout.grid(row=0, column=1, padx=10,
-                           pady=5, sticky=constants.E)
+        button_logout.grid(row=0, column=1,
+                            padx=10, pady=5,
+                            sticky=constants.E)
+
 
         # Select channel
         self._channel_var = IntVar()
