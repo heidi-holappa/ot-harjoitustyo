@@ -29,3 +29,7 @@ class ContactManagement:
 
     def fetch_contacts_by_user(self, user: User):
         return self._contact_repository.fetch_contacts_by_user(user)
+
+    def delete_contact(self, id):
+        self._contact_repository.delete_contact(id)
+
