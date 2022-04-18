@@ -2,12 +2,12 @@ from database_connection import get_database_connection
 from entities.contact import Contact
 from entities.user import User
 
-
 class ContactDataRepository:
 
     def __init__(self, connection):
         self._connection = connection
         self._all_data = None
+
 
     def fetch_all_contacts(self):
         self._all_data = {}
@@ -39,29 +39,28 @@ class ContactDataRepository:
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):
-        # print("Now in contact repository. Content: ", contact.content,
-        #       "User: ", user.username, "user: ", user)
-        # Try/except will be refactored
-        try:
-            cursor = self._connection.cursor()
-            cursor.execute('''INSERT INTO CONTACTS
-                    (username, channel, type, age, gender, content) VALUES (?,?,?,?,?,?)''',
-                           [user.username,
-                            contact.channel,
-                            contact.type,
-                            contact.age,
-                            contact.gender,
-                            contact.content]
-                           )
-            self._connection.commit()
-        except Exception as ex:
-            print("An error occured. Message: ", ex)
+        cursor = self._connection.cursor()
+        cursor.execute('''INSERT INTO CONTACTS
+                (username, datetime, channel, type, age, gender, content) VALUES (?,?,?,?,?,?,?)''',
+                        [user.username,
+                        contact.datetime_as_str,
+                        contact.channel,
+                        contact.type,
+                        contact.age,
+                        contact.gender,
+                        contact.content]
+                        )
+        self._connection.commit()
     
     def delete_contact(self, id):
         cursor = self._connection.cursor()
         cursor.execute('''DELETE FROM CONTACTS
                         WHERE ROWID = ?''', [id])
         self._connection.commit()
+
+
+            
+
 
 
 default_contact_repository = ContactDataRepository(get_database_connection())
