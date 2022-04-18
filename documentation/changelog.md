@@ -35,3 +35,7 @@
   - creating objects from package Entities classes User and Contact
   - testing methods from classes in Service package
   - testing method from classes in the Repositories package (through Service package)
+
+## Week 5
+* Code refactored. GUI-classes no longer use Entities-classes directly
+* Added external library Werkzeug for password hashing. Passwords are now hashed
