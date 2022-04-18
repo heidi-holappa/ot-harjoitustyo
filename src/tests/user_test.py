@@ -7,17 +7,18 @@ from initialize_database import initialize_database
 class TestUserManagement(unittest.TestCase):
     def setUp(self):
         self.user_management = default_user_management
-        self.testuser = User("testuser1", "salasana")
         self.db = initialize_database()
 
     def test_create_user(self):
-        self.user_management.create_user(self.testuser)
-        result = self.user_management.login(self.testuser)
-        self.assertEqual(True, result)
+        self.user_management.create_active_user("testuser1", "salasana")
+        self.testuser = self.user_management.get_active_user()
+        self.user_management.create_user()
+        result = self.user_management.login()
+        self.assertEqual(True, result[0])
 
     def test_set_admin(self):
-        self.testuser.set_admin()
-        role = self.testuser.role
+        self.user_management.make_admin()
+        role = self.user_management.get_active_user_role()
         self.assertEqual("admin", role)
 
     def test_valid_password_false(self):
@@ -33,23 +34,32 @@ class TestUserManagement(unittest.TestCase):
         self.assertEqual(True, result)
 
     def test_get_user(self):
-        self.user_management.create_user(self.testuser)
-        fetched_user = self.user_management.get_user(self.testuser.username)
-        self.assertEqual(self.testuser.username, fetched_user.username)
+        username = "testuser2"
+        password1 = "password"
+        password2 = "password"
+        is_admin = False
+        self.user_management.handle_user_creation(username, password1, password2, is_admin)
+        fetched_user = self.user_management.get_user(username)
+        self.assertEqual(username, fetched_user.username)
 
     def test_create_multiple_users(self):
-        self.user_management.add_user(User("user1", "password"))
-        self.user_management.add_user(User("user2", "password"))
-        self.user_management.add_user(User("user3", "password"))
+        username1 = "user1"
+        username2 = "user2"
+        username3 = "user3"
+        password1 = "password"
+        password2 = "password"
+        is_admin = False
+        self.user_management.handle_user_creation(username1, password1, password2, is_admin)
+        self.user_management.handle_user_creation(username2, password1, password2, is_admin)
+        self.user_management.handle_user_creation(username3, password1, password2, is_admin)
         user_count = len(self.user_management.get_all_users())
         self.assertEqual(3, user_count)
 
-    def test_try_to_add_username_already_in_use(self):
-        self.user_management.add_user(User("user1", "password"))
-        result = self.user_management.add_user(User("user1", "password"))
-        self.assertEqual(False, result)
-
     def test_try_to_create_username_already_in_use(self):
-        self.user_management.add_user(User("user1", "password"))
-        result = self.user_management.create_user(User("user1", "password"))
-        self.assertEqual(False, result)
+        username = "testuser2"
+        password1 = "password"
+        password2 = "password"
+        is_admin = False
+        self.user_management.handle_user_creation(username, password1, password2, is_admin)
+        result = self.user_management.handle_user_creation(username, password1, password2, is_admin)
+        self.assertEqual(False, result[0])
