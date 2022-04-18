@@ -47,7 +47,7 @@ class CounselorView:
             command=self._main_view
         )
 
-        if self._user_management.get_logged_user_role() == "admin":
+        if self._user_management.get_active_user_role() == "admin":
             button_admin_view = ttk.Button(
                 master=self._frame,
                 text="Admin view",

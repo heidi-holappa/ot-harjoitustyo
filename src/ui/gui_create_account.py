@@ -1,10 +1,10 @@
 from tkinter import ttk, constants, StringVar, IntVar, Frame
-from entities.user import User
-from services.user_management import UserManagement
+from services.user_management import default_user_management
 
 
 class CreateAccountView:
-    def __init__(self, root, main_view):
+    def __init__(self, root, main_view,
+                user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._frame = None
@@ -13,6 +13,8 @@ class CreateAccountView:
         self._entry_password_var = None
         self._entry_password_2_var = None
         self._entry_role_var = None
+
+        self._user_management = user_management
 
         self._initialize()
 
@@ -52,14 +54,14 @@ class CreateAccountView:
         checkbox = ttk.Checkbutton(
             master=self._frame, text='Admin', variable=self._entry_role_var, onvalue=1, offvalue=0)
 
-        label_username.grid(row=1, column=1)
-        entry_username.grid(row=1, column=2, columnspan=3, sticky=constants.EW)
-        label_password.grid(row=3, column=1)
-        entry_password.grid(row=3, column=2, columnspan=3, sticky=constants.EW)
-        label_password_2.grid(row=4, column=1)
+        label_username.grid(row=2, column=1)
+        entry_username.grid(row=2, column=2, columnspan=3, sticky=constants.EW)
+        label_password.grid(row=4, column=1)
+        entry_password.grid(row=4, column=2, columnspan=3, sticky=constants.EW)
+        label_password_2.grid(row=5, column=1)
         entry_password_2.grid(
-            row=4, column=2, columnspan=3, sticky=constants.EW)
-        checkbox.grid(row=5, column=2, columnspan=3)
+            row=5, column=2, columnspan=3, sticky=constants.EW)
+        checkbox.grid(row=6, column=2, columnspan=3)
 
         button_login = ttk.Button(
             master=self._frame,
@@ -72,34 +74,24 @@ class CreateAccountView:
             command=self._main_view
         )
 
-        button_login.grid(row=6, column=3)
-        button_cancel.grid(row=6, column=4)
+        button_login.grid(row=7, column=3)
+        button_cancel.grid(row=7, column=4)
 
     def _try_create(self):
-        # Try/except will be refactored
-        try:
-            if self._entry_password_var and self._entry_username_var and self._entry_role_var and self._entry_password_2_var:
-                username_given = self._entry_username_var.get()
-                password_given = self._entry_password_var.get()
-                password_2_given = self._entry_password_2_var.get()
-                is_admin = self._entry_role_var.get()
-                # print(username_given, password_given, password_2_given, is_admin)
-                user_management = UserManagement()
-                is_valid = user_management.password_is_valid(
-                    password_given, password_2_given)
-                if is_valid:
-                    user = User(username_given, password_given)
-                    if is_admin:
-                        user.set_admin()
-                    if user_management.create_user(user):
-                        self._main_view()
-                    else:
-                        label_login_error = ttk.Label(
-                            master=self._frame, text="Account creation failed. Username most likely already in use.", foreground="red")
-                        label_login_error.grid(row=1, column=0, columnspan=4)
-                else:
-                    label_creation_error = ttk.Label(
-                        master=self._frame, text="Error: passwords do not match. Try again.", foreground="red")
-                    label_creation_error.grid(row=1, column=0, columnspan=4)
-        except Exception as ex:
-            print("Error: ", ex)
+        if self._entry_password_var and self._entry_username_var and self._entry_role_var and self._entry_password_2_var:
+            username_given = self._entry_username_var.get()
+            password_given = self._entry_password_var.get()
+            password_2_given = self._entry_password_2_var.get()
+            is_admin = self._entry_role_var.get()
+            result = self._user_management.handle_user_creation(
+                                    username_given, 
+                                    password_given, 
+                                    password_2_given, 
+                                    is_admin)
+            if result[0]:
+                self._main_view()
+            else:
+                label_login_error = ttk.Label(
+                master=self._frame, text=result[1], foreground="red")
+                label_login_error.grid(row=1, column=0, columnspan=4)
+                label_login_error.after(3000, lambda: label_login_error.destroy())
