@@ -75,7 +75,14 @@ class AdminView:
         buttons = {}
         if contacts:
             for c_id in contacts:
-                printout = contacts[c_id]
+                dictionary = self._contact_management.get_contact_dictionary()
+                parts = contacts[c_id].split(";")
+                printout = (f'''{parts[0]} / {parts[1]} /
+                {dictionary["channel"][int(parts[2])]} /
+                {dictionary["type"][int(parts[3])]} /
+                {dictionary["gender"][int(parts[4])]} /
+                {dictionary["age"][int(parts[5])]} /
+                {parts[6]}''')
                 labels[c_id] = ttk.Label(
                     master=self._frame, text=printout)
 

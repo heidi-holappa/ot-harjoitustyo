@@ -42,3 +42,31 @@ class ContactManagement:
         if not fetch_user:
             return (False, "Error. No user logged in.")
         return self._contact_repository.add_contact(fetch_user, contact)
+
+    def get_contact_dictionary(self):
+        contact_dict = {
+            "channel": [None, 
+                        "phone", 
+                        "chat",
+                        "e-letter"],
+            "type": [None, 
+                    "counseling",
+                    "non-counseling",
+                    "silent",
+                    "non-target group"],
+            "gender": [None,
+                        "girl",
+                        "boy",
+                        "something else",
+                        "unknown"],
+            "age": [None,
+                    "under 9",
+                    "9-11",
+                    "12-14",
+                    "15-17",
+                    "18-21",
+                    "22-25",
+                    "over 25"]
+        }
+
+        return contact_dict
