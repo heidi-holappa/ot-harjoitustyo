@@ -6,6 +6,7 @@ from ui.gui_create_account import CreateAccountView
 from ui.gui_counselor import CounselorView
 from ui.gui_admin import AdminView
 from ui.gui_create_dummy_data import CreateDummyData
+from services.user_management import default_user_management
 
 
 class UI:
@@ -13,6 +14,7 @@ class UI:
     def __init__(self, root):
         self._root = root
         self._current_view = None
+        self._user_management = default_user_management
         # self._root.geometry("600x300")
 
     def start(self):
@@ -25,6 +27,7 @@ class UI:
         self._current_view = None
 
     def _show_main_view(self):
+        self._user_management.logout()
         self._hide_current_view()
 
         self._current_view = MainView(
