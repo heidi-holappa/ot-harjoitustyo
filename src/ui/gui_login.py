@@ -70,7 +70,8 @@ class LoginView:
                 password_given = self._entry_password_var.get()
                 username_given = self._entry_username_var.get()
                 # print(username_given, password_given)
-                self._user_management.create_active_user(username_given, password_given)
+                self._user_management.create_active_user(
+                    username_given, password_given)
                 login_attempt = self._user_management.login()
                 if login_attempt[0]:
                     if login_attempt[1] == "counselor":

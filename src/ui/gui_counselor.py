@@ -4,15 +4,14 @@ from services.user_management import default_user_management
 
 
 class CounselorView:
-    def __init__(self, root, 
-                main_view,
-                admin_view,
-                user_management=default_user_management):
+    def __init__(self, root,
+                 main_view,
+                 admin_view,
+                 user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._admin_view = admin_view
         self._frame = None
-
 
         self._content_var = None
         self._content_field = None
@@ -39,13 +38,11 @@ class CounselorView:
         self.init_type(7, 0)
         self.init_gender(2, 1)
         self.init_age(8, 1)
-        
+
         self.init_content(16, 0)
 
         self.submit(18, 1)
 
-
-        
     def label_and_navigation(self, r, c):
         label = ttk.Label(
             master=self._frame, text="You are now in the Counselor View")
@@ -63,13 +60,13 @@ class CounselorView:
                 command=self._admin_view
             )
             button_admin_view.grid(row=r, column=c+2,
-                            padx=10, pady=5,
-                            sticky=constants.E)
+                                   padx=10, pady=5,
+                                   sticky=constants.E)
 
         label.grid(row=r, column=c, pady=5, sticky=constants.W)
         button_logout.grid(row=r, column=c+1,
-                            padx=10, pady=5,
-                            sticky=constants.E)
+                           padx=10, pady=5,
+                           sticky=constants.E)
 
     def init_channel(self, r, c):
         # Select channel
@@ -155,7 +152,6 @@ class CounselorView:
         age_R6.grid(row=r+6, column=c, sticky=constants.W)
         age_R7.grid(row=r+7, column=c, sticky=constants.W)
 
-    
     def init_content(self, r, c):
         self._content_var = StringVar()
         content_label = ttk.Label(
@@ -171,9 +167,6 @@ class CounselorView:
             command=self._try_submit
         )
         button_submit.grid(row=r, column=c, sticky=constants.E, padx=20)
-    
-    
-
 
     def _try_submit(self):
         if self._content_field:
@@ -183,14 +176,14 @@ class CounselorView:
         else:
             input = ""
 
-        # MANAGE CONTACT SUBMISSION 
-        
-    
+        # MANAGE CONTACT SUBMISSION
+
         c_channel = self._channel_var.get()
         c_type = self._type_var.get()
         c_age = self._age_var.get()
         c_gender = self._gender_var.get()
-        submission_status = self._contact_management.manage_new_contact_submission(c_channel, c_type, c_age, c_gender, input)
+        submission_status = self._contact_management.manage_new_contact_submission(
+            c_channel, c_type, c_age, c_gender, input)
         if submission_status[0]:
             label_success = ttk.Label(
                 master=self._frame, text="Contact stored successfully.", foreground="green")
@@ -205,5 +198,3 @@ class CounselorView:
                 master=self._frame, text=submission_status[1], foreground="red")
             label_success.grid(row=1, column=0, columnspan=4)
             label_success.after(3000, lambda: label_success.destroy())
-
-

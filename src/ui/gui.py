@@ -103,7 +103,7 @@ class UI:
 
     def _handle_admin_view(self):
         self._show_admin_view()
-    
+
     def _handle_create_dummy_data_view(self):
         self._show_create_dummy_data_view()
 

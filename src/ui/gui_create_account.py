@@ -4,7 +4,7 @@ from services.user_management import default_user_management
 
 class CreateAccountView:
     def __init__(self, root, main_view,
-                user_management=default_user_management):
+                 user_management=default_user_management):
         self._root = root
         self._main_view = main_view
         self._frame = None
@@ -84,14 +84,15 @@ class CreateAccountView:
             password_2_given = self._entry_password_2_var.get()
             is_admin = self._entry_role_var.get()
             result = self._user_management.handle_user_creation(
-                                    username_given, 
-                                    password_given, 
-                                    password_2_given, 
-                                    is_admin)
+                username_given,
+                password_given,
+                password_2_given,
+                is_admin)
             if result[0]:
                 self._main_view()
             else:
                 label_login_error = ttk.Label(
-                master=self._frame, text=result[1], foreground="red")
+                    master=self._frame, text=result[1], foreground="red")
                 label_login_error.grid(row=1, column=0, columnspan=4)
-                label_login_error.after(3000, lambda: label_login_error.destroy())
+                label_login_error.after(
+                    3000, lambda: label_login_error.destroy())

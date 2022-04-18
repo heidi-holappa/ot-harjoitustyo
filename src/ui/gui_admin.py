@@ -4,27 +4,25 @@ from services.user_management import default_user_management
 
 
 class AdminView:
-    def __init__(self, 
-                root, 
-                main_view, 
-                counselor_view,
-                admin_view,
-                dummy_data,
-                user_management=default_user_management):
-        
+    def __init__(self,
+                 root,
+                 main_view,
+                 counselor_view,
+                 admin_view,
+                 dummy_data,
+                 user_management=default_user_management):
+
         self._root = root
         self._main_view = main_view
         self._counselor_view = counselor_view
         self._admin_view = admin_view
         self._create_dummy_data = dummy_data
-        
-                
+
         self._frame = None
 
         self._contact_management = ContactManagement()
         self._user_management = user_management
         self._initialize()
-
 
     def pack(self):
         if self._frame:
@@ -58,17 +56,16 @@ class AdminView:
         )
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
-    
-        button_admin_stuff.grid(row=0, column=1, 
-                            padx=20,
-                            sticky=constants.E)
-        button_counselor.grid(row=0, column=2, 
-                            padx=10, pady=5, 
-                            sticky=constants.E)
-        button_logout.grid(row=0, column=3, 
-                            padx=10, pady=5, 
-                            sticky=constants.E)
 
+        button_admin_stuff.grid(row=0, column=1,
+                                padx=20,
+                                sticky=constants.E)
+        button_counselor.grid(row=0, column=2,
+                              padx=10, pady=5,
+                              sticky=constants.E)
+        button_logout.grid(row=0, column=3,
+                           padx=10, pady=5,
+                           sticky=constants.E)
 
         self._fetch_contacts()
 
@@ -77,22 +74,25 @@ class AdminView:
         labels = {}
         buttons = {}
         if contacts:
-            for c_id in contacts: 
+            for c_id in contacts:
                 printout = contacts[c_id]
                 labels[c_id] = ttk.Label(
-                master=self._frame, text=printout)
-                def button_action(x = c_id):
+                    master=self._frame, text=printout)
+
+                def button_action(x=c_id):
                     return self._delete_contact(x)
                 buttons[c_id] = ttk.Button(
                     master=self._frame,
                     text=f"Delete {c_id}",
                     command=button_action
                 )
-                labels[c_id].grid(row=c_id+10, column = 1, pady=5, padx=5, sticky=constants.W)
-                buttons[c_id].grid(row=c_id+10, column = 2, pady=5, padx=5, sticky=constants.E)
-            
+                labels[c_id].grid(row=c_id+10, column=1,
+                                  pady=5, padx=5, sticky=constants.W)
+                buttons[c_id].grid(row=c_id+10, column=2,
+                                   pady=5, padx=5, sticky=constants.E)
+
         return
-    
+
     def _delete_contact(self, c_id):
         print("Now in delete_contact - method. Contact-id: ", c_id)
         self._contact_management.delete_contact(c_id)

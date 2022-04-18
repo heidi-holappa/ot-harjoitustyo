@@ -30,7 +30,8 @@ class ContactManagement:
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
         time_of_submission = datetime.now()
         datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
-        contact = Contact(datetime_as_str, c_channel, c_type, c_age, c_gender, c_content)
+        contact = Contact(datetime_as_str, c_channel,
+                          c_type, c_age, c_gender, c_content)
         result = contact.is_valid()
         if result[0]:
             self.submit_contact(contact)
@@ -41,4 +42,3 @@ class ContactManagement:
         if not fetch_user:
             return (False, "Error. No user logged in.")
         return self._contact_repository.add_contact(fetch_user, contact)
-
