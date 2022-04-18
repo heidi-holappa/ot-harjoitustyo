@@ -79,5 +79,8 @@ class UserManagement:
         if self._active_user:
             self._active_user.set_admin()
 
+    def logout(self):
+        self._active_user = None
+
 
 default_user_management = UserManagement()
