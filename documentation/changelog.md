@@ -39,3 +39,6 @@
 ## Week 5
 * Code refactored. GUI-classes no longer use Entities-classes directly
 * Added external library Werkzeug for password hashing. Passwords are now hashed
+* Added date and time to contact data submission
+* Application now has an admin view
+* As a bonus admins can also submit contact data
