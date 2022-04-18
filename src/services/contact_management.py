@@ -45,11 +45,11 @@ class ContactManagement:
 
     def get_contact_dictionary(self):
         contact_dict = {
-            "channel": [None, 
-                        "phone", 
+            "channel": [None,
+                        "phone",
                         "chat",
                         "e-letter"],
-            "type": [None, 
+            "type": [None,
                     "counseling",
                     "non-counseling",
                     "silent",
