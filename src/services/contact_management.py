@@ -1,6 +1,6 @@
+from datetime import datetime
 from entities.user import User
 from entities.contact import Contact
-from datetime import datetime
 
 from repositories.contact_data_repository import default_contact_repository
 from repositories.user_repository import default_user_repository
@@ -24,8 +24,8 @@ class ContactManagement:
     def fetch_contacts_by_user(self, user: User):
         return self._contact_repository.fetch_contacts_by_user(user)
 
-    def delete_contact(self, id):
-        self._contact_repository.delete_contact(id)
+    def delete_contact(self, c_id):
+        self._contact_repository.delete_contact(c_id)
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
         time_of_submission = datetime.now()

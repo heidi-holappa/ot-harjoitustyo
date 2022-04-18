@@ -1,7 +1,6 @@
+from werkzeug.security import check_password_hash, generate_password_hash
 from repositories.user_repository import default_user_repository
 from entities.user import User
-from werkzeug.security import check_password_hash, generate_password_hash
-
 
 class UserManagement:
     def __init__(self,
@@ -37,7 +36,8 @@ class UserManagement:
         user = self._active_user
         users = self.get_all_users()
         print("Given password: ", user.password, "\n ,db: ",
-              users[user.username][0], "check validity: ", check_password_hash(user.password, users[user.username][0]))
+              users[user.username][0], "check validity: ",
+              check_password_hash(user.password, users[user.username][0]))
 
         if user.username in users and check_password_hash(users[user.username][0], user.password):
             user.role = users[user.username][1]
@@ -67,12 +67,9 @@ class UserManagement:
         users = self.get_all_users()
         if self._active_user.username in users:
             return (False, "Username already in use")
-        try:
-            hashed_password = generate_password_hash(
+        hashed_password = generate_password_hash(
                 self._active_user.password)
-            self._user_repository.add_user(self._active_user, hashed_password)
-        except Exception as ex:
-            return (False, ex)
+        self._user_repository.add_user(self._active_user, hashed_password)
         return (True, "")
 
     def make_admin(self):

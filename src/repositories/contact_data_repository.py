@@ -52,10 +52,10 @@ class ContactDataRepository:
                        )
         self._connection.commit()
 
-    def delete_contact(self, id):
+    def delete_contact(self, c_id):
         cursor = self._connection.cursor()
         cursor.execute('''DELETE FROM CONTACTS
-                        WHERE ROWID = ?''', [id])
+                        WHERE ROWID = ?''', [c_id])
         self._connection.commit()
 
 
