@@ -34,7 +34,7 @@ class UserRepository:
             print("Method fetch_all_users failed. Error-message: ", ex)
             return None
 
-    def add_user(self, new_user: User):
+    def add_user(self, new_user: User, password):
         # Try/except will be refactored
         try:
             cursor = self._connection.cursor()
@@ -42,7 +42,7 @@ class UserRepository:
                         (username, password, role) 
                         VALUES (?,?,?)''',
                            [new_user.username,
-                            new_user.password,
+                            password,
                             new_user.role]
                            )
             self._connection.commit()
