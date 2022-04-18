@@ -33,5 +33,6 @@
 | 5 | Fri 15.4.2022 | Review the GitHub-repository of package lorem-text | 0,5 |
 | 5 | Mon 18.4.2022 | Refactor code, add Werkzeug-library | 1 |
 | 5 | Mon 18.4.2022 | Add password hashing, study Werkzeug-library | 1 |
-| **5** | --- | **Total** | 3,5 |
-| **All**| --- | **Total** | **51** |
+| 5 | Mon 18.4.2022 | Refactor contact submissions. Add date and time to contact data. | 1,5 |
+| **5** | --- | **Total** | **7**  |
+| **All**| --- | **Total** | **54.5** |
