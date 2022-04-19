@@ -27,3 +27,7 @@ def format(ctx):
 @task
 def build(ctx):
     ctx.run("python3 src/build.py", pty=True)
+
+@task
+def create_dummy_data(ctx):
+    ctx.run("python3 src/dummy_data.py", pty=True)
