@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text
+from tkinter import ttk, constants, Frame, Text, Scrollbar, messagebox
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
@@ -57,21 +57,88 @@ class AdminView:
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
 
-        button_admin_stuff.grid(row=0, column=1,
+        button_admin_stuff.grid(row=0, column=0,
                                 padx=20,
                                 sticky=constants.E)
-        button_counselor.grid(row=0, column=2,
+        button_counselor.grid(row=0, column=1,
                               padx=10, pady=5,
                               sticky=constants.E)
-        button_logout.grid(row=0, column=3,
+        button_logout.grid(row=0, column=2,
                            padx=10, pady=5,
                            sticky=constants.E)
 
-        self._fetch_contacts()
+        columns = ("username", "date_and_time", "channel", "type", "gender", "age", "content")
+        treeview = ttk.Treeview(master=self._frame, columns=columns, show="headings")
+        treeview.heading("username", text="username")
+        treeview.heading("date_and_time", text="date and time")
+        treeview.heading("channel", text="channel")
+        treeview.heading("type", text="type")
+        treeview.heading("gender", text="gender")
+        treeview.heading("age", text="age")
+        treeview.heading("content", text="content")
+
+        treeview.grid(row=2, column=0, sticky=constants.NSEW)
+        scrollbar = ttk.Scrollbar(master=self._frame, orient=constants.VERTICAL, command=treeview.yview)
+        scrollbar.grid(row=2, column=1, sticky='ns')
+        # self._fetch_contacts()
+        self._populate_treeview(treeview)
+
+        # textfield = Text(master=self._frame, width=100, height=50, wrap="word")
+        # textfield.grid(row=3, column=0)
+        # textfield["state"] = "disabled"
+
+        
+
+        def item_selected(event):
+            printout = ""
+            for selected_item in treeview.selection():
+                item = treeview.item(selected_item)
+                parts = item["values"]
+                printout = (f"Username: {str(parts[0])}\n")
+                printout += "date and time: " + str(parts[1]) + "\n" 
+                printout += "channel: " + str(parts[2])
+                printout += ", type: " + str(parts[3])
+                n = len(printout) // 100 + 3
+                if parts[4] != "None":
+                    printout += ", gender: " + str(parts[4])
+                    printout += ", age: " + str(parts[5])
+                    printout += "\n\n" + "content:\n"
+                    printout += str(parts[6])
+                    n = len(printout) // 100 + 5
+            textfield = Text(master=self._frame, wrap="word")
+            textfield.grid(row=3, column=0)
+            textfield.insert(1.0, printout)
+            textfield["state"] = "disabled"
+            print(printout)
+                
+                
+                
+
+        treeview.bind('<<TreeviewSelect>>', item_selected)
+
+        
+        # def item_selected(event):
+        #     for selected_item in treeview.selection():
+        #         item = treeview.item(selected_item)
+        #         record = item['values']
+        #         # show a message
+        #         messagebox.showinfo(title='Information', message=','.join(record))
+
+
+        # treeview.bind('<<TreeviewSelect>>', item_selected)
+
+    
+
+
+    def _populate_treeview(self, treeview):
+        contacts = self._contact_management.fetch_all_contacts_as_tuples()
+        for contact in contacts:
+            treeview.insert('', constants.END, values=contact)
 
     def _fetch_contacts(self):
+        
+
         contacts = self._contact_management.fetch_all_contacts()
-        labels = {}
         buttons = {}
         fields = {}
         if contacts:
