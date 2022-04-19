@@ -2,11 +2,37 @@
 class Contact:
 
     def __init__(self, datetime_as_str, channel, c_type, age, gender, content):
+        self.contact_dict = {
+            "channel": [None,
+                        "phone",
+                        "chat",
+                        "e-letter"],
+            "type": [None,
+                    "counseling",
+                    "non-counseling",
+                    "silent",
+                    "non-target group"],
+            "gender": [None,
+                        "girl",
+                        "boy",
+                        "something else",
+                        "unknown"],
+            "age": [None,
+                    "under 9",
+                    "9-11",
+                    "12-14",
+                    "15-17",
+                    "18-21",
+                    "22-25",
+                    "over 25"]
+        }
+
+        
         self.datetime_as_str = datetime_as_str
-        self.channel = channel
-        self.type = c_type
-        self.age = age
-        self.gender = gender
+        self.channel = self.contact_dict["channel"][channel]
+        self.type = self.contact_dict["type"][c_type]
+        self.age = self.contact_dict["age"][age]
+        self.gender = self.contact_dict["gender"][gender]
         self.content = content
 
     def is_valid(self):
@@ -17,3 +43,7 @@ class Contact:
             return (False,
             "Counseling contact must include age, gender and description on content.")
         return (True, "")
+
+    
+
+
