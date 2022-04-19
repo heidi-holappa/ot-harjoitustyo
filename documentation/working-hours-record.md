@@ -35,5 +35,6 @@
 | 5 | Mon 18.4.2022 | Add password hashing, study Werkzeug-library | 1 |
 | 5 | Mon 18.4.2022 | Refactor contact submissions. Add date and time to contact data. | 1,5 |
 | 5 | Mon 18.4.2022 | Fix broken tests, create new contact printout for admin view | 1,5 |
-| **5** | --- | **Total** | **8.5**  |
-| **All**| --- | **Total** | **56** |
+| 5 | Tue 19.4.2022 | Study scrollbards, create treeview and preview view in admin view | 4 |
+| **5** | --- | **Total** | **12.5**  |
+| **All**| --- | **Total** | **60** |
