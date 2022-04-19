@@ -1,4 +1,6 @@
+from random import randint
 from datetime import datetime
+from lorem_text import lorem
 from entities.user import User
 from entities.contact import Contact
 
@@ -28,8 +30,13 @@ class ContactManagement:
         self._contact_repository.delete_contact(c_id)
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
+        print("method manage_new_contact_submission")
         time_of_submission = datetime.now()
         datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
+        if c_type != 1:
+            c_age = 0
+            c_gender = 0
+            c_content = None
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
         result = contact.is_valid()
@@ -43,30 +50,18 @@ class ContactManagement:
             return (False, "Error. No user logged in.")
         return self._contact_repository.add_contact(fetch_user, contact)
 
-    def get_contact_dictionary(self):
-        contact_dict = {
-            "channel": [None,
-                        "phone",
-                        "chat",
-                        "e-letter"],
-            "type": [None,
-                    "counseling",
-                    "non-counseling",
-                    "silent",
-                    "non-target group"],
-            "gender": [None,
-                        "girl",
-                        "boy",
-                        "something else",
-                        "unknown"],
-            "age": [None,
-                    "under 9",
-                    "9-11",
-                    "12-14",
-                    "15-17",
-                    "18-21",
-                    "22-25",
-                    "over 25"]
-        }
+    def create_random_contact(self):
+        rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter", "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
+        self._user_management.create_active_user(rand_users[randint(0, len(rand_users)-1)], "password")
+        c_channel = randint(1,3)
+        c_type = randint(1,4)
+        c_age = randint(1,7)
+        c_gender = randint(1,4)
+        content = lorem.paragraph()
+        self.manage_new_contact_submission(c_channel, c_type, c_age, c_gender, content)
+    
+    def create_random_contacts(self, n=10):
+        for _ in range(n):
+            self.create_random_contact()
 
-        return contact_dict
+

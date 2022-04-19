@@ -18,9 +18,9 @@ class ContactDataRepository:
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
-                row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
-                ";" + row["content"]
+            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + str(row["datetime"]) + ";" + \
+                str(row["channel"]) + ";" + str(row["type"]) + ";" + str(row["gender"]) + ";" + str(row["age"]) + \
+                ";" + str(row["content"])
         return self._all_data
 
     def fetch_contacts_by_user(self, user: User):
@@ -33,9 +33,9 @@ class ContactDataRepository:
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = row["username"] + ";" + row["datetime"] + ";" + \
-                row["channel"] + ";" + row["type"] + ";" + row["gender"] + ";" + row["age"] + \
-                ";" + row["content"]
+            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + str(row["datetime"]) + ";" + \
+                str(row["channel"]) + ";" + str(row["type"]) + ";" + str(row["gender"]) + ";" + str(row["age"]) + \
+                ";" + str(row["content"])
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):
