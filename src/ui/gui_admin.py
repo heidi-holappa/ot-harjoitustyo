@@ -73,18 +73,29 @@ class AdminView:
         contacts = self._contact_management.fetch_all_contacts()
         labels = {}
         buttons = {}
+        fields = {}
         if contacts:
             for c_id in contacts:
-                dictionary = self._contact_management.get_contact_dictionary()
                 parts = contacts[c_id].split(";")
-                printout = (f'''{parts[0]} / {parts[1]} /
-                {dictionary["channel"][int(parts[2])]} /
-                {dictionary["type"][int(parts[3])]} /
-                {dictionary["gender"][int(parts[4])]} /
-                {dictionary["age"][int(parts[5])]} /
-                {parts[6]}''')
-                labels[c_id] = ttk.Label(
-                    master=self._frame, text=printout)
+                printout = (f"Username: {str(parts[0])}\n")
+                printout += "date and time: " + str(parts[1]) + "\n" 
+                printout += "channel: " + str(parts[2])
+                printout += ", type: " + str(parts[3])
+                n = len(printout) // 100 + 3
+                if parts[4] != "None":
+                    printout += ", gender: " + str(parts[4])
+                    printout += ", age: " + str(parts[5])
+                    printout += "\n\n" + "content:\n"
+                    printout += str(parts[6])
+                    n = len(printout) // 100 + 5
+                
+                fields[c_id] = Text(
+                    master=self._frame, width=100, height=n, wrap="word"
+                )
+                fields[c_id].insert(1.0, printout)
+                fields[c_id]["state"] = "disabled"
+                # labels[c_id] = ttk.Label(
+                #     master=self._frame, text=printout, background="white")
 
                 def button_action(x=c_id):
                     return self._delete_contact(x)
@@ -93,8 +104,9 @@ class AdminView:
                     text=f"Delete {c_id}",
                     command=button_action
                 )
-                labels[c_id].grid(row=c_id+10, column=1,
-                                  pady=5, padx=5, sticky=constants.W)
+                fields[c_id].grid(row=c_id+10, column=1, pady=5, padx=5, sticky=constants.W)
+                # labels[c_id].grid(row=c_id+10, column=1,
+                                #   pady=5, padx=5, sticky=constants.W)
                 buttons[c_id].grid(row=c_id+10, column=2,
                                    pady=5, padx=5, sticky=constants.E)
 

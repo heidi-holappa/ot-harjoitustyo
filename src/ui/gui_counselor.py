@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text
+from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text, Menu
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
@@ -31,6 +31,7 @@ class CounselorView:
 
     def _initialize(self):
         self._frame = Frame(master=self._root, padx=50, pady=50)
+        self._create_menubar()
 
         self.label_and_navigation(0, 0)
 
@@ -42,6 +43,28 @@ class CounselorView:
         self.init_content(16, 0)
 
         self.submit(18, 1)
+
+    def _create_menubar(self):
+        menubar = Menu(self._root)
+        filemenu = Menu(menubar, tearoff=0)
+        filemenu.add_command(label="New", command=self.donothing)
+        filemenu.add_command(label="Open", command=self.donothing)
+        filemenu.add_command(label="Logout", command=self._main_view)
+        filemenu.add_separator()
+        filemenu.add_command(label="Exit", command=self.exit)
+        menubar.add_cascade(label="File", menu=filemenu)
+
+        helpmenu = Menu(menubar, tearoff=0)
+        helpmenu.add_command(label="Help Index", command=self.donothing)
+        helpmenu.add_command(label="About...", command=self.donothing)
+        menubar.add_cascade(label="Help", menu=helpmenu)
+        self._root.config(menu=menubar)
+    
+    def donothing(self):
+        pass
+    
+    def exit(self):
+        self._root.destroy()
 
     def label_and_navigation(self, r, c):
         label = ttk.Label(
