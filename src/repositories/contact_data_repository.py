@@ -23,6 +23,26 @@ class ContactDataRepository:
                 ";" + str(row["content"])
         return self._all_data
 
+    def fetch_all_contacts_as_tuples(self):
+        self._all_data = []
+        cursor = self._connection.cursor()
+
+        cursor.execute('''SELECT ROWID, username, datetime, channel,
+                type, gender, age, content FROM CONTACTS''')
+
+        rows = cursor.fetchall()
+        for row in rows:
+            self._all_data.append((
+                    str(row["username"]),
+                    str(row["datetime"]),
+                    str(row["channel"]),
+                    str(row["type"]),
+                    str(row["gender"]),
+                    str(row["age"]),
+                    str(row["content"])
+                    ))
+        return self._all_data
+
     def fetch_contacts_by_user(self, user: User):
         self._all_data = {}
         cursor = self._connection.cursor()

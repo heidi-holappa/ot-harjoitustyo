@@ -22,6 +22,9 @@ class ContactManagement:
 
     def fetch_all_contacts(self):
         return self._contact_repository.fetch_all_contacts()
+    
+    def fetch_all_contacts_as_tuples(self):
+        return self._contact_repository.fetch_all_contacts_as_tuples()
 
     def fetch_contacts_by_user(self, user: User):
         return self._contact_repository.fetch_contacts_by_user(user)
