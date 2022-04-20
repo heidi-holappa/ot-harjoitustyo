@@ -2,6 +2,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from repositories.user_repository import default_user_repository
 from entities.user import User
 
+
 class UserManagement:
     def __init__(self,
                  user_repository=default_user_repository):
@@ -68,7 +69,7 @@ class UserManagement:
         if self._active_user.username in users:
             return (False, "Username already in use")
         hashed_password = generate_password_hash(
-                self._active_user.password)
+            self._active_user.password)
         self._user_repository.add_user(self._active_user, hashed_password)
         return (True, "")
 

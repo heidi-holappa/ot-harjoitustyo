@@ -38,7 +38,8 @@ class TestUserManagement(unittest.TestCase):
         password1 = "password"
         password2 = "password"
         is_admin = False
-        self.user_management.handle_user_creation(username, password1, password2, is_admin)
+        self.user_management.handle_user_creation(
+            username, password1, password2, is_admin)
         fetched_user = self.user_management.get_user(username)
         self.assertEqual(username, fetched_user.username)
 
@@ -49,9 +50,12 @@ class TestUserManagement(unittest.TestCase):
         password1 = "password"
         password2 = "password"
         is_admin = False
-        self.user_management.handle_user_creation(username1, password1, password2, is_admin)
-        self.user_management.handle_user_creation(username2, password1, password2, is_admin)
-        self.user_management.handle_user_creation(username3, password1, password2, is_admin)
+        self.user_management.handle_user_creation(
+            username1, password1, password2, is_admin)
+        self.user_management.handle_user_creation(
+            username2, password1, password2, is_admin)
+        self.user_management.handle_user_creation(
+            username3, password1, password2, is_admin)
         user_count = len(self.user_management.get_all_users())
         self.assertEqual(3, user_count)
 
@@ -60,6 +64,8 @@ class TestUserManagement(unittest.TestCase):
         password1 = "password"
         password2 = "password"
         is_admin = False
-        self.user_management.handle_user_creation(username, password1, password2, is_admin)
-        result = self.user_management.handle_user_creation(username, password1, password2, is_admin)
+        self.user_management.handle_user_creation(
+            username, password1, password2, is_admin)
+        result = self.user_management.handle_user_creation(
+            username, password1, password2, is_admin)
         self.assertEqual(False, result[0])

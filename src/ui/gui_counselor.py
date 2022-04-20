@@ -59,10 +59,10 @@ class CounselorView:
         helpmenu.add_command(label="About...", command=self.donothing)
         menubar.add_cascade(label="Help", menu=helpmenu)
         self._root.config(menu=menubar)
-    
+
     def donothing(self):
         pass
-    
+
     def exit(self):
         self._root.destroy()
 

@@ -22,7 +22,7 @@ class ContactManagement:
 
     def fetch_all_contacts(self):
         return self._contact_repository.fetch_all_contacts()
-    
+
     def fetch_all_contacts_as_tuples(self):
         return self._contact_repository.fetch_all_contacts_as_tuples()
 
@@ -54,17 +54,18 @@ class ContactManagement:
         return self._contact_repository.add_contact(fetch_user, contact)
 
     def create_random_contact(self):
-        rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter", "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
-        self._user_management.create_active_user(rand_users[randint(0, len(rand_users)-1)], "password")
-        c_channel = randint(1,3)
-        c_type = randint(1,4)
-        c_age = randint(1,7)
-        c_gender = randint(1,4)
+        rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
+                      "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
+        self._user_management.create_active_user(
+            rand_users[randint(0, len(rand_users)-1)], "password")
+        c_channel = randint(1, 3)
+        c_type = randint(1, 4)
+        c_age = randint(1, 7)
+        c_gender = randint(1, 4)
         content = lorem.paragraph()
-        self.manage_new_contact_submission(c_channel, c_type, c_age, c_gender, content)
-    
+        self.manage_new_contact_submission(
+            c_channel, c_type, c_age, c_gender, content)
+
     def create_random_contacts(self, n=10):
         for _ in range(n):
             self.create_random_contact()
-
-

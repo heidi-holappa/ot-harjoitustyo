@@ -67,8 +67,10 @@ class AdminView:
                            padx=10, pady=5,
                            sticky=constants.E)
 
-        columns = ("username", "date_and_time", "channel", "type", "gender", "age", "content")
-        treeview = ttk.Treeview(master=self._frame, columns=columns, show="headings")
+        columns = ("username", "date_and_time", "channel",
+                   "type", "gender", "age", "content")
+        treeview = ttk.Treeview(
+            master=self._frame, columns=columns, show="headings")
         treeview.heading("username", text="username")
         treeview.heading("date_and_time", text="date and time")
         treeview.heading("channel", text="channel")
@@ -78,7 +80,8 @@ class AdminView:
         treeview.heading("content", text="content")
 
         treeview.grid(row=2, column=0, sticky=constants.NSEW)
-        scrollbar = ttk.Scrollbar(master=self._frame, orient=constants.VERTICAL, command=treeview.yview)
+        scrollbar = ttk.Scrollbar(
+            master=self._frame, orient=constants.VERTICAL, command=treeview.yview)
         scrollbar.grid(row=2, column=1, sticky='ns')
         # self._fetch_contacts()
         self._populate_treeview(treeview)
@@ -87,15 +90,13 @@ class AdminView:
         # textfield.grid(row=3, column=0)
         # textfield["state"] = "disabled"
 
-        
-
         def item_selected(event):
             printout = ""
             for selected_item in treeview.selection():
                 item = treeview.item(selected_item)
                 parts = item["values"]
                 printout = (f"Username: {str(parts[0])}\n")
-                printout += "date and time: " + str(parts[1]) + "\n" 
+                printout += "date and time: " + str(parts[1]) + "\n"
                 printout += "channel: " + str(parts[2])
                 printout += ", type: " + str(parts[3])
                 n = len(printout) // 100 + 3
@@ -110,13 +111,9 @@ class AdminView:
             textfield.insert(1.0, printout)
             textfield["state"] = "disabled"
             print(printout)
-                
-                
-                
 
         treeview.bind('<<TreeviewSelect>>', item_selected)
 
-        
         # def item_selected(event):
         #     for selected_item in treeview.selection():
         #         item = treeview.item(selected_item)
@@ -124,11 +121,7 @@ class AdminView:
         #         # show a message
         #         messagebox.showinfo(title='Information', message=','.join(record))
 
-
         # treeview.bind('<<TreeviewSelect>>', item_selected)
-
-    
-
 
     def _populate_treeview(self, treeview):
         contacts = self._contact_management.fetch_all_contacts_as_tuples()
@@ -136,7 +129,6 @@ class AdminView:
             treeview.insert('', constants.END, values=contact)
 
     def _fetch_contacts(self):
-        
 
         contacts = self._contact_management.fetch_all_contacts()
         buttons = {}
@@ -145,7 +137,7 @@ class AdminView:
             for c_id in contacts:
                 parts = contacts[c_id].split(";")
                 printout = (f"Username: {str(parts[0])}\n")
-                printout += "date and time: " + str(parts[1]) + "\n" 
+                printout += "date and time: " + str(parts[1]) + "\n"
                 printout += "channel: " + str(parts[2])
                 printout += ", type: " + str(parts[3])
                 n = len(printout) // 100 + 3
@@ -155,7 +147,7 @@ class AdminView:
                     printout += "\n\n" + "content:\n"
                     printout += str(parts[6])
                     n = len(printout) // 100 + 5
-                
+
                 fields[c_id] = Text(
                     master=self._frame, width=100, height=n, wrap="word"
                 )
@@ -171,9 +163,10 @@ class AdminView:
                     text=f"Delete {c_id}",
                     command=button_action
                 )
-                fields[c_id].grid(row=c_id+10, column=1, pady=5, padx=5, sticky=constants.W)
+                fields[c_id].grid(row=c_id+10, column=1,
+                                  pady=5, padx=5, sticky=constants.W)
                 # labels[c_id].grid(row=c_id+10, column=1,
-                                #   pady=5, padx=5, sticky=constants.W)
+                #   pady=5, padx=5, sticky=constants.W)
                 buttons[c_id].grid(row=c_id+10, column=2,
                                    pady=5, padx=5, sticky=constants.E)
 

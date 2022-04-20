@@ -33,14 +33,14 @@ class ContactDataRepository:
         rows = cursor.fetchall()
         for row in rows:
             self._all_data.append((
-                    str(row["username"]),
-                    str(row["datetime"]),
-                    str(row["channel"]),
-                    str(row["type"]),
-                    str(row["gender"]),
-                    str(row["age"]),
-                    str(row["content"])
-                    ))
+                str(row["username"]),
+                str(row["datetime"]),
+                str(row["channel"]),
+                str(row["type"]),
+                str(row["gender"]),
+                str(row["age"]),
+                str(row["content"])
+            ))
         return self._all_data
 
     def fetch_contacts_by_user(self, user: User):
