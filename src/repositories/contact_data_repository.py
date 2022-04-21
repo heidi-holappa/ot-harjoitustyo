@@ -33,6 +33,7 @@ class ContactDataRepository:
         rows = cursor.fetchall()
         for row in rows:
             self._all_data.append((
+                str(row["ROWID"]),
                 str(row["username"]),
                 str(row["datetime"]),
                 str(row["channel"]),
