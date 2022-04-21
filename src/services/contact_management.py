@@ -62,10 +62,39 @@ class ContactManagement:
         c_type = randint(1, 4)
         c_age = randint(1, 7)
         c_gender = randint(1, 4)
-        content = lorem.paragraph()
+        if c_type == 1:
+            contact = Contact("", c_channel, c_type, c_age, c_gender, "")
+            content = self.create_dummy_content(contact)
+        else:
+            content = ""
         self.manage_new_contact_submission(
             c_channel, c_type, c_age, c_gender, content)
 
     def create_random_contacts(self, n=10):
         for _ in range(n):
             self.create_random_contact()
+
+    def create_dummy_content(self, contact):
+        c_channel = contact.get_channel()
+        age = contact.get_age()
+        gender = contact.get_gender()
+        randtopic = [
+                    "mental health", 
+                    "phsyical health", 
+                    "bullying",
+                    "family relationships", 
+                    "child abuse",
+                    "sexuality", 
+                    "puberty",
+                    "peer relationships",
+                    "school",
+                    ]
+        intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service."
+        topic_id = randint(0, len(randtopic)-1)
+        topics = f"They wanted to talk about {randtopic[topic_id]}. A summary of the discussion: \n\n"
+        dummytext = lorem.paragraph()
+        content = intro + topics + dummytext
+        if topic_id < 5:
+            content += f"\n\nI referred the child to appropriate services that provide more help with {randtopic[topic_id]}"
+        return content
+        
