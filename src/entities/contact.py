@@ -42,3 +42,15 @@ class Contact:
             return (False,
                     "Counseling contact must include age, gender and description on content.")
         return (True, "")
+
+    def get_type(self):
+        return self.type
+    
+    def get_age(self):
+        return self.age
+    
+    def get_gender(self):
+        return self.gender
+    
+    def get_channel(self):
+        return self.channel
