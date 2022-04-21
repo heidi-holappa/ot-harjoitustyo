@@ -39,6 +39,7 @@ class AdminView:
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
 
         self._init_buttons(0)
+        self._init_textfield()
         
         self._init_treeview()
         self._populate_treeview(self.treeview)
@@ -76,22 +77,39 @@ class AdminView:
                            sticky=constants.E)
 
     def _init_treeview(self):
-        columns = ("username", "date_and_time", "channel",
-                   "type", "gender", "age", "content")
+        # columns = ("rowid", "username", "date_and_time", "channel",
+        #            "type", "gender", "age", "content")
+        columns = ("rowid", "username", "date_and_time", "channel", "type")
         self.treeview = ttk.Treeview(
             master=self._frame, columns=columns, show="headings")
+        self.treeview.column("rowid", stretch=False, width=40)
+        self.treeview.heading("rowid", text="ID")
+        self.treeview.column("username", stretch=False, width=150)
         self.treeview.heading("username", text="username")
+        self.treeview.column("date_and_time", stretch=False, width=150)
         self.treeview.heading("date_and_time", text="date and time")
+        self.treeview.column("channel", stretch=False, width=150)
         self.treeview.heading("channel", text="channel")
+        self.treeview.column("type", stretch=False, width=150)
         self.treeview.heading("type", text="type")
-        self.treeview.heading("gender", text="gender")
-        self.treeview.heading("age", text="age")
-        self.treeview.heading("content", text="content")
+        # self.treeview.column("gender", stretch=False, width=80)
+        # self.treeview.heading("gender", text="gender")
+        # self.treeview.column("age", stretch=False, width=60)
+        # self.treeview.heading("age", text="age")
+        # self.treeview.column("content", stretch=False, width=30)
+        # self.treeview.heading("content", text="content")
 
         self.treeview.grid(row=2, column=0, sticky=constants.NSEW)
         scrollbar = ttk.Scrollbar(
             master=self._frame, orient=constants.VERTICAL, command=self.treeview.yview)
         scrollbar.grid(row=2, column=1, sticky='ns')
+
+    def _init_textfield(self):
+        printout = "Choose contact to view more details and options."
+        textfield = Text(master=self._frame, wrap="word")
+        textfield.grid(row=3, column=0)
+        textfield.insert(1.0, printout)
+        textfield["state"] = "disabled"
 
     def item_selected(self, event):
         '''insert selected row into a Text widget'''
@@ -99,22 +117,45 @@ class AdminView:
         for selected_item in self.treeview.selection():
             item = self.treeview.item(selected_item)
             parts = item["values"]
-            printout = (f"Username: {str(parts[0])}\n")
-            printout += "date and time: " + str(parts[1]) + "\n"
-            printout += "channel: " + str(parts[2])
-            printout += ", type: " + str(parts[3])
-            n = len(printout) // 100 + 3
+            printout = (f"Username: {str(parts[1])}\n")
+            printout += "date and time: " + str(parts[2]) + "\n"
+            printout += "channel: " + str(parts[3])
+            printout += ", type: " + str(parts[4])
             if parts[4] != "None":
-                printout += ", gender: " + str(parts[4])
-                printout += ", age: " + str(parts[5])
+                printout += ", gender: " + str(parts[5])
+                printout += ", age: " + str(parts[6])
                 printout += "\n\n" + "content:\n"
-                printout += str(parts[6])
-                n = len(printout) // 100 + 5
+                printout += str(parts[7])
         textfield = Text(master=self._frame, wrap="word")
         textfield.grid(row=3, column=0)
         textfield.insert(1.0, printout)
         textfield["state"] = "disabled"
-        print(printout)
+        self._insert_contact_buttons()
+    
+    def _insert_contact_buttons(self):
+        for selected_item in self.treeview.selection():
+            # Check if this line is needed, delete if not
+            item = self.treeview.item(selected_item)
+            def delete_contact():
+                for selected_item in self.treeview.selection():
+                    item = self.treeview.item(selected_item)
+                    contact_id = int(item["values"][0])
+                    print(contact_id)
+                    self._delete_contact(contact_id)
+                    self.treeview.delete(selected_item)
+            button_delete = ttk.Button(
+                master=self._frame,
+                text="Delete selected",
+                command=delete_contact
+            )
+            button_delete.grid(row=4, column=0,
+                    padx=10, pady=5,
+                    sticky=constants.E)
+
+
+
+
+
 
     def _populate_treeview(self, treeview):
         contacts = self._contact_management.fetch_all_contacts_as_tuples()
