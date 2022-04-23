@@ -101,6 +101,7 @@ class UI:
         self._show_counselor_view()
 
     def _handle_admin_view(self):
+        print(self._show_admin_view)
         self._show_admin_view()
 
     def _handle_create_dummy_data_view(self):
