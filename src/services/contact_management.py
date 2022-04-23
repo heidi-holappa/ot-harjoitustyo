@@ -39,8 +39,15 @@ class ContactManagement:
     def delete_contact(self, c_id):
         self._contact_repository.delete_contact(c_id)
 
-    def mark_contact_for_deletion(self, c_id):
-        self._contact_repository.mark_for_deletion(c_id)
+    def delete_all_contacts(self):
+        self._contact_repository.delete_all_data()
+
+    def mark_contact_for_deletion(self, c_id, status):
+        if status == "TRUE":
+            mark = "TRUE"
+        else: 
+            mark = ""
+        self._contact_repository.mark_for_deletion(c_id, mark)
 
     def delete_marked_contacts(self):
         self._contact_repository.delete_marked()
@@ -65,11 +72,20 @@ class ContactManagement:
             return (False, "Error. No user logged in.")
         return self._contact_repository.add_contact(fetch_user, contact)
 
+    # '''If time, refactor this method. 
+    # It became messy, because a user can be logged in or not.'''
     def create_random_contact(self):
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
-                      "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
-        self._user_management.create_active_user(
-            rand_users[randint(0, len(rand_users)-1)], "password")
+                        "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
+        random_user = rand_users[randint(0, len(rand_users)-1)]
+        current_user = ""
+        username_change = False
+        if not self._user_management.get_active_user():
+            self._user_management.create_active_user(random_user, "password")
+        else:
+            current_user = self._user_management.get_active_user().username
+            self._user_management.get_active_user().username = random_user
+            username_change = True
         c_channel = randint(1, 3)
         c_type = randint(1, 4)
         c_age = randint(1, 7)
@@ -81,6 +97,11 @@ class ContactManagement:
             content = ""
         self.manage_new_contact_submission(
             c_channel, c_type, c_age, c_gender, content)
+        if username_change:
+            self._user_management.get_active_user().username = current_user
+        else:
+            self._user_management.logout()
+
 
     def create_random_contacts(self, given_n=10):
         for _ in range(given_n):
