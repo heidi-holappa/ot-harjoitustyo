@@ -29,28 +29,71 @@ class CreateDummyData:
         self._frame = Frame(master=self._root, padx=50, pady=50)
         label = ttk.Label(
             master=self._frame,
-            text="Select the amount of dummy data to create")
+            text='''This view is intended for the staging version of this application. 
+            User can create between 1 to 100 accounts of dummydata, or delete all contacts for
+            a fresh start. Enter the desired amount of dummy data in the entry field.''')
+
+        # THIS DOES NOT WORK. FIX IT.
+        user_entry = ttk.Entry(master=self._frame)
+        user_entry.insert(constants.END, "0")
 
         button_logout = ttk.Button(
             master=self._frame,
-            text="Logout",
-            command=self._main_view
+            text="Cancel",
+            command=self._admin_view
         )
 
-        button_admin_stuff = ttk.Button(
+        button_create_dummy_data = ttk.Button(
             master=self._frame,
             text="Create data",
-            command=self._do_admin_stuff
+            command=lambda: self._create_dummy_data(user_entry.get())
+        )
+
+        button_delete_all_data = ttk.Button(
+            master=self._frame,
+            text="Delete all contacts",
+            command= self._delete_all_data
         )
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
+        user_entry.grid(row=2, sticky=constants.NW)
 
-        button_admin_stuff.grid(row=0, column=1,
+        button_create_dummy_data.grid(row=3, column=1,
                                 padx=20,
                                 sticky=constants.E)
-        button_logout.grid(row=0, column=3,
+        
+        button_delete_all_data.grid(row=3, column=2,
+                           padx=10, pady=5,
+                           sticky=constants.E)
+        
+        button_logout.grid(row=3, column=3,
                            padx=10, pady=5,
                            sticky=constants.E)
 
-    def _do_admin_stuff(self):
-        print("Hello admin world!")
+    # Consider moving data validation to service class
+    def _create_dummy_data(self, input):
+        failed = False
+        if not input.isnumeric() or not input.isdigit():
+            failed = True
+        n_of_contacts = 0
+        try:
+            n_of_contacts = int(input)
+        except (TypeError, ValueError) as e:
+            failed = True
+        if failed:
+            label_fail = ttk.Label(
+                        master=self._frame, 
+                        text="Input is not a number, please input an integer value.", 
+                        foreground="red"
+                        )
+            label_fail.grid(row=1, column=0, columnspan=4)
+            label_fail.after(3000, lambda: label_fail.destroy())
+            return
+        self._contact_management.create_random_contacts(n_of_contacts)
+        self._admin_view()
+
+    def _delete_all_data(self):
+        self._contact_management.delete_all_contacts()
+        self._admin_view()
+
+
