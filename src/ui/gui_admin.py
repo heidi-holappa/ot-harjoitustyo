@@ -111,6 +111,8 @@ class AdminView:
         scrollbar = ttk.Scrollbar(
             master=self.treeview_frame, orient=constants.VERTICAL, command=self.treeview.yview)
         scrollbar.grid(row=0, column=1, sticky=constants.NS)
+        self.treeview.bind("<Return>", self._mark_keybind)
+        self.treeview.bind("<Delete>", self._delete_keybind)
 
     def _init_textfield(self, selected_frame):
         printout = "Choose contact to view more details and options."
@@ -140,15 +142,25 @@ class AdminView:
         textfield.grid(row=3, column=0)
         textfield.insert(1.0, printout)
         textfield["state"] = "disabled"
-        self._insert_contact_buttons()
+        if contact[-1] == "TRUE":
+            manage_text = "Unmark contact"
+        else:
+            manage_text = "Mark contact for deletion"
+        self._insert_contact_buttons(manage_text)
 
-    def _insert_contact_buttons(self):
+    def clear_frame(self, frame: ttk.LabelFrame):
+        for widgets in frame.winfo_children():
+            widgets.destroy()
+
+    
+    def _insert_contact_buttons(self, manage_text):
+        self.clear_frame(self.contact_management_frame)
         selected = self.treeview.focus()
         selected_item = self.treeview.item(selected, "values")
 
         button_mark_contact = ttk.Button(
             master=self.contact_management_frame,
-            text="Mark contact for deletion",
+            text=manage_text,
             command=lambda: self._mark_contact_for_deletion(selected_item[0])
         )
 
@@ -174,16 +186,37 @@ class AdminView:
     def _delete_contact(self, c_id):
         self._contact_management.delete_contact(c_id)
 
+    def _mark_keybind(self, event):
+        item = self.treeview.identify_row(event.y)
+        if item: 
+            selected_item = self.treeview.item(item, 'values')
+            self._mark_contact_for_deletion(selected_item[0])
+
+    def _delete_keybind(self, event):
+        item = self.treeview.identify_row(event.y)
+        if item:
+            self._delete_marked_contacts()
+
+    
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
-        selected_item = self.treeview.item(selected, "values")
-        updated_selected = (
-            selected_item[0], "MARKED", "FOR", "DELETION", selected_item[4:])
+        selected_item = list(self.treeview.item(selected, "values"))
+        if selected_item[-1] == "":
+            selected_item[-1] = "TRUE"
+        else:
+            selected_item[-1] = ""
+        updated_selected = tuple(selected_item)
         self.treeview.item(selected, text="", values=(updated_selected))
-        self._contact_management.mark_contact_for_deletion(c_id)
+        self._contact_management.mark_contact_for_deletion(c_id, selected_item[-1])
 
     def _delete_marked_contacts(self):
         self._contact_management.delete_marked_contacts()
+        for row in self.treeview.get_children():
+            if self.treeview.item(row)["values"][-1] == "TRUE":
+                self.treeview.delete(row)
+                
+                
+
 
     def _init_contact_management_buttons(self, selected_frame):
         button_mark_contact = ttk.Button(
