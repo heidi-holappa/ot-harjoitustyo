@@ -62,21 +62,44 @@ class ContactDataRepository:
     def add_contact(self, user: User, contact: Contact):
         cursor = self._connection.cursor()
         cursor.execute('''INSERT INTO CONTACTS
-                (username, datetime, channel, type, age, gender, content) VALUES (?,?,?,?,?,?,?)''',
-                       [user.username,
-                        contact.datetime_as_str,
-                        contact.channel,
-                        contact.type,
-                        contact.age,
-                        contact.gender,
-                        contact.content]
-                       )
+                        (username, 
+                        datetime, 
+                        channel, 
+                        type, 
+                        age, 
+                        gender, 
+                        content, 
+                        marked) 
+                        VALUES (?,?,?,?,?,?,?,?)''',
+                            [user.username,
+                                contact.datetime_as_str,
+                                contact.channel,
+                                contact.type,
+                                contact.age,
+                                contact.gender,
+                                contact.content]
+                            )
         self._connection.commit()
 
+    # REMOVE THIS WHEN DELETE MARKED IS INTEGRATED TO APP
     def delete_contact(self, c_id):
         cursor = self._connection.cursor()
         cursor.execute('''DELETE FROM CONTACTS
                         WHERE ROWID = ?''', [c_id])
+        self._connection.commit()
+
+    def mark_for_deletion(self, c_id):
+        cursor = self._connection.cursor()
+        cursor.execute(''' UPDATE CONTACTS
+                            SET marked = 1
+                            WHERE ROWID = ?'''
+                            , [c_id])
+        self._connection.commit()
+
+    def delete_marked(self):
+        cursor = self._connection.cursor()
+        cursor.execute('''DELETE FROM CONTACTS
+                        WHERE MARKED = 1''')
         self._connection.commit()
 
 
