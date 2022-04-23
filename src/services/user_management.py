@@ -36,11 +36,8 @@ class UserManagement:
             return (False, None)
         user = self._active_user
         users = self.get_all_users()
-        print("Given password: ", user.password, "\n ,db: ",
-              users[user.username][0], "check validity: ",
-              check_password_hash(user.password, users[user.username][0]))
-
         if user.username in users and check_password_hash(users[user.username][0], user.password):
+            print("TRUE")
             user.role = users[user.username][1]
             user.logged = True
             self._active_user = user
