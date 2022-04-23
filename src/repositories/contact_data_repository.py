@@ -145,17 +145,22 @@ class ContactDataRepository:
                         WHERE ROWID = ?''', [c_id])
         self._connection.commit()
 
-    def mark_for_deletion(self, c_id):
+    def mark_for_deletion(self, c_id, status):
         cursor = self._connection.cursor()
         cursor.execute(''' UPDATE CONTACTS
-                            SET marked = 1
-                            WHERE ROWID = ?''', [c_id])
+                            SET marked = ?
+                            WHERE ROWID = ?''', [status, c_id])
         self._connection.commit()
 
     def delete_marked(self):
         cursor = self._connection.cursor()
         cursor.execute('''DELETE FROM CONTACTS
-                        WHERE MARKED = 1''')
+                        WHERE MARKED = "TRUE"''')
+        self._connection.commit()
+
+    def delete_all_data(self):
+        cursor = self._connection.cursor()
+        cursor.execute('''DELETE FROM CONTACTS''')
         self._connection.commit()
 
 
