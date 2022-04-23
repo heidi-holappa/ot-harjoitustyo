@@ -1,7 +1,7 @@
 
 class Contact:
 
-    def __init__(self, datetime_as_str, channel, c_type, age, gender, content):
+    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: int, marked = 0):
         self.contact_dict = {
             "channel": [None,
                         "phone",
@@ -33,6 +33,7 @@ class Contact:
         self.age = self.contact_dict["age"][age]
         self.gender = self.contact_dict["gender"][gender]
         self.content = content
+        self.marked = marked
 
     def is_valid(self):
         if not self.channel and not self.type:
