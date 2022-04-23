@@ -80,18 +80,17 @@ class ContactDataRepository:
                                 ''', [rowid]).fetchone()
 
         result = (
-                db_result["ROWID"],
-                db_result["username"],
-                db_result["datetime"],
-                db_result["channel"],
-                db_result["type"],
-                db_result["gender"],
-                db_result["age"],
-                db_result["content"],
-                db_result["marked"],
-            )
+            db_result["ROWID"],
+            db_result["username"],
+            db_result["datetime"],
+            db_result["channel"],
+            db_result["type"],
+            db_result["gender"],
+            db_result["age"],
+            db_result["content"],
+            db_result["marked"],
+        )
         return result
-
 
     def fetch_contacts_by_user(self, user: User):
         self._all_data = {}
@@ -120,15 +119,15 @@ class ContactDataRepository:
                         content, 
                         marked) 
                         VALUES (?,?,?,?,?,?,?,?)''',
-                            [user.username,
-                                contact.datetime_as_str,
-                                contact.channel,
-                                contact.type,
-                                contact.age,
-                                contact.gender,
-                                contact.content,
-                                contact.marked]
-                            )
+                       [user.username,
+                        contact.datetime_as_str,
+                        contact.channel,
+                        contact.type,
+                        contact.age,
+                        contact.gender,
+                        contact.content,
+                        contact.marked]
+                       )
         self._connection.commit()
 
     # REMOVE THIS WHEN DELETE MARKED IS INTEGRATED TO APP
@@ -142,8 +141,7 @@ class ContactDataRepository:
         cursor = self._connection.cursor()
         cursor.execute(''' UPDATE CONTACTS
                             SET marked = 1
-                            WHERE ROWID = ?'''
-                            , [c_id])
+                            WHERE ROWID = ?''', [c_id])
         self._connection.commit()
 
     def delete_marked(self):

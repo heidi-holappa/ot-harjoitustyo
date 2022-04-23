@@ -34,10 +34,14 @@ class AdminView:
 
     def _initialize(self):
         self._frame = Frame(master=self._root, padx=50, pady=50)
-        self.nav_buttons_frame = ttk.LabelFrame(master=self._frame, text="Navigation buttons")
-        self.treeview_frame = ttk.LabelFrame(master=self._frame, text="Submitted contacts")
-        self.textview_frame = ttk.LabelFrame(master=self._frame, text="Preview selected contact")
-        self.contact_management_frame = ttk.LabelFrame(master=self._frame, text="Manage selected contact")
+        self.nav_buttons_frame = ttk.LabelFrame(
+            master=self._frame, text="Navigation buttons")
+        self.treeview_frame = ttk.LabelFrame(
+            master=self._frame, text="Submitted contacts")
+        self.textview_frame = ttk.LabelFrame(
+            master=self._frame, text="Preview selected contact")
+        self.contact_management_frame = ttk.LabelFrame(
+            master=self._frame, text="Manage selected contact")
 
         self.nav_buttons_frame.grid(sticky=constants.EW)
         self.treeview_frame.grid(sticky=constants.EW)
@@ -49,7 +53,6 @@ class AdminView:
         self._init_textfield(self.textview_frame)
         self._populate_treeview(self.treeview)
         self._init_contact_management_buttons(self.contact_management_frame)
-
 
         self.treeview.bind('<<TreeviewSelect>>', self.item_selected)
 
@@ -72,7 +75,6 @@ class AdminView:
             command=self._create_dummy_data
         )
 
-
         button_counselor.grid(row=0, column=0,
                               padx=10, pady=5,
                               sticky=constants.W)
@@ -85,12 +87,13 @@ class AdminView:
                            sticky=constants.E)
 
     def _init_treeview(self, selected_frame):
-        columns = ("rowid", "username", "date_and_time", "channel", "type", "delete")
+        columns = ("rowid", "username", "date_and_time",
+                   "channel", "type", "delete")
         self.treeview = ttk.Treeview(
-                    master=selected_frame, 
-                    columns=columns, 
-                    show="headings", 
-                    selectmode="browse")
+            master=selected_frame,
+            columns=columns,
+            show="headings",
+            selectmode="browse")
         self.treeview.column("rowid", stretch=False, width=40)
         self.treeview.heading("rowid", text="ID")
         self.treeview.column("username", stretch=False, width=150)
@@ -124,7 +127,6 @@ class AdminView:
         rowid = selected_item[0]
         contact = self._contact_management.fetch_selected_contact(rowid)
 
-        
         printout = (f"Username: {str(contact[1])}\n")
         printout += "date and time: " + str(contact[2]) + "\n"
         printout += "channel: " + str(contact[3])
@@ -139,34 +141,30 @@ class AdminView:
         textfield.insert(1.0, printout)
         textfield["state"] = "disabled"
         self._insert_contact_buttons()
-    
+
     def _insert_contact_buttons(self):
         selected = self.treeview.focus()
         selected_item = self.treeview.item(selected, "values")
-    
+
         button_mark_contact = ttk.Button(
             master=self.contact_management_frame,
             text="Mark contact for deletion",
             command=lambda: self._mark_contact_for_deletion(selected_item[0])
         )
-        
+
         button_delete = ttk.Button(
             master=self.contact_management_frame,
             text="Delete selected",
             command=self._delete_marked_contacts
         )
-        
-        
+
         button_mark_contact.grid(row=0, column=0,
-                                padx=10, pady=5,
-                                sticky=constants.E)
-        
+                                 padx=10, pady=5,
+                                 sticky=constants.E)
+
         button_delete.grid(row=0, column=1,
-                            padx=10, pady=5,
-                            sticky=constants.E)
-
-
-        
+                           padx=10, pady=5,
+                           sticky=constants.E)
 
     def _populate_treeview(self, treeview):
         contacts = self._contact_management.fetch_treeview_contact_info()
@@ -176,14 +174,13 @@ class AdminView:
     def _delete_contact(self, c_id):
         self._contact_management.delete_contact(c_id)
 
-
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
         selected_item = self.treeview.item(selected, "values")
-        updated_selected = (selected_item[0], "MARKED", "FOR", "DELETION", selected_item[4:])
+        updated_selected = (
+            selected_item[0], "MARKED", "FOR", "DELETION", selected_item[4:])
         self.treeview.item(selected, text="", values=(updated_selected))
         self._contact_management.mark_contact_for_deletion(c_id)
-
 
     def _delete_marked_contacts(self):
         self._contact_management.delete_marked_contacts()
@@ -194,24 +191,20 @@ class AdminView:
             text="Mark contact for deletion",
             state="disabled"
         )
-        
+
         button_delete = ttk.Button(
             master=selected_frame,
             text="Delete selected",
             state="disabled"
         )
-        
-        
+
         button_mark_contact.grid(row=0, column=0,
-                                padx=10, pady=5,
-                                sticky=constants.E)
-        
+                                 padx=10, pady=5,
+                                 sticky=constants.E)
+
         button_delete.grid(row=0, column=1,
-                            padx=10, pady=5,
-                            sticky=constants.E)
-
-
-
+                           padx=10, pady=5,
+                           sticky=constants.E)
 
     # REFACTORED CODE - REMOVE WHEN NOT NEEDED ANYMORE
     # def _fetch_contacts(self):
@@ -258,7 +251,6 @@ class AdminView:
 
         # return
 
-
         # DELETED FROM TREEVIEW - DELETE WHEN NOT NEEDED
         # for selected_item in self.treeview.selection():
         #     # Check if this line is needed, delete if not
@@ -269,7 +261,7 @@ class AdminView:
         #             contact_id = int(item["values"][0])
         #             self._delete_contact(contact_id)
         #             self.treeview.delete(selected_item)
-            
+
         #     def mark_contact():
         #         for selected_item in self.treeview.selection():
         #             item = self.treeview.item(selected_item)

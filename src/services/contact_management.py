@@ -30,10 +30,9 @@ class ContactManagement:
     def fetch_selected_contact(self, rowid):
         return self._contact_repository.fetch_selected_contact(rowid)
 
-    
     def fetch_treeview_contact_info(self):
         return self._contact_repository.fetch_treeview_contact_info()
-    
+
     def fetch_contacts_by_user(self, user: User):
         return self._contact_repository.fetch_contacts_by_user(user)
 
@@ -42,7 +41,7 @@ class ContactManagement:
 
     def mark_contact_for_deletion(self, c_id):
         self._contact_repository.mark_for_deletion(c_id)
-    
+
     def delete_marked_contacts(self):
         self._contact_repository.delete_marked()
 
@@ -92,16 +91,16 @@ class ContactManagement:
         age = contact.get_age()
         gender = contact.get_gender()
         randtopic = [
-                    "mental health", 
-                    "phsyical health", 
-                    "bullying",
-                    "family relationships", 
-                    "child abuse",
-                    "sexuality", 
-                    "puberty",
-                    "peer relationships",
-                    "school",
-                    ]
+            "mental health",
+            "phsyical health",
+            "bullying",
+            "family relationships",
+            "child abuse",
+            "sexuality",
+            "puberty",
+            "peer relationships",
+            "school",
+        ]
         intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service."
         topic_id = randint(0, len(randtopic)-1)
         topics = f"They wanted to talk about {randtopic[topic_id]}. A summary of the discussion: \n\n"
@@ -110,4 +109,3 @@ class ContactManagement:
         if topic_id < 5:
             content += f"\n\nI referred the child to appropriate services that provide more help with {randtopic[topic_id]}"
         return content
-        
