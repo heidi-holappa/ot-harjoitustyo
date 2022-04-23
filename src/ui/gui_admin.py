@@ -111,8 +111,7 @@ class AdminView:
         scrollbar = ttk.Scrollbar(
             master=self.treeview_frame, orient=constants.VERTICAL, command=self.treeview.yview)
         scrollbar.grid(row=0, column=1, sticky=constants.NS)
-        self.treeview.bind("<Return>", self._mark_keybind)
-        self.treeview.bind("<Delete>", self._delete_keybind)
+        self.treeview.bind("<Button-3>", self._mark_keybind)
 
     def _init_textfield(self, selected_frame):
         printout = "Choose contact to view more details and options."
@@ -193,10 +192,6 @@ class AdminView:
             print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self._mark_contact_for_deletion(selected_item[0])
 
-    def _delete_keybind(self, event):
-        item = self.treeview.identify_row(event.y)
-        if item:
-            self._delete_marked_contacts()
     
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
