@@ -20,17 +20,31 @@ class ContactManagement:
         self._contact_repository = contact_repository
         self._user_management = user_management
 
+    # DELETE THIS WHEN NOT NEEDED ANY MORE
     def fetch_all_contacts(self):
         return self._contact_repository.fetch_all_contacts()
 
     def fetch_all_contacts_as_tuples(self):
         return self._contact_repository.fetch_all_contacts_as_tuples()
 
+    def fetch_selected_contact(self, rowid):
+        return self._contact_repository.fetch_selected_contact(rowid)
+
+    
+    def fetch_treeview_contact_info(self):
+        return self._contact_repository.fetch_treeview_contact_info()
+    
     def fetch_contacts_by_user(self, user: User):
         return self._contact_repository.fetch_contacts_by_user(user)
 
     def delete_contact(self, c_id):
         self._contact_repository.delete_contact(c_id)
+
+    def mark_contact_for_deletion(self, c_id):
+        self._contact_repository.mark_for_deletion(c_id)
+    
+    def delete_marked_contacts(self):
+        self._contact_repository.delete_marked()
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
         time_of_submission = datetime.now()
