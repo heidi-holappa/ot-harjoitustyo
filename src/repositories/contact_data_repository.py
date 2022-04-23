@@ -18,9 +18,13 @@ class ContactDataRepository:
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + str(row["datetime"]) + ";" + \
-                str(row["channel"]) + ";" + str(row["type"]) + ";" + str(row["gender"]) + ";" + str(row["age"]) + \
-                ";" + str(row["content"])
+            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + \
+                                            str(row["datetime"]) + ";" + \
+                                            str(row["channel"]) + ";" + \
+                                            str(row["type"]) + ";" + \
+                                            str(row["gender"]) + \
+                                            ";" + str(row["age"]) + \
+                                            ";" + str(row["content"])
         return self._all_data
 
     def fetch_all_contacts_as_tuples(self):
@@ -67,7 +71,7 @@ class ContactDataRepository:
     def fetch_selected_contact(self, rowid):
         cursor = self._connection.cursor()
 
-        db_result = cursor.execute('''SELECT ROWID, 
+        db_result = cursor.execute('''SELECT ROWID,
                                 username, 
                                 datetime, 
                                 channel,
@@ -102,9 +106,13 @@ class ContactDataRepository:
 
         rows = cursor.fetchall()
         for row in rows:
-            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + str(row["datetime"]) + ";" + \
-                str(row["channel"]) + ";" + str(row["type"]) + ";" + str(row["gender"]) + ";" + str(row["age"]) + \
-                ";" + str(row["content"])
+            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + \
+                                            str(row["datetime"]) + ";" + \
+                                            str(row["channel"]) + ";" + \
+                                            str(row["type"]) + ";" + \
+                                            str(row["gender"]) + ";" + \
+                                            str(row["age"]) + ";" + \
+                                            str(row["content"])
         return self._all_data
 
     def add_contact(self, user: User, contact: Contact):

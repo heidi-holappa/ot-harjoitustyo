@@ -102,7 +102,7 @@ class ContactManagement:
         ]
         intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service."
         topic_id = randint(0, len(randtopic)-1)
-        topics = f'''They wanted to talk about {randtopic[topic_id]}. 
+        topics = f'''They wanted to talk about {randtopic[topic_id]}.
                         A summary of the discussion: \n\n'''
         dummytext = lorem.paragraph()
         content = intro + topics + dummytext
