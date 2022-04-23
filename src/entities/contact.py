@@ -1,7 +1,7 @@
 
 class Contact:
 
-    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: int, marked = 0):
+    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: str, marked = 0):
         self.contact_dict = {
             "channel": [None,
                         "phone",
