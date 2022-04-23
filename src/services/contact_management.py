@@ -82,8 +82,8 @@ class ContactManagement:
         self.manage_new_contact_submission(
             c_channel, c_type, c_age, c_gender, content)
 
-    def create_random_contacts(self, n=10):
-        for _ in range(n):
+    def create_random_contacts(self, given_n=10):
+        for _ in range(given_n):
             self.create_random_contact()
 
     def create_dummy_content(self, contact):
