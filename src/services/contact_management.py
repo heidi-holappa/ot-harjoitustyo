@@ -33,7 +33,6 @@ class ContactManagement:
         self._contact_repository.delete_contact(c_id)
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
-        print("method manage_new_contact_submission")
         time_of_submission = datetime.now()
         datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
         if c_type != 1:
