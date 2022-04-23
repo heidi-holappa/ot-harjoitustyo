@@ -89,7 +89,6 @@ class ContactManagement:
     def create_dummy_content(self, contact):
         c_channel = contact.get_channel()
         age = contact.get_age()
-        gender = contact.get_gender()
         randtopic = [
             "mental health",
             "phsyical health",
