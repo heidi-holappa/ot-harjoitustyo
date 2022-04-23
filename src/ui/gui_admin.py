@@ -190,13 +190,13 @@ class AdminView:
         item = self.treeview.identify_row(event.y)
         if item: 
             selected_item = self.treeview.item(item, 'values')
+            print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self._mark_contact_for_deletion(selected_item[0])
 
     def _delete_keybind(self, event):
         item = self.treeview.identify_row(event.y)
         if item:
             self._delete_marked_contacts()
-
     
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
@@ -206,17 +206,23 @@ class AdminView:
         else:
             selected_item[-1] = ""
         updated_selected = tuple(selected_item)
+        print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
         self.treeview.item(selected, text="", values=(updated_selected))
         self._contact_management.mark_contact_for_deletion(c_id, selected_item[-1])
-
+    
     def _delete_marked_contacts(self):
+        self.clear_frame(self.textview_frame)
+        self.clear_frame(self.treeview_frame)
         self._contact_management.delete_marked_contacts()
-        for row in self.treeview.get_children():
-            if self.treeview.item(row)["values"][-1] == "TRUE":
-                self.treeview.delete(row)
-                
-                
-
+        self._init_textfield(self.textview_frame)
+        self._init_treeview(self.treeview_frame)
+        self._populate_treeview(self.treeview)
+        self.clear_frame(self.contact_management_frame)
+        self._init_contact_management_buttons(self.contact_management_frame)
+        self.treeview.bind('<<TreeviewSelect>>', self.item_selected)
+        # for row in self.treeview.get_children():
+        #     if self.treeview.item(row)["values"][-1] == "TRUE":
+        #         self.treeview.delete(row)
 
     def _init_contact_management_buttons(self, selected_frame):
         button_mark_contact = ttk.Button(
