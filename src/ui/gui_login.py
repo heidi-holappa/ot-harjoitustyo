@@ -65,24 +65,20 @@ class LoginView:
         button_cancel.grid(row=4, column=4)
 
     def _try_login(self):
-        try:
-            if self._entry_password_var and self._entry_username_var:
-                password_given = self._entry_password_var.get()
-                username_given = self._entry_username_var.get()
-                # print(username_given, password_given)
-                self._user_management.create_active_user(
-                    username_given, password_given)
-                login_attempt = self._user_management.login()
-                if login_attempt[0]:
-                    if login_attempt[1] == "counselor":
-                        self._counselor_view()
-                    else:
-                        self._admin_view()
+
+        if self._entry_password_var and self._entry_username_var:
+            password_given = self._entry_password_var.get()
+            username_given = self._entry_username_var.get()
+            self._user_management.create_active_user(
+                username_given, password_given)
+            login_attempt = self._user_management.login()
+            if login_attempt[0]:
+                if login_attempt[1] == "counselor":
+                    self._counselor_view()
                 else:
-                    label_login_error = ttk.Label(
-                        master=self._frame, text="Error: username or password incorrect. Try again.", foreground="red")
-                    label_login_error.grid(row=1, column=0, columnspan=4)
-                    # print("LOGIN FAILED. CHECK USERNAME AND PASSWORD")
-        except Exception as e:
-            print("Error at try to login:")
-            print(e)
+                    self._admin_view()
+            else:
+                label_login_error = ttk.Label(
+                    master=self._frame, text="Error: username or password incorrect. Try again.", foreground="red")
+                label_login_error.grid(row=1, column=0, columnspan=4)
+
