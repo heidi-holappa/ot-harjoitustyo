@@ -35,7 +35,7 @@ def create_tables(connection):
             gender TEXT,
             age TEXT,
             content TEXT,
-            marked INTEGER
+            marked TEXT
         )
     ''')
 
