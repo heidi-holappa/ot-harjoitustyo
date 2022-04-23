@@ -42,3 +42,9 @@
 * Added date and time to contact data submission
 * Application now has an admin view
 * As a bonus admins can also submit contact data
+* Admin view layout restructured and polished
+* Contact data can now be browsed
+* Contact data can be marked to be deleted
+* Contact data can be deleted
+* User can create dummy data. Added external library for creating lorem ipsum
+* New poetry command for creating dummy data. Dummy data can also be created in GUI in admin-mode

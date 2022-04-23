@@ -13,7 +13,7 @@ The initial plan is to have four user screens:
 - **Initial version done:** A login screen
 - **Initial version done:** A screen for creating a new counselor account
 - **Initial version done:** A counselor view for submitting data
-- A supervisor screen for reviewing and managing submitted data
+- **Done:** A supervisor screen for reviewing and managing submitted data
 
 ![login screen](/documentation/images/req-spec-login.png)
 ![create account screen](/documentation/images/req-spec-create-account.png)
@@ -35,10 +35,16 @@ The initial plan is to have four user screens:
 - **Initial version done:** User can logout
 
 **After logging in (role supervisor)**
-- User with role supervisor can review all data submissions
-- User can mark processed submissions as done
-- User can permanently delete all submissions marked as done
-- User can logout
+- **Done:** User with role supervisor can review all data submissions
+- **Done:** User can mark processed submissions as done
+- **Done:** User can permanently delete all submissions marked as done
+- **Done:** User can logout
+
+**Additional featurer not in initial specification that have been done:**
+- User with role admin can create dummy data
+- User with role admin can submit contacts
+- User with role admin can delete multiple contacts in one go
+- The application has a menu bar (under work)
 
 ## Further development
 In the future following features could be added:
@@ -50,7 +56,7 @@ In the future following features could be added:
 - Supervisor can create new supervisor accounts
 
 **Supervisor can submit data**
-- Supervisor can access the data submission view and submit data
+- **Done:** Supervisor can access the data submission view and submit data
 
 **View account**
 - All users can view their account information
