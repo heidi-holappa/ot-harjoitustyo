@@ -114,10 +114,13 @@ class AdminView:
         self.treeview.bind("<Button-3>", self._mark_keybind)
 
     def _init_textfield(self, selected_frame):
-        printout = "Choose contact to view more details and options."
+        # String is composed in this way to get the desired formatting in the Text-widget
+        default_printout = "Choose contact to view more details and options.\n \n"
+        default_printout += "Hint: once you click an item with left click,"
+        default_printout += "you can then use right click to mark item for deletion."
         textfield = Text(master=selected_frame, wrap="word")
         textfield.grid(row=3, column=0)
-        textfield.insert(1.0, printout)
+        textfield.insert(1.0, default_printout)
         textfield["state"] = "disabled"
 
     def item_selected(self, event):
@@ -196,14 +199,15 @@ class AdminView:
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
         selected_item = list(self.treeview.item(selected, "values"))
-        if selected_item[-1] == "":
-            selected_item[-1] = "TRUE"
-        else:
-            selected_item[-1] = ""
-        updated_selected = tuple(selected_item)
-        print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
-        self.treeview.item(selected, text="", values=(updated_selected))
-        self._contact_management.mark_contact_for_deletion(c_id, selected_item[-1])
+        if selected_item:
+            if selected_item[-1] == "":
+                selected_item[-1] = "TRUE"
+            else:
+                selected_item[-1] = ""
+            updated_selected = tuple(selected_item)
+            print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
+            self.treeview.item(selected, text="", values=(updated_selected))
+            self._contact_management.mark_contact_for_deletion(c_id, selected_item[-1])
     
     def _delete_marked_contacts(self):
         self.clear_frame(self.textview_frame)
