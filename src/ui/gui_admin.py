@@ -154,7 +154,6 @@ class AdminView:
         for widgets in frame.winfo_children():
             widgets.destroy()
 
-    
     def _insert_contact_buttons(self, manage_text):
         self.clear_frame(self.contact_management_frame)
         selected = self.treeview.focus()
@@ -190,12 +189,11 @@ class AdminView:
 
     def _mark_keybind(self, event):
         item = self.treeview.identify_row(event.y)
-        if item: 
+        if item:
             selected_item = self.treeview.item(item, 'values')
             print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self._mark_contact_for_deletion(selected_item[0])
 
-    
     def _mark_contact_for_deletion(self, c_id):
         selected = self.treeview.focus()
         selected_item = list(self.treeview.item(selected, "values"))
@@ -207,8 +205,9 @@ class AdminView:
             updated_selected = tuple(selected_item)
             print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self.treeview.item(selected, text="", values=(updated_selected))
-            self._contact_management.mark_contact_for_deletion(c_id, selected_item[-1])
-    
+            self._contact_management.mark_contact_for_deletion(
+                c_id, selected_item[-1])
+
     def _delete_marked_contacts(self):
         self.clear_frame(self.textview_frame)
         self.clear_frame(self.treeview_frame)

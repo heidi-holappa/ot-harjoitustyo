@@ -81,4 +81,3 @@ class LoginView:
                 label_login_error = ttk.Label(
                     master=self._frame, text="Error: username or password incorrect. Try again.", foreground="red")
                 label_login_error.grid(row=1, column=0, columnspan=4)
-

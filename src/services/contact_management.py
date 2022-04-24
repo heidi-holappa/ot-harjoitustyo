@@ -45,7 +45,7 @@ class ContactManagement:
     def mark_contact_for_deletion(self, c_id, status):
         if status == "TRUE":
             mark = "TRUE"
-        else: 
+        else:
             mark = ""
         self._contact_repository.mark_for_deletion(c_id, mark)
 
@@ -54,12 +54,11 @@ class ContactManagement:
         datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
         return datetime_as_str
 
-    
     def delete_marked_contacts(self):
         self._contact_repository.delete_marked()
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
-        datetime_as_str = self._get_current_time_as_str() 
+        datetime_as_str = self._get_current_time_as_str()
         if c_type != 1:
             c_age = 0
             c_gender = 0
@@ -78,10 +77,9 @@ class ContactManagement:
         username = fetch_user.username
         return self._contact_repository.add_contact(username, contact)
 
-    
     def create_random_contact(self):
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
-                        "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
+                      "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
         random_user = rand_users[randint(0, len(rand_users)-1)]
         c_channel = randint(1, 3)
         c_type = randint(1, 4)
@@ -93,16 +91,16 @@ class ContactManagement:
         else:
             content = ""
         self.manage_dummy_contact_submission(random_user,
-            c_channel, c_type, c_age, c_gender, content)
-    
-    def manage_dummy_contact_submission(self, 
-                                        user: str, 
-                                        c_channel: int, 
-                                        c_type: int, 
-                                        c_age: int, 
-                                        c_gender: int, 
+                                             c_channel, c_type, c_age, c_gender, content)
+
+    def manage_dummy_contact_submission(self,
+                                        user: str,
+                                        c_channel: int,
+                                        c_type: int,
+                                        c_age: int,
+                                        c_gender: int,
                                         c_content: str):
-        datetime_as_str = self._get_current_time_as_str() 
+        datetime_as_str = self._get_current_time_as_str()
         if c_type != 1:
             c_age = 0
             c_gender = 0
@@ -113,10 +111,9 @@ class ContactManagement:
         if result[0]:
             self._submit_dummy_contact(user, contact)
         return result
-    
+
     def _submit_dummy_contact(self, user: str, contact: Contact):
         self._contact_repository.add_contact(user, contact)
-
 
     def create_random_contacts(self, given_n=10):
         for _ in range(given_n):

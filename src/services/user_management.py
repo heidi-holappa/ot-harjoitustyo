@@ -37,7 +37,6 @@ class UserManagement:
         user = self._active_user
         users = self.get_all_users()
         if user.username in users and check_password_hash(users[user.username][0], user.password):
-            print("TRUE")
             user.role = users[user.username][1]
             user.logged = True
             self._active_user = user
@@ -50,7 +49,11 @@ class UserManagement:
     def create_active_user(self, username: str, password: str):
         self._active_user = User(username, password)
 
-    def handle_user_creation(self, username, password1, password2, is_admin):
+    def handle_user_creation(self,
+                             username: str,
+                             password1: str,
+                             password2: str,
+                             is_admin: int):
         valid_password = self.password_is_valid(password1, password2)
         if not valid_password:
             return (False, "Passwords do not match. Try again.")
@@ -67,7 +70,7 @@ class UserManagement:
             return (False, "Username already in use")
         hashed_password = generate_password_hash(
             self._active_user.password)
-        self._user_repository.add_user(self._active_user, hashed_password)
+        self._user_repository.add_user(self.get_active_user(), hashed_password)
         return (True, "")
 
     def make_admin(self):

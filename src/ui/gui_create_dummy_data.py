@@ -52,20 +52,20 @@ class CreateDummyData:
         button_delete_all_data = ttk.Button(
             master=self._frame,
             text="Delete all contacts",
-            command= self._delete_all_data
+            command=self._delete_all_data
         )
 
         label.grid(row=0, column=0, pady=5, sticky=constants.W)
         user_entry.grid(row=2, sticky=constants.NW)
 
         button_create_dummy_data.grid(row=3, column=1,
-                                padx=20,
-                                sticky=constants.E)
-        
+                                      padx=20,
+                                      sticky=constants.E)
+
         button_delete_all_data.grid(row=3, column=2,
-                           padx=10, pady=5,
-                           sticky=constants.E)
-        
+                                    padx=10, pady=5,
+                                    sticky=constants.E)
+
         button_logout.grid(row=3, column=3,
                            padx=10, pady=5,
                            sticky=constants.E)
@@ -82,10 +82,10 @@ class CreateDummyData:
             failed = True
         if failed:
             label_fail = ttk.Label(
-                        master=self._frame, 
-                        text="Input is not a number, please input an integer value.", 
-                        foreground="red"
-                        )
+                master=self._frame,
+                text="Input is not a number, please input an integer value.",
+                foreground="red"
+            )
             label_fail.grid(row=1, column=0, columnspan=4)
             label_fail.after(3000, lambda: label_fail.destroy())
             return
@@ -95,5 +95,3 @@ class CreateDummyData:
     def _delete_all_data(self):
         self._contact_management.delete_all_contacts()
         self._admin_view()
-
-
