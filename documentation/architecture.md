@@ -108,7 +108,7 @@ ContactManagement ->> Contact: contact(arguments)
 Contact -->> ContactManagement: contact
 ContactManagement ->> Contact: contact.is_valid()
 Contact -->> ContactManagement: boolean
-ContactManagement ->> ContactManagement: submit_contact
+ContactManagement ->> ContactManagement: submit_contact()
 ContactManagement ->> UserManagement: get_active_user()
 ContactManagement ->> ContactRepository: add_contact(username, contact)
 ContactManagement -->> UI: status (boolean) + message
