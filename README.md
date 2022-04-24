@@ -53,3 +53,8 @@ poetry run invoke lint
 ```
 poetry run invoke format
 ```
+
+7. Create dummy data for easier testing
+```
+poetry run invoke create-dummy-data
+```
