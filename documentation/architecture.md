@@ -114,3 +114,25 @@ ContactManagement ->> ContactRepository: add_contact(username, contact)
 ContactManagement -->> UI: status (boolean) + message
 UI ->> UI: Check if success, show appropriate notification
 ```
+
+### Mark contact data for deletion
+Users with role admin can preview data submission, mark them for deletion and delete marked submission. The next sequence diagram showcases the chain of events that is carried out when a user first marks an item for deletion and then deletes marked items. 
+
+```mermaid
+sequenceDiagram
+actor user
+participant UI
+participant ContactManagement
+participant ContactRepository
+user ->> UI: activates and object in treeview
+user ->> UI: clicks button "mark for deletion"
+UI ->> UI: event activates method call
+UI ->> ContactManagement: mark_contact_for_deletion(contact_id, status)
+ContactManagement ->> ContactRepository: mark_contact_for_deletion(contact_id, status)
+user ->> UI: clicks 'delete marked' -button
+UI ->> UI: event activates method call
+UI ->> UI: manage widget content
+UI ->> ContactManagement: delete_marked_contacts()
+UI ->> UI: manage widget content
+ContactManagement ->> ContactRepository: delete_marked_contacts()
+```
