@@ -115,7 +115,7 @@ class ContactDataRepository:
                                             str(row["content"])
         return self._all_data
 
-    def add_contact(self, user: User, contact: Contact):
+    def add_contact(self, username, contact: Contact):
         cursor = self._connection.cursor()
         cursor.execute('''INSERT INTO CONTACTS
                         (username, 
@@ -127,7 +127,7 @@ class ContactDataRepository:
                         content, 
                         marked) 
                         VALUES (?,?,?,?,?,?,?,?)''',
-                       [user.username,
+                       [username,
                         contact.datetime_as_str,
                         contact.channel,
                         contact.type,
