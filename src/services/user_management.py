@@ -32,10 +32,12 @@ class UserManagement:
         return False
 
     def login(self):
+        # If statemement redundant? Delete, if yes.
         if not self._active_user:
             return (False, None)
         user = self._active_user
         users = self.get_all_users()
+        # Why get all? Just get one user and verify. Change.
         if user.username in users and check_password_hash(users[user.username][0], user.password):
             user.role = users[user.username][1]
             user.logged = True
