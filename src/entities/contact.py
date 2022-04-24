@@ -1,7 +1,7 @@
 
 class Contact:
 
-    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: str):
+    def __init__(self, datetime_as_str: str, channel, c_type, age, gender, content: str):
         self.contact_dict = {
             "channel": [None,
                         "phone",
@@ -43,15 +43,3 @@ class Contact:
             return (False,
                     "Counseling contact must include age, gender and description on content.")
         return (True, "")
-
-    def get_type(self):
-        return self.type
-
-    def get_age(self):
-        return self.age
-
-    def get_gender(self):
-        return self.gender
-
-    def get_channel(self):
-        return self.channel
