@@ -37,32 +37,79 @@ Below is a visualization of the current class diagram and dependencies. The visi
 
 At the time being the application uses one object instance of the classes in UI, service and repository classes. UI-classes 'remember' the service classes they use and the service classes 'remember' the repositories used. None of the GUI, service or repository classes 'remember' objects from the entities classes, even if many of them use them temporarily. 
 
-Please note that at the moment some UI classes also handle objects from the Entities package. This will be refactored during week 5 and I omitted this from the class diagram. 
 
 ```mermaid
     classDiagram
-        class User
-        class Contact
+        class UI_classes
         class UserManagement
         class ContactManagement
+        class User
+        class Contact
         class ContactDataRepository
         class UserRepository
-        class GUI_Login
-        class GUI_CreateAccount
-        class GUI_Counselor
         
-        GUI_Counselor "1" -- "1" ContactManagement
-        GUI_Counselor "1" -- "1" UserManagement
-        GUI_Login "1" --> "1" UserManagement
-        GUI_CreateAccount "1" -- "1" UserManagement
-        UserManagement "1" .. "*" User
+        
+        UI_classes "1" -- "1" ContactManagement
+        UI_classes "1" -- "1" UserManagement
+        ContactManagement "1" -- "1" ContactDataRepository
+        UserManagement "1" -- "1" UserRepository
         ContactManagement "1" .. "*" Contact
         ContactManagement "1" .. "*" User
         ContactManagement "1" -- "1" UserManagement
-        ContactManagement "1" -- "1" ContactDataRepository
-        UserManagement "1" -- "1" UserRepository
+        UserManagement "1" .. "*" User
         UserRepository "1" .. "*" User
         ContactDataRepository "1" .. "*" Contact
         ContactDataRepository "1" .. "*" User
 
+```
+
+## Main functionalities
+
+We will next showcase the application logic through examples of few main functionalities.
+
+### Login
+When user enters the main view and sets to log in, the following chain of events is carried out:
+
+```mermaid
+sequenceDiagram
+actor user
+participant UI
+participant UserManagement
+participant UserRepository
+participant User
+user ->> UI: clicks Login-button
+UI ->> UI: changes to login view
+user ->> UI: inputs credentials, presses submit
+UI ->> UserManagement: create_active_user
+UserManagement ->> User: User(username, password)
+User -->> UserManagement: self._active_user
+UI ->> UserManagement: login()
+UserManagement ->> UserRepository: get_user_data
+UserRepository -->> UserManagement: user_data
+UserManagement ->> UserManagement: validate login
+UserManagement ->> UI: return boolean + message
+UI ->> UI: show appropriate view or fail notification
+```
+
+### Submit contact data
+When user fills the data submission form and submits new data, the following chain of actions is carried out:
+
+```mermaid
+sequenceDiagram
+actor user
+participant UI
+participant ContactManagement
+participant UserManagement
+participant ContactRepository
+participant Contact
+user ->> UI: fills form, clicks submit
+UI ->> ContactManagement: manage_contact_submission()
+ContactManagement ->> Contact: contact(arguments)
+ContactManagement ->> Contact: contact.is_valid()
+Contact -->> ContactManagement: boolean
+ContactManagement ->> ContactManagement: submit_contact
+ContactManagement ->> UserManagement: get_active_user()
+ContactManagement ->> ContactRepository: add_contact(username, contact)
+ContactManagement -->> UI: status (boolean) + message
+UI ->> UI: Check if success, show appropriate notification
 ```
