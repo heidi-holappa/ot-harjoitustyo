@@ -14,7 +14,6 @@ class UI:
         self._root = root
         self._current_view = None
         self._user_management = default_user_management
-        # self._root.geometry("600x300")
 
     def start(self):
         self._show_main_view()
