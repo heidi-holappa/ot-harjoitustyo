@@ -49,12 +49,17 @@ class ContactManagement:
             mark = ""
         self._contact_repository.mark_for_deletion(c_id, mark)
 
+    def _get_current_time_as_str(self):
+        time_of_submission = datetime.now()
+        datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
+        return datetime_as_str
+
+    
     def delete_marked_contacts(self):
         self._contact_repository.delete_marked()
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
-        time_of_submission = datetime.now()
-        datetime_as_str = time_of_submission.strftime("%d.%m.%Y %H:%M")
+        datetime_as_str = self._get_current_time_as_str() 
         if c_type != 1:
             c_age = 0
             c_gender = 0
@@ -70,22 +75,17 @@ class ContactManagement:
         fetch_user = self._user_management.get_active_user()
         if not fetch_user:
             return (False, "Error. No user logged in.")
-        return self._contact_repository.add_contact(fetch_user, contact)
+        username = fetch_user.username
+        return self._contact_repository.add_contact(username, contact)
 
-    # '''If time, refactor this method. 
-    # It became messy, because a user can be logged in or not.'''
+    
+
+
+    
     def create_random_contact(self):
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
                         "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
         random_user = rand_users[randint(0, len(rand_users)-1)]
-        current_user = ""
-        username_change = False
-        if not self._user_management.get_active_user():
-            self._user_management.create_active_user(random_user, "password")
-        else:
-            current_user = self._user_management.get_active_user().username
-            self._user_management.get_active_user().username = random_user
-            username_change = True
         c_channel = randint(1, 3)
         c_type = randint(1, 4)
         c_age = randint(1, 7)
@@ -95,12 +95,30 @@ class ContactManagement:
             content = self.create_dummy_content(contact)
         else:
             content = ""
-        self.manage_new_contact_submission(
+        self.manage_dummy_contact_submission(random_user,
             c_channel, c_type, c_age, c_gender, content)
-        if username_change:
-            self._user_management.get_active_user().username = current_user
-        else:
-            self._user_management.logout()
+    
+    def manage_dummy_contact_submission(self, 
+                                        user: str, 
+                                        c_channel: int, 
+                                        c_type: int, 
+                                        c_age: int, 
+                                        c_gender: int, 
+                                        c_content: str):
+        datetime_as_str = self._get_current_time_as_str() 
+        if c_type != 1:
+            c_age = 0
+            c_gender = 0
+            c_content = "No content."
+        contact = Contact(datetime_as_str, c_channel,
+                          c_type, c_age, c_gender, c_content)
+        result = contact.is_valid()
+        if result[0]:
+            self._submit_dummy_contact(user, contact)
+        return result
+    
+    def _submit_dummy_contact(self, user: str, contact: Contact):
+        self._contact_repository.add_contact(user, contact)
 
 
     def create_random_contacts(self, given_n=10):
