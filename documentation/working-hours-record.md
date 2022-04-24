@@ -40,5 +40,8 @@
 | 5 | Sat 23.4.2022 | Create GUI-functionalities for dummy data creation and deletion | 1 |
 | 5 | Sat 23.4.2022 | Improve admin - view layout. Study LabelFrames | 2 |
 | 5 | Sat 23.4.2022 | Add keybindings, recreate events for treeview | 2 |
-| **5** | --- | **Total** | **21.5**  |
-| **All**| --- | **Total** | **69** |
+| 5 | Sun 24.4.2022 | Write tests | 2 |
+| 5 | Sun 24.4.2022 | Test application | 0,5 |
+| 5 | Sun 24.4.2022 | Write sequence charts | 1,5 |
+| **5** | --- | **Total** | **23.5**  |
+| **All**| --- | **Total** | **71** |
