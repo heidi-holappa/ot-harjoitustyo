@@ -79,9 +79,6 @@ class ContactManagement:
         return self._contact_repository.add_contact(username, contact)
 
     
-
-
-    
     def create_random_contact(self):
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
                         "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
@@ -125,9 +122,9 @@ class ContactManagement:
         for _ in range(given_n):
             self.create_random_contact()
 
-    def create_dummy_content(self, contact):
-        c_channel = contact.get_channel()
-        age = contact.get_age()
+    def create_dummy_content(self, contact: Contact):
+        c_channel = contact.channel
+        age = contact.age
         randtopic = [
             "mental health",
             "phsyical health",
