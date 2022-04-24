@@ -105,6 +105,7 @@ participant Contact
 user ->> UI: fills form, clicks submit
 UI ->> ContactManagement: manage_contact_submission()
 ContactManagement ->> Contact: contact(arguments)
+Contact -->> ContactManagement: contact
 ContactManagement ->> Contact: contact.is_valid()
 Contact -->> ContactManagement: boolean
 ContactManagement ->> ContactManagement: submit_contact
