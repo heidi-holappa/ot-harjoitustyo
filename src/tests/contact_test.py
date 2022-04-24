@@ -1,7 +1,6 @@
 import unittest
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
-from entities.contact import Contact
 from entities.user import User
 from initialize_database import initialize_database
 
@@ -46,3 +45,28 @@ class TestContactManagement(unittest.TestCase):
         contact_count = len(
             self.contact_management.fetch_contacts_by_user(testuser))
         self.assertEqual(k, contact_count)
+
+    def test_validity_check_fails_when_counseling_contact_is_missing_age(self):
+        result = self.contact_management.manage_new_contact_submission(
+            1, 1, 0, 1, "lorem ipsum")
+        self.assertEqual(result[0], False)
+
+    def test_validity_check_fails_when_counseling_contact_is_missing_gender(self):
+        result = self.contact_management.manage_new_contact_submission(
+            1, 1, 1, 0, "lorem ipsum")
+        self.assertEqual(result[0], False)
+
+    def test_validity_check_fails_when_counseling_contact_is_missing_content(self):
+        result = self.contact_management.manage_new_contact_submission(
+            1, 1, 1, 1, None)
+        self.assertEqual(result[0], False)
+
+    def test_validity_check_fails_when_counseling_contact_is_missing_type(self):
+        result = self.contact_management.manage_new_contact_submission(
+            0, 1, 1, 1, None)
+        self.assertEqual(result[0], False)
+
+    def test_validity_check_passes_when_counseling_has_age_gender_content(self):
+        result = self.contact_management.manage_new_contact_submission(
+            1, 1, 1, 1, "lorem ipsum")
+        self.assertEqual(result[0], True)
