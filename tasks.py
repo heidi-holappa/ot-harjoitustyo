@@ -1,6 +1,10 @@
 from invoke import task
 
 @task
+def create_dummy_data(ctx):
+    ctx.run("python3 src/dummy_data.py", pty=True)
+
+@task
 def start(ctx):
     ctx.run("python3 src/launch.py", pty=True)
 
@@ -17,10 +21,6 @@ def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
 
 @task
-def lint(ctx):
-    ctx.run("pylint src", pty=True)
-
-@task
 def format(ctx):
     ctx.run("autopep8 --in-place --recursive src", pty=True)
 
@@ -29,5 +29,5 @@ def build(ctx):
     ctx.run("python3 src/build.py", pty=True)
 
 @task
-def create_dummy_data(ctx):
-    ctx.run("python3 src/dummy_data.py", pty=True)
+def lint(ctx):
+    ctx.run("pylint src", pty=True)
