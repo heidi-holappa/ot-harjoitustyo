@@ -16,7 +16,7 @@ class TestStartClasses(unittest.TestCase):
         self.assertEqual(is_contact_management, True)
 
     def test_create_dummy_data(self):
-        contact_n = dummy_data.contact_n
+        contact_n = dummy_data.CONTACT_N
         n_of_data_at_beginning = len(
             self.contact_management.fetch_all_contacts_as_tuples())
         dummy_data.contact_management.create_random_contacts(contact_n)
