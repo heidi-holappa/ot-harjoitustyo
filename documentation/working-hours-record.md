@@ -43,5 +43,6 @@
 | 5 | Sun 24.4.2022 | Write tests | 2 |
 | 5 | Sun 24.4.2022 | Test application | 0,5 |
 | 5 | Sun 24.4.2022 | Write sequence charts | 1,5 |
-| **5** | --- | **Total** | **23.5**  |
-| **All**| --- | **Total** | **71** |
+| 5 | Tue 26.6.2022 | Test app on virtual machine, run tests, pylint | 0,5 |
+| **5** | --- | **Total** | **24**  |
+| **All**| --- | **Total** | **71,5** |
