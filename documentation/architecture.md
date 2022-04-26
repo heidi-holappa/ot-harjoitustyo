@@ -129,10 +129,12 @@ user ->> UI: clicks button "mark for deletion"
 UI ->> UI: event activates method call
 UI ->> ContactManagement: mark_contact_for_deletion(contact_id, status)
 ContactManagement ->> ContactRepository: mark_contact_for_deletion(contact_id, status)
+UI -->> user: UI is refreshed
 user ->> UI: clicks 'delete marked' -button
 UI ->> UI: event activates method call
 UI ->> UI: manage widget content
 UI ->> ContactManagement: delete_marked_contacts()
 UI ->> UI: manage widget content
+UI -->> user: UI is refreshed
 ContactManagement ->> ContactRepository: delete_marked_contacts()
 ```
