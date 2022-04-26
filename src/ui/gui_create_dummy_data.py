@@ -29,9 +29,7 @@ class CreateDummyData:
         self._frame = Frame(master=self._root, padx=50, pady=50)
         label = ttk.Label(
             master=self._frame,
-            text='''This view is intended for the staging version of this application. 
-            User can create between 1 to 100 accounts of dummydata, or delete all contacts for
-            a fresh start. Enter the desired amount of dummy data in the entry field.''')
+            text='''This view is intended for the staging version of this application. User can create between 1 to 100 accounts of dummydata, or delete all contacts for a fresh start. Enter the desired amount of dummy data in the entry field.''')
 
         # THIS DOES NOT WORK. FIX IT.
         user_entry = ttk.Entry(master=self._frame)

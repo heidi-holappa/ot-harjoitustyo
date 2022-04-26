@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Frame, Text, Scrollbar, messagebox
+from tkinter import ttk, constants, Frame, Text
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
@@ -115,9 +115,7 @@ class AdminView:
 
     def _init_textfield(self, selected_frame):
         # String is composed in this way to get the desired formatting in the Text-widget
-        default_printout = "Choose contact to view more details and options.\n \n"
-        default_printout += "Hint: once you click an item with left click,"
-        default_printout += "you can then use right click to mark item for deletion."
+        default_printout = "Choose contact to view more details and options.\n \n Hint: once you click an item with left click, you can then use right click to mark item for deletion."
         textfield = Text(master=selected_frame, wrap="word")
         textfield.grid(row=3, column=0)
         textfield.insert(1.0, default_printout)
