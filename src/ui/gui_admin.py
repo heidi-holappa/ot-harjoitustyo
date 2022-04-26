@@ -189,7 +189,7 @@ class AdminView:
         item = self.treeview.identify_row(event.y)
         if item:
             selected_item = self.treeview.item(item, 'values')
-            print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
+            # print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self._mark_contact_for_deletion(selected_item[0])
 
     def _mark_contact_for_deletion(self, c_id):
@@ -201,7 +201,7 @@ class AdminView:
             else:
                 selected_item[-1] = ""
             updated_selected = tuple(selected_item)
-            print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
+            # print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self.treeview.item(selected, text="", values=(updated_selected))
             self._contact_management.mark_contact_for_deletion(
                 c_id, selected_item[-1])
