@@ -5,6 +5,7 @@ This application is created for storing data from answered helpline contacts. Th
 
 ## Documentation
 
+* [First release: week 5](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko5)
 * [Requirements specification](documentation/requirements_specification.md)
 * [Application architecture](documentation/architecture.md)
 * [Changelog](documentation/changelog.md)
