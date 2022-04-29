@@ -49,6 +49,15 @@ class MainView:
             command=self._create_account
         )
 
-        label.grid(row=0, column=1)
+        label_login = ttk.Label(
+            master=self._frame, text="Already a user? Login here."
+        )
+        label_create_account  = ttk.Label(
+            master=self._frame, text="New user? Create account here."
+        )
+
+        label.grid(row=0, column=0)
+        label_login.grid(row=1, column=0)
         button_login.grid(row=1, column=1)
+        label_create_account.grid(row=2, column=0)
         button_create_account.grid(row=2, column=1)
