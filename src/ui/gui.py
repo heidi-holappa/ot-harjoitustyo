@@ -14,8 +14,12 @@ class UI:
         self._root = root
         self._current_view = None
         self._user_management = default_user_management
-        app_style = ttk.Style()
-        app_style.theme_use("clam")
+        self.app_style = ttk.Style()
+        self.app_style.theme_use("clam")
+
+        self.init_styles()
+
+
 
     def start(self):
         self._show_main_view()
@@ -107,6 +111,32 @@ class UI:
 
     def _handle_create_dummy_data_view(self):
         self._show_create_dummy_data_view()
+
+    
+    def init_styles(self):
+        # self.app_style.configure('Custom.TFrame',
+        #                 background="white", 
+        #                 foreground="black")
+        
+        self.app_style.configure('Custom.TButton',
+                        background="white", 
+                        foreground="black",
+                        font='Helvetica 8 bold')
+
+        self.app_style.configure('Custom.TLabel',
+                        background="white", 
+                        foreground="grey38",
+                        font='Helvetica 8 bold')
+        
+        self.app_style.configure('Header1.TLabel',
+                        background="white", 
+                        foreground="black",
+                        font='Helvetica 14 bold')
+        
+        self.app_style.configure('Custom.TEntry',
+                        background="white", 
+                        foreground="black",
+                        font='Helvetica 8 bold')
 
 
 # Launch the GUI
