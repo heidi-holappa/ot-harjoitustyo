@@ -1,4 +1,4 @@
-from tkinter import Tk
+from tkinter import Tk, ttk
 from ui.gui_main_view import MainView
 from ui.gui_login import LoginView
 from ui.gui_create_account import CreateAccountView
@@ -14,6 +14,8 @@ class UI:
         self._root = root
         self._current_view = None
         self._user_management = default_user_management
+        app_style = ttk.Style()
+        app_style.theme_use("clam")
 
     def start(self):
         self._show_main_view()
