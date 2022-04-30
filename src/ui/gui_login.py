@@ -32,41 +32,43 @@ class LoginView:
         self._entry_password_var = StringVar()
         self._entry_password_var.set("")
 
-        self._frame = Frame(master=self._root, 
-                            padx=50, 
-                            pady=50,
-                            bg="white")
+        self._frame = Frame(
+            master=self._root, 
+            padx=50, 
+            pady=50,
+            bg="white"
+        )
 
         label_title = ttk.Label(
             master=self._frame, 
             text="Submit username and password to login",
             style="Header1.TLabel"
-            )
-        label_title.grid(row=0, column=0, columnspan=4)
+        )
 
-        label_username = ttk.Label(master=self._frame, 
-                                    text="username",
-                                    style="Custom.TLabel"
-                                    )
-        label_password = ttk.Label(master=self._frame, 
-                                    text="password",
-                                    style="Custom.TLabel")
+        label_username = ttk.Label(
+            master=self._frame, 
+            text="username",
+            style="Custom.TLabel"
+        )
+        
+        label_password = ttk.Label(
+            master=self._frame, 
+            text="password",
+            style="Custom.TLabel"
+        )
+        
         entry_username = ttk.Entry(
             master=self._frame, 
             textvariable=self._entry_username_var,
             style="Custom.TEntry"
-            )
+        )
+        
         entry_password = ttk.Entry(
             master=self._frame, 
             show="*", 
             textvariable=self._entry_password_var,
             style="Custom.TEntry"
             )
-
-        label_username.grid(row=2, column=1)
-        entry_username.grid(row=2, column=2, columnspan=3, sticky=constants.EW)
-        label_password.grid(row=3, column=1)
-        entry_password.grid(row=3, column=2, columnspan=3, sticky=constants.EW)
 
         button_login = ttk.Button(
             master=self._frame,
@@ -81,8 +83,50 @@ class LoginView:
             style="Custom.TButton"
         )
 
-        button_login.grid(row=4, column=3)
-        button_cancel.grid(row=4, column=4)
+        label_title.grid(
+            row=0,
+            column=0,
+            columnspan=4
+        )
+        
+        label_username.grid(
+            row=2,
+            column=1,
+            padx=5,
+            pady=5
+        )
+        
+        entry_username.grid(
+            row=2,
+            column=2,
+            columnspan=3,
+            sticky=constants.EW
+        )
+        
+        label_password.grid(
+            row=3,
+            column=1,
+            padx=5,
+            pady=5
+        )
+        entry_password.grid(
+            row=3,
+            column=2,
+            columnspan=3,
+            sticky=constants.EW
+        )
+
+        button_login.grid(
+            row=4, 
+            column=3,
+            pady=10
+        )
+        
+        button_cancel.grid(
+            row=4, 
+            column=4,
+            pady=10
+        )
 
     def _try_login(self):
 
@@ -99,5 +143,8 @@ class LoginView:
                     self._admin_view()
             else:
                 label_login_error = ttk.Label(
-                    master=self._frame, text="Error: username or password incorrect. Try again.", foreground="red")
+                    master=self._frame, 
+                    text="Error: username or password incorrect. Try again.", 
+                    style="Error.TLabel")
                 label_login_error.grid(row=1, column=0, columnspan=4)
+                label_login_error.after(3000, lambda: label_login_error.destroy())

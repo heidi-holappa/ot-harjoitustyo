@@ -306,10 +306,15 @@ class CounselorView:
             c_channel, c_type, c_age, c_gender, input)
         if submission_status[0]:
             label_success = ttk.Label(
-                        master=self._frame, 
-                        text="Contact stored successfully.", 
-                        style="Success.TLabel")
-            label_success.grid(row=1, column=0, columnspan=4)
+                master=self._frame, 
+                text="Contact stored successfully.", 
+                style="Success.TLabel"
+            )
+            label_success.grid(
+                row=1,
+                column=0,
+                columnspan=4
+            )
             label_success.after(3000, lambda: label_success.destroy())
             self._channel_var.set(0)
             self._type_var.set(0)

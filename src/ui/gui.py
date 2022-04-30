@@ -133,7 +133,7 @@ class UI:
 
         self.app_style.configure('Custom.TLabel',
                         background="white", 
-                        foreground="grey38",
+                        foreground="grey12",
                         font='Helvetica 8 bold',
                         wraplength=400)
         
