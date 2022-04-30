@@ -14,9 +14,8 @@ class UI:
         self._root = root
         self._current_view = None
         self._user_management = default_user_management
-        self.app_style = ttk.Style()
+        self.app_style = ttk.Style(root)
         self.app_style.theme_use("clam")
-
         self.init_styles()
 
 
@@ -114,9 +113,17 @@ class UI:
 
     
     def init_styles(self):
-        # self.app_style.configure('Custom.TFrame',
-        #                 background="white", 
-        #                 foreground="black")
+        self.app_style.configure('Custom.TFrame',
+                        background="white", 
+                        foreground="black")
+        
+        self.app_style.configure('Custom.TLabelframe',
+                        background="white", 
+                        foreground="black")
+
+        self.app_style.configure('TLabelframe.Label',
+                        background="white", 
+                        foreground="black")
         
         self.app_style.configure('Custom.TButton',
                         background="white", 
@@ -126,7 +133,20 @@ class UI:
         self.app_style.configure('Custom.TLabel',
                         background="white", 
                         foreground="grey38",
-                        font='Helvetica 8 bold')
+                        font='Helvetica 8 bold',
+                        wraplength=400)
+        
+        self.app_style.configure('Success.TLabel',
+                        background="white", 
+                        foreground="green",
+                        font='Helvetica 8 bold',
+                        wraplength=400)
+        
+        self.app_style.configure('Error.TLabel',
+                        background="white", 
+                        foreground="red",
+                        font='Helvetica 8 bold',
+                        wraplength=400) 
         
         self.app_style.configure('Header1.TLabel',
                         background="white", 
@@ -137,6 +157,22 @@ class UI:
                         background="white", 
                         foreground="black",
                         font='Helvetica 8 bold')
+        
+        self.app_style.configure('Custom.TCheckbutton',
+                        background="white", 
+                        foreground="black")
+
+        self.app_style.configure('Custom.TRadiobutton',
+                        background="white", 
+                        foreground="black")
+
+        self.app_style.configure('Custom.Treeview',
+                        background="white", 
+                        foreground="black")
+        
+        self.app_style.configure('Vertical.TScrollbar',
+                        background="white", 
+                        foreground="black")
 
 
 # Launch the GUI

@@ -36,42 +36,102 @@ class CreateAccountView:
         self._entry_role_var = IntVar()
         self._entry_role_var.set(False)
 
-        self._frame = Frame(master=self._root, padx=50, pady=50)
+        self._frame = Frame(master=self._root, 
+                            padx=50, 
+                            pady=50,
+                            bg="white")
 
-        label_title = ttk.Label(master=self._frame, text="Create an account")
+        label_title = ttk.Label(master=self._frame, 
+                                text="Create an account",
+                                style="Header1.TLabel"
+                                )
         label_title.grid(row=0, column=0, columnspan=4)
 
-        label_username = ttk.Label(master=self._frame, text="select username")
-        label_password = ttk.Label(master=self._frame, text="enter password")
+        label_username = ttk.Label(master=self._frame, 
+                                text="select username",
+                                style="Custom.TLabel"
+                                )
+        label_password = ttk.Label(master=self._frame, 
+                                text="enter password",
+                                style="Custom.TLabel"
+                                )
         label_password_2 = ttk.Label(
-            master=self._frame, text="re-enter password")
+                                master=self._frame, 
+                                text="re-enter password",
+                                style="Custom.TLabel"
+                                )
         entry_username = ttk.Entry(
-            master=self._frame, textvariable=self._entry_username_var)
+                                master=self._frame, 
+                                textvariable=self._entry_username_var,
+                                style="Custom.TEntry"
+                                )
         entry_password = ttk.Entry(
-            master=self._frame, show="*", textvariable=self._entry_password_var)
+                                master=self._frame, 
+                                show="*", 
+                                textvariable=self._entry_password_var,
+                                style="Custom.TEntry"
+                                )
         entry_password_2 = ttk.Entry(
-            master=self._frame, show="*", textvariable=self._entry_password_2_var)
+                                master=self._frame, 
+                                show="*", 
+                                textvariable=self._entry_password_2_var,
+                                style="Custom.TEntry"
+                                )
         checkbox = ttk.Checkbutton(
-            master=self._frame, text='Admin', variable=self._entry_role_var, onvalue=1, offvalue=0)
+                                master=self._frame, 
+                                text='Admin', 
+                                variable=self._entry_role_var, 
+                                onvalue=1, 
+                                offvalue=0,
+                                style="Custom.TCheckbutton")
 
-        label_username.grid(row=2, column=1)
-        entry_username.grid(row=2, column=2, columnspan=3, sticky=constants.EW)
-        label_password.grid(row=4, column=1)
-        entry_password.grid(row=4, column=2, columnspan=3, sticky=constants.EW)
-        label_password_2.grid(row=5, column=1)
+        label_username.grid(row=2,
+                            column=1,
+                            padx=5,
+                            pady=5
+                            )
+        entry_username.grid(row=2, 
+                            column=2, 
+                            columnspan=3, 
+                            sticky=constants.EW
+                            )
+        label_password.grid(row=4, 
+                            column=1,
+                            padx=5,
+                            pady=5
+                            )
+        entry_password.grid(row=4, 
+                            column=2, 
+                            columnspan=3, 
+                            sticky=constants.EW
+                            )
+        label_password_2.grid(row=5, 
+                            column=1,
+                            padx=5,
+                            pady=5
+                            )
         entry_password_2.grid(
-            row=5, column=2, columnspan=3, sticky=constants.EW)
-        checkbox.grid(row=6, column=2, columnspan=3)
+                            row=5, 
+                            column=2, 
+                            columnspan=3, 
+                            sticky=constants.EW)
+        checkbox.grid(row=6,
+                     column=2, 
+                     columnspan=3,
+                     padx=5,
+                     pady=5)
 
         button_login = ttk.Button(
             master=self._frame,
             text="Submit",
-            command=self._try_create
+            command=self._try_create,
+            style="Custom.TButton"
         )
         button_cancel = ttk.Button(
             master=self._frame,
             text="Cancel",
-            command=self._main_view
+            command=self._main_view,
+            style="Custom.TButton"
         )
 
         button_login.grid(row=7, column=3)
@@ -92,7 +152,10 @@ class CreateAccountView:
                 self._main_view()
             else:
                 label_login_error = ttk.Label(
-                    master=self._frame, text=result[1], foreground="red")
+                                    master=self._frame, 
+                                    text=result[1], 
+                                    foreground="red",
+                                    style="Custom.TLabel")
                 label_login_error.grid(row=1, column=0, columnspan=4)
                 label_login_error.after(
                     3000, lambda: label_login_error.destroy())

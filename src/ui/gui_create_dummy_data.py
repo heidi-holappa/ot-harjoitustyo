@@ -26,47 +26,80 @@ class CreateDummyData:
             self._frame.destroy()
 
     def _initialize(self):
-        self._frame = Frame(master=self._root, padx=50, pady=50)
+        self._frame = Frame(
+            master=self._root,
+            padx=50,
+            pady=50,
+            bg="white")
         label = ttk.Label(
             master=self._frame,
-            text='''This view is intended for the staging version of this application. User can create between 1 to 100 accounts of dummydata, or delete all contacts for a fresh start. Enter the desired amount of dummy data in the entry field.''')
+            text='''This view is intended for the staging version of this application. User can create between 1 to 100 accounts of dummydata, or delete all contacts for a fresh start. Enter the desired amount of dummy data in the entry field.''',
+            style="Custom.TLabel"
+            )
 
         # THIS DOES NOT WORK. FIX IT.
-        user_entry = ttk.Entry(master=self._frame)
+        user_entry = ttk.Entry(
+            master=self._frame,
+            style="Custom.TEntry")
         user_entry.insert(constants.END, "0")
 
         button_logout = ttk.Button(
             master=self._frame,
             text="Cancel",
-            command=self._admin_view
+            command=self._admin_view,
+            style="Custom.TButton"
         )
 
         button_create_dummy_data = ttk.Button(
             master=self._frame,
             text="Create data",
-            command=lambda: self._create_dummy_data(user_entry.get())
+            command=lambda: self._create_dummy_data(user_entry.get()),
+            style="Custom.TButton"
         )
 
         button_delete_all_data = ttk.Button(
             master=self._frame,
             text="Delete all contacts",
-            command=self._delete_all_data
+            command=self._delete_all_data,
+            style="Custom.TButton"
         )
 
-        label.grid(row=0, column=0, pady=5, sticky=constants.W)
-        user_entry.grid(row=2, sticky=constants.NW)
+        label.grid(
+            row=0, 
+            column=0,
+            columnspan=3,
+            pady=5,
+            sticky=constants.W
+        )
+        
+        user_entry.grid(
+            row=2,
+            columnspan=3,
+            sticky=constants.NW
+        )
 
-        button_create_dummy_data.grid(row=3, column=1,
-                                      padx=20,
-                                      sticky=constants.E)
+        button_create_dummy_data.grid(
+            row=3,
+            column=0,
+            padx=20,
+            sticky=constants.E
+        )
 
-        button_delete_all_data.grid(row=3, column=2,
-                                    padx=10, pady=5,
-                                    sticky=constants.E)
+        button_delete_all_data.grid(
+            row=3,
+            column=1,
+            padx=10,
+            pady=5,
+            sticky=constants.E
+        )
 
-        button_logout.grid(row=3, column=3,
-                           padx=10, pady=5,
-                           sticky=constants.E)
+        button_logout.grid(
+            row=3,
+            column=3,
+            padx=10,
+            pady=5,
+            sticky=constants.E
+        )
 
     # Consider moving data validation to service class
     def _create_dummy_data(self, input):
@@ -82,7 +115,7 @@ class CreateDummyData:
             label_fail = ttk.Label(
                 master=self._frame,
                 text="Input is not a number, please input an integer value.",
-                foreground="red"
+                style="Error.TLabel"
             )
             label_fail.grid(row=1, column=0, columnspan=4)
             label_fail.after(3000, lambda: label_fail.destroy())
