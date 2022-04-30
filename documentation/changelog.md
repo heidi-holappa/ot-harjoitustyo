@@ -48,3 +48,6 @@
 * Contact data can be deleted
 * User can create dummy data. Added external library for creating lorem ipsum
 * New poetry command for creating dummy data. Dummy data can also be created in GUI in admin-mode
+
+## Week 6
+* GUI-classes now take advantage of ttk.style(). Improved GUI look. 
