@@ -9,10 +9,26 @@ class UserManagement:
         self._user_repository = user_repository
         self._active_user = None
 
+    def username_is_valid(self, username):
+        status = ""
+        is_valid = bool(len(username) > 4)
+        if not is_valid:
+            status += "Error: Username must have atleast four characters."
+            return (False, status)
+        return (True, status)
+
     def password_is_valid(self, password1: str, password2: str):
         # Password validation can be expanded easily
-
-        return password1 == password2
+        pw_match = bool(password1 == password2)
+        pw_long_enough = bool(len(password1) > 0)
+        if pw_match and pw_long_enough:
+            return (True, "")
+        error = "Error: "
+        if not pw_match:
+            error += "Passwords do not match. "
+        if not pw_long_enough:
+            error += "Password must have 6 characters"
+        return (False, error)
 
     def get_user(self, username: str):
         return self._user_repository.fetch_selected_user(username)
@@ -56,9 +72,12 @@ class UserManagement:
                              password1: str,
                              password2: str,
                              is_admin: int):
+        valid_username = self.username_is_valid(username)
+        if not valid_username[0]:
+            return valid_username
         valid_password = self.password_is_valid(password1, password2)
-        if not valid_password:
-            return (False, "Passwords do not match. Try again.")
+        if not valid_password[0]:
+            return valid_password
         self.create_active_user(username, password1)
         if is_admin and self._active_user:
             self._active_user.set_admin()
