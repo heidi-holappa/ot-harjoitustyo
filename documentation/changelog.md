@@ -51,3 +51,4 @@
 
 ## Week 6
 * GUI-classes now take advantage of ttk.style(). Improved GUI look. 
+* Account creation now has validation. 
