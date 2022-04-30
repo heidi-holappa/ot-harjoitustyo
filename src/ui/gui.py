@@ -14,6 +14,7 @@ class UI:
         self._root = root
         self._current_view = None
         self._user_management = default_user_management
+        self.style = "default"
         self.app_style = ttk.Style(root)
         self.app_style.theme_use("clam")
         self.init_styles()
@@ -173,6 +174,15 @@ class UI:
         self.app_style.configure('Vertical.TScrollbar',
                         background="white", 
                         foreground="black")
+    
+    # TEST BUILDING DARK MODE HERE
+    # ADD SELECTION TO LOGIN AS A FIRST STEP
+    def set_dark_mode(self):
+        self.app_style.configure('Custom.TLabel',
+                        background="grey14", 
+                        foreground="grey82",
+                        font='Helvetica 8 bold',
+                        wraplength=400)
 
 
 # Launch the GUI
