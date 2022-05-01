@@ -33,17 +33,20 @@ class MainView:
 
     def _initialize(self):
 
-
-
         self._frame = Frame(self._root, 
                             padx=50, 
                             pady=50, 
-                            bg="white")
+                            bg="grey95")
         self._create_menubar()
         label = ttk.Label(
             master=self._frame, 
             text="Welcome to the backup data submission application!",
             style="Header1.TLabel")
+
+        label_description = ttk.Label(
+            master=self._frame, 
+            text="You can use this app to temporarily store contact information\nin case the main cloud-services are unavailable. \n\nSee 'help' from menu for additional information.",
+            style="Centered.TLabel")
 
         button_login = ttk.Button(
             master=self._frame,
@@ -68,8 +71,34 @@ class MainView:
         )
 
 
-        label.grid(row=0, column=0, padx=10, pady=10)
-        label_login.grid(row=1, column=0, pady=10)
-        button_login.grid(row=2, column=0)
-        label_create_account.grid(row=3, column=0, pady=10)
-        button_create_account.grid(row=4, column=0)
+        label.grid(
+            row=0, 
+            column=0, 
+            padx=10, 
+            pady=0
+        )
+
+        label_description.grid(
+            row=1,
+            column=0,
+            pady=10
+        )
+        
+        label_login.grid(
+            row=2, 
+            column=0, 
+            pady=10
+        )
+        button_login.grid(
+            row=3, 
+            column=0
+        )
+        label_create_account.grid(
+            row=4, 
+            column=0, 
+            pady=10
+        )
+        button_create_account.grid(
+            row=5, 
+            column=0
+        )

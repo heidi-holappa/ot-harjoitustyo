@@ -37,7 +37,7 @@ class AdminView:
             master=self._root, 
             padx=50, 
             pady=50,
-            bg="white"
+            bg="grey95"
         )
         self.nav_buttons_frame = ttk.LabelFrame(
             master=self._frame, 

@@ -39,7 +39,7 @@ class CreateAccountView:
         self._frame = Frame(master=self._root, 
                             padx=50, 
                             pady=50,
-                            bg="white")
+                            bg="grey95")
 
         label_title = ttk.Label(master=self._frame, 
                                 text="Create an account",

@@ -34,7 +34,7 @@ class CounselorView:
         self._frame = Frame(master=self._root, 
                             padx=50, 
                             pady=50,
-                            bg="white")
+                            bg="grey95")
         self._create_menubar()
 
         self.label_and_navigation(0, 0)
@@ -274,7 +274,8 @@ class CounselorView:
         self._content_field = Text(
                         self._frame, 
                         height=5, 
-                        width=52
+                        width=52,
+                        bg="white"
                         )
         content_label.grid(row=r, column=c, pady=10, sticky=constants.W)
         self._content_field.grid(row=r+1, column=c, sticky=constants.W)

@@ -115,64 +115,76 @@ class UI:
     
     def init_styles(self):
         self.app_style.configure('Custom.TFrame',
-                        background="white", 
+                        background="grey95", 
                         foreground="black")
         
         self.app_style.configure('Custom.TLabelframe',
-                        background="white", 
+                        background="grey95", 
                         foreground="black")
 
         self.app_style.configure('TLabelframe.Label',
-                        background="white", 
+                        background="grey95", 
                         foreground="black")
         
         self.app_style.configure('Custom.TButton',
-                        background="white", 
+                        background="grey95", 
                         foreground="black",
-                        font='Helvetica 8 bold')
+                        focuscolor="pink",
+                        font='Calibri 10 bold')
+        
+        self.app_style.map('TButton', background=[("active", "grey78")])
 
         self.app_style.configure('Custom.TLabel',
-                        background="white", 
+                        background="grey95", 
                         foreground="grey12",
-                        font='Helvetica 8 bold',
+                        font='Calibri 10 bold',
+                        wraplength=400)
+
+        self.app_style.configure('Centered.TLabel',
+                        background="grey95", 
+                        foreground="grey12",
+                        justify="center",
+                        font='Calibri 10 bold',
                         wraplength=400)
         
         self.app_style.configure('Success.TLabel',
-                        background="white", 
+                        background="grey95", 
                         foreground="green",
-                        font='Helvetica 8 bold',
+                        font='Calibri 10 bold',
                         wraplength=400)
         
         self.app_style.configure('Error.TLabel',
-                        background="white", 
+                        background="grey95", 
                         foreground="red",
-                        font='Helvetica 8 bold',
+                        font='Calibri 10 bold',
                         wraplength=400) 
         
         self.app_style.configure('Header1.TLabel',
-                        background="white", 
+                        background="grey95", 
                         foreground="black",
-                        font='Helvetica 14 bold')
+                        font='Cambria 14 bold')
         
         self.app_style.configure('Custom.TEntry',
-                        background="white", 
+                        background="grey95", 
                         foreground="black",
-                        font='Helvetica 8 bold')
+                        font='Calibri 10')
         
         self.app_style.configure('Custom.TCheckbutton',
-                        background="white", 
+                        background="grey95", 
                         foreground="black")
 
         self.app_style.configure('Custom.TRadiobutton',
-                        background="white", 
-                        foreground="black")
+                        background="grey95", 
+                        foreground="black",
+                        font='Calibri 10')
 
         self.app_style.configure('Custom.Treeview',
                         background="white", 
-                        foreground="black")
+                        foreground="black",
+                        font='Calibri 10')
         
         self.app_style.configure('Vertical.TScrollbar',
-                        background="white", 
+                        background="grey95", 
                         foreground="black")
     
     # TEST BUILDING DARK MODE HERE
