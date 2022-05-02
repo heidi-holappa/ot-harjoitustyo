@@ -5,11 +5,37 @@ from services.user_management import default_user_management
 
 
 class CounselorView:
+    """A class that creates an object that constructs the counselor view.
+
+    Attributes:
+        root: root component for constructing the view
+        main_view: a reference to the method that calls view MainView
+        admin_view: a reference to the method that calls view AdminView
+        dummy_data: a reference to the method that calls view CreateDummyData
+        default_user_management: default service class for user management
+    """
     def __init__(self, root,
                  main_view,
                  admin_view,
                  dummy_data_view,
                  user_management=default_user_management):
+
+        """Constructor for initializing an object of the class.
+
+        Args:
+            root (Tk): root component for constructing views
+            main_view (MainView): a reference to the methong that calls view MainView
+            admin_view (AdminView): a reference to the method that calls view AdminView
+            dummy_data (CreateDummyData): a reference to the method that calls view CreateDummyData.
+            _frame: Frame to be created
+            _state: a changing state to indicate if some widgets are disabled
+            _content_var: a variable for the content
+            _content_field: a variable for the content field
+            _contact_management: a service class object for managing contacts. 
+            user_management (UserManagement, optional): Service class object for user management.
+            Defaults to default_user_management.
+        """
+
         self._root = root
         self._main_view = main_view
         self._admin_view = admin_view
@@ -26,14 +52,22 @@ class CounselorView:
         self._initialize()
 
     def pack(self):
+        """A method to add the widgets to the GUI and make them visible to the user.
+        """
         if self._frame:
             self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """A method to destroy the Frame-object and all it's children. 
+        """
         if self._frame:
             self._frame.destroy()
 
     def _initialize(self):
+        """A method that initializes the default view.
+
+        Please note that the method has multiple method calls. 
+        """
         print(self._user_management.get_active_user())
         self._frame = Frame(master=self._root,
                             padx=50,
@@ -120,7 +154,13 @@ class CounselorView:
     # def exit(self):
     #     self._root.destroy()
 
-    def label_and_navigation(self, r, c):
+    def label_and_navigation(self, r: int, c: int):
+        """A method that creates the heading label and navigation buttons for the view
+
+        Args:
+            r (int): starting row
+            c (int): starting column
+        """
         label = ttk.Label(
             master=self.label_and_nav_frame,
             text="You are now in the Counselor View",
@@ -150,7 +190,13 @@ class CounselorView:
                            padx=10, pady=5,
                            sticky=constants.E)
 
-    def init_channel(self, r, c):
+    def init_channel(self, r: int, c: int):
+        """A method for creating the channel selection
+
+        Args:
+            r (int): starting row
+            c (int): starting column
+        """
         # Select channel
         self._channel_var = IntVar()
         channel_label = ttk.Label(
@@ -183,7 +229,13 @@ class CounselorView:
         channel_R2.grid(row=r+2, column=c, sticky=constants.W)
         channel_R3.grid(row=r+3, column=c, sticky=constants.W)
 
-    def init_type(self, r, c):
+    def init_type(self, r: int, c: int):
+        """A method for creating the type selection
+
+        Args:
+            r (int): starting row
+            c (int): starting column
+        """
         # Select type
         self._type_var = IntVar()
         type_label = ttk.Label(
@@ -224,7 +276,13 @@ class CounselorView:
         type_R3.grid(row=r+3, column=c, sticky=constants.W)
         type_R4.grid(row=r+4, column=c, sticky=constants.W)
 
-    def init_gender(self, r, c):
+    def init_gender(self, r: int, c: int):
+        """A method for creating the gender selection
+
+        Args:
+            r (int): starting row
+            c (int): starting column 
+        """
         self._gender_var = IntVar()
         gender_label = ttk.Label(
             master=self.age_and_gender_frame,
@@ -265,7 +323,13 @@ class CounselorView:
         gender_R3.grid(row=r+3, column=c, sticky=constants.W)
         gender_R4.grid(row=r+4, column=c, sticky=constants.W)
 
-    def init_age(self, r, c):
+    def init_age(self, r: int, c: int):
+        """A method for creating the age selection
+
+        Args:
+            r (int): starting row
+            c (int): starting column
+        """
         self._age_var = IntVar()
         age_label = ttk.Label(
             master=self.age_and_gender_frame,
@@ -330,7 +394,13 @@ class CounselorView:
         age_R6.grid(row=r+6, column=c, sticky=constants.W)
         age_R7.grid(row=r+7, column=c, sticky=constants.W)
 
-    def init_content(self, r, c):
+    def init_content(self, r: int, c: int):
+        """A method for creating the content submission area
+
+        Args:
+            r (int): starting row
+            c (int): starting column
+        """
         self._content_var = StringVar()
         content_label = ttk.Label(
             master=self.content_frame,
@@ -350,12 +420,18 @@ class CounselorView:
             self._content_field.configure(state="disabled", bg="grey88")
         else:
             self._content_field.configure(state="normal", bg="white")
-        content_label.grid(row=r, column=c, pady=10, sticky=constants.W)
+        content_label.grid(row=r, column=c, pady=10, sticky=constants.EW)
         self._content_field.grid(row=r+1, column=c, sticky=constants.EW)
 
-    def submit(self, r, c):
+    def submit(self, r: int, c: int):
+        """Generates a button for submitting the contact
+
+        Args:
+            r (int): row position
+            c (int): column position
+        """
         button_submit = ttk.Button(
-            master=self._frame,
+            master=self.content_frame,
             text="Submit",
             command=self._try_submit,
             style="Custom.TButton"
@@ -363,6 +439,12 @@ class CounselorView:
         button_submit.grid(row=r, column=c, sticky=constants.E, padx=20)
 
     def _try_submit(self):
+        """A method that initiaties contact submission.
+
+        Submission is validated. If validation fails, an error messagebox is shown
+
+        If submission succeeds a messagebox informing of success is shown. 
+        """
         if self._content_field:
             input = self._content_field.get(1.0, constants.END)
             input = input.strip()
@@ -413,6 +495,13 @@ class CounselorView:
                 icon=messagebox.ERROR)
 
     def _change_state(self):
+        """Handles the disabling/enabling of selected widget.
+
+        When _type_var == 1, all widgets are enabled. Otherwise selected
+        widgets are disabled. 
+
+        When the state changes, widgets are destroyed and recreated. 
+        """
         if self._state == "disabled" and self._type_var.get() != 1:
             return
         if self._state == "disabled" and self._type_var.get() == 1:
@@ -426,6 +515,11 @@ class CounselorView:
         self.init_content(16, 0)
 
     def clear_frame(self, frame: ttk.LabelFrame):
+        """A general method for destroying frame content.
+
+        Args:
+            frame (ttk.LabelFrame): A Labelframe for which the widgets are to be destroyed
+        """
         for widgets in frame.winfo_children():
             widgets.destroy()
 
