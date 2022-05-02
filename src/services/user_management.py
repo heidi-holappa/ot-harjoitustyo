@@ -30,9 +30,10 @@ class UserManagement:
         self.set_active_user(user)
         user_found = self.get_user(user.username)
         if user_found and user.password_hash_valid(user_found.password):
+            user = user_found
             user.logged = True
             self._active_user = user
-            return (True, user.role)
+            return (True, user.get_role())
         return (False, None)
 
     def get_active_user(self):
