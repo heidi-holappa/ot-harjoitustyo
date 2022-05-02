@@ -2,7 +2,6 @@ from tkinter import ttk, constants, Frame, Text, messagebox
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
-
 class AdminView:
     def __init__(self,
                  root,
@@ -33,6 +32,7 @@ class AdminView:
             self._frame.destroy()
 
     def _initialize(self):
+
         self._frame = Frame(
             master=self._root,
             padx=50,
