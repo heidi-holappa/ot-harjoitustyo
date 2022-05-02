@@ -46,8 +46,8 @@ class User:
         """Validates given username. Used in account creation.
 
         Returns:
-           False: if password validation fails
-           True: if validation is success
+           (False, String): if password validation fails
+           (True, String): if validation is success
         """
         
         status = ""
@@ -67,8 +67,8 @@ class User:
             password2 (str): given re-typed password
 
         Returns:
-            False: if password validation fails
-            True: if validatoin succeeds.
+            (False, String): if password validation fails
+            (True, String): if validatoin succeeds.
         """
         pw_match = bool(password1 == password2)
         pw_long_enough = bool(len(password1) > 0)

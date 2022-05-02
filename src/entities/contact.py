@@ -1,6 +1,10 @@
 from enum import Enum
 
-# Looking into adding Enums to Contact objets. Work still in progress
+"""Looking into adding enums to Contact class. Work still in progress
+
+Returns:
+    _type_: _description_
+"""
 
 
 class Channel(Enum):
@@ -34,8 +38,30 @@ class Age(Enum):
 
 
 class Contact:
+    """Class for creating Contact objects
+
+    Attributes:
+        datetime_as_str: current date and time as String
+        channel: selected channel for contact
+        c_type: selected type for contact
+        age: selected age 
+        gender: selected gender
+        content: possible written content for the contact
+    """
 
     def __init__(self, datetime_as_str: str, channel, c_type, age, gender, content: str):
+        """Constructor for the class to create new contact objects. 
+
+        Args:
+            contact_dict (dict): a dictionary of datatypes
+            datetime_as_str (str): current date and time
+            channel (_type_): selected channel
+            c_type (_type_): selected type
+            age (_type_): selected age
+            gender (_type_): selected gender
+            content (str): content for the contact
+            marked: "informs whether the contact is marked for deletion"
+        """
         self.contact_dict = {
             "channel": [None,
                         "phone",
@@ -70,6 +96,14 @@ class Contact:
         self.marked = ""
 
     def is_valid(self):
+        """Checks the validity of given data. 
+
+        Counseling contacts must have age, gender and written content. 
+
+        Returns:
+            (False, String): if information is missing
+            (True, String): if validation succeeds.  
+        """
         if not self.channel or not self.type:
             return (False, "Each contact must have a channel and a type.")
         counseling_is_valid = bool(self.age and self.gender and self.content)
