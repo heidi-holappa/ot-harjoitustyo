@@ -158,7 +158,7 @@ class UI:
         the method call for building dummy data view"""
         self._show_create_dummy_data_view()
 
-    # Style moved to another class. Erase. 
+    # Style moved to another class. Erase.
     # def init_styles(self):
 
     #     self._root.option_add('*Dialog.msg.font', 'Calibri 10')

@@ -2,6 +2,7 @@ from tkinter import ttk, constants, Frame, Text, messagebox
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
+
 class AdminView:
     """Creates the main view for users with the role 'admin.
 
@@ -13,6 +14,7 @@ class AdminView:
         dummy_data: a reference to the method that calls view CreateDummyData
         default_user_management: default service class for user management
     """
+
     def __init__(self,
                  root,
                  main_view,
@@ -152,7 +154,7 @@ class AdminView:
 
     def _init_treeview(self, selected_frame: ttk.Labelframe):
         """Initializes the treeview and scrollbar widgets.
-        
+
         Treeview creates a table like element for showcasing data. 
 
         Args:
@@ -230,7 +232,7 @@ class AdminView:
         Args:
             event (event): LabelFrame widget in which the buttons are to be embedded.
         """
-        
+
         '''insert selected row into a Text widget'''
         printout = ""
         selected = self.treeview.focus()

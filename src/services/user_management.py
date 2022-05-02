@@ -9,6 +9,7 @@ class UserManagement:
         user_repository: default repository for database queries
         _active_user: current logged in user (if any)
     """
+
     def __init__(self,
                  user_repository=default_user_repository):
         """A constructor for the class

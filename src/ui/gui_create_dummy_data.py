@@ -12,7 +12,6 @@ class CreateDummyData:
         admin_view: a reference to a method that handles showing the admin view
     """
 
-
     def __init__(self,
                  root,
                  main_view,

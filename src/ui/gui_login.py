@@ -14,6 +14,7 @@ class LoginView:
         dummy_data: a reference to the method that calls view CreateDummyData
         default_user_management: default service class for user management
     """
+
     def __init__(
             self, root,
             main_view,
@@ -21,8 +22,7 @@ class LoginView:
             admin_view,
             dummy_data_view,
             user_management=default_user_management
-            ):
-    
+    ):
         """Constructor for initializing an object of the class.
 
         Args:

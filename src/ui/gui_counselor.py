@@ -14,12 +14,12 @@ class CounselorView:
         dummy_data: a reference to the method that calls view CreateDummyData
         default_user_management: default service class for user management
     """
+
     def __init__(self, root,
                  main_view,
                  admin_view,
                  dummy_data_view,
                  user_management=default_user_management):
-
         """Constructor for initializing an object of the class.
 
         Args:
@@ -510,8 +510,8 @@ class CounselorView:
             self._state = "disabled"
         self.clear_frame(self.age_and_gender_frame)
         self.clear_frame(self.content_frame)
-        
-        #Repeating code, refactor.
+
+        # Repeating code, refactor.
         self.init_gender(2, 1)
         self.init_age(8, 1)
         self.init_content(16, 0)

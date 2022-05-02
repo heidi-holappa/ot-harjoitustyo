@@ -1,6 +1,7 @@
 from enum import Enum
 from werkzeug.security import check_password_hash, generate_password_hash
 
+
 class Role(Enum):
     COUNSELOR = "counselor"
     ADMIN = "admin"
@@ -49,7 +50,7 @@ class User:
            (False, String): if password validation fails
            (True, String): if validation is success
         """
-        
+
         status = ""
         is_valid = bool(len(self.username) > 4)
         if not is_valid:

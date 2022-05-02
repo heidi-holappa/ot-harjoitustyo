@@ -10,6 +10,7 @@ class MainView:
         create account: a reference to a method that handles the creation of create account view
         frame: a variable for creating the Frame object
     """
+
     def __init__(self, root, login, create_account):
         self._root = root
         self._login = login
@@ -20,7 +21,7 @@ class MainView:
 
     def pack(self):
         """A method to add the widgets to the GUI and make them visible to the user.
-        """        
+        """
         if self._frame:
             self._frame.pack(fill=constants.X)
 

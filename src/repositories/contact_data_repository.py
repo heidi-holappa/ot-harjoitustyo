@@ -45,7 +45,6 @@ class ContactDataRepository:
                 ";" + str(row["content"])
         return self._all_data
 
-    
     def fetch_all_contacts_as_tuples(self):
         """Method to return all contacts as tuples for the Treeview widget.
 
