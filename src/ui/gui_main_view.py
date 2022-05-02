@@ -2,6 +2,14 @@ from tkinter import ttk, constants, Frame, Menu
 
 
 class MainView:
+    """Creates the main view of the application.
+
+    Attributes:
+        root: root component of the GUI
+        login: a reference to a method that handles creating the login view
+        create account: a reference to a method that handles the creation of create account view
+        frame: a variable for creating the Frame object
+    """
     def __init__(self, root, login, create_account):
         self._root = root
         self._login = login
@@ -11,14 +19,23 @@ class MainView:
         self._initialize()
 
     def pack(self):
+        """A method to add the widgets to the GUI and make them visible to the user.
+        """        
         if self._frame:
             self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """A method to destroy the Frame-object and all it's children. 
+        """
         if self._frame:
             self._frame.destroy()
 
+    # Refactor. Move to another class
     def _create_menubar(self):
+        """A method that creates an initial menu bar.
+
+        Will be refactored and moved to another class. 
+        """
         menubar = Menu(self._root)
         filemenu = Menu(menubar, tearoff=0)
         filemenu.add_command(label="Login", command=self._login)
@@ -30,9 +47,13 @@ class MainView:
         self._root.config(menu=menubar)
 
     def exit(self):
+        """Destroys the root component and exits the application
+        """
         self._root.destroy()
 
     def _initialize(self):
+        """Initializes the widgets in the main view. 
+        """
 
         self._frame = Frame(self._root,
                             padx=50,

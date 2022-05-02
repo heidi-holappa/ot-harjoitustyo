@@ -1,8 +1,22 @@
 from tkinter import Tk, ttk
 
 class setTheme:
+    """A class containing the style elements for the application.
+    
+    Default style is ready. Alternative styles can be later added. 
+
+    Attributes:
+        root: root component of the GUI. 
+    """
 
     def __init__(self, root):
+        """Constructor for the class. 
+
+        Args:
+            root (Tk): root component of the GUI
+            app_style: ttk.Style object for the root component
+            app_style.theme_use: sets the graphical theme to be used
+        """
         self._root = root
         self.app_style = ttk.Style(root)
         self.app_style.theme_use("clam")
@@ -11,6 +25,8 @@ class setTheme:
         
 
     def set_default_style(self):
+        """A method defining custom styles used in the application.
+        """
 
         self._root.option_add('*Dialog.msg.font', 'Calibri 10')
 
@@ -90,9 +106,14 @@ class setTheme:
                                     background="grey95",
                                     foreground="black")
 
-        # TEST BUILDING DARK MODE HERE
-        # ADD SELECTION TO LOGIN AS A FIRST STEP
+        # INITIAL BUILD. 
     def set_dark_mode(self):
+        """A method containing style configuration for dark mode.
+
+        Not finished at the moment. 
+        """
+
+
         self._root.option_add('*Dialog.msg.font', 'Calibri 10')
 
         self.app_style.configure('Custom.TFrame',

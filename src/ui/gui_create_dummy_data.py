@@ -3,10 +3,32 @@ from services.contact_management import ContactManagement
 
 
 class CreateDummyData:
+    """Creates an object for building a dummy data creation view
+
+    Attributes:
+
+        root: root component for constructing GUI-views
+        main_view: a reference to a method that handles showing the main view
+        admin_view: a reference to a method that handles showing the admin view
+    """
+
+
     def __init__(self,
                  root,
                  main_view,
                  admin_view):
+        """A constructor for the class
+
+        Args:
+            root (Tk): root component for constructing GUI-views
+            main_view (reference to a method): a reference to a method 
+            that handles showing the main view
+            admin_view (reference to a method): a reference to a method 
+            that handles showing the admin view
+            _frame: a variable for the Frame object
+            _contact_management: service class object for contact management
+
+        """
 
         self._root = root
         self._main_view = main_view
@@ -22,10 +44,14 @@ class CreateDummyData:
             self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """A method to destroy the Frame-object and all it's children. 
+        """
         if self._frame:
             self._frame.destroy()
 
     def _initialize(self):
+        """A method that initializes the default view.
+        """
         self._frame = Frame(
             master=self._root,
             padx=50,
@@ -103,6 +129,12 @@ class CreateDummyData:
 
     # Consider moving data validation to service class
     def _create_dummy_data(self, input):
+        """A method that handles creation of contact data.
+
+        Args:
+            input (int/str/None): an int value is expected, but as users
+            can type in the value, invalid data types are prepared for.
+        """
         failed = False
         if not input.isnumeric() or not input.isdigit():
             failed = True
@@ -124,5 +156,7 @@ class CreateDummyData:
         self._admin_view()
 
     def _delete_all_data(self):
+        """A method that initiates deletion of all contacts from the database.
+        """
         self._contact_management.delete_all_contacts()
         self._admin_view()

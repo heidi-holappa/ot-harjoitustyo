@@ -3,8 +3,35 @@ from services.user_management import default_user_management
 
 
 class CreateAccountView:
+    """Creates an object for building the account creation view.
+
+    Attributes:
+        root: root component for constructing the view
+        main_view: a reference to the method that calls view MainView
+        _frame: a variable for the frame to be created
+        _entry_username_var: a variable for the username to be submitted
+        _entry_password_var: a variable for the password to be submitted
+        _entry_password_2_var: a variable for the retyped password to be submitted
+        _entry_role_var: a variable for the role checkbox.
+        default_user_management: default service class for user management
+    """
     def __init__(self, root, main_view,
                  user_management=default_user_management):
+
+        """Constructor for initializing an object of the class.
+
+        Args:
+            root (Tk): root component for constructing views
+            main_view (MainView): a reference to the methong that calls view MainView
+            _frame: a variable for the frame to be created
+            _entry_username_var: a variable for the username to be submitted
+            _entry_password_var: a variable for the password to be submitted
+            _entry_password_2_var: a variable for the retyped password to be submitted
+            _entry_role_var: a variable for the role checkbox.
+            user_management (UserManagement, optional): Service class object for user management.
+            Defaults to default_user_management.
+        """
+
         self._root = root
         self._main_view = main_view
         self._frame = None
@@ -19,14 +46,20 @@ class CreateAccountView:
         self._initialize()
 
     def pack(self):
+        """A method to add the widgets to the GUI and make them visible to the user.
+        """
         if self._frame:
             self._frame.pack()
 
     def destroy(self):
+        """A method to destroy the Frame-object and all it's children. 
+        """
         if self._frame:
             self._frame.destroy()
 
     def _initialize(self):
+        """A method that initializes the default view.
+        """
         self._entry_username_var = StringVar()
         self._entry_username_var.set("")
         self._entry_password_var = StringVar()
@@ -138,6 +171,12 @@ class CreateAccountView:
         button_cancel.grid(row=7, column=4)
 
     def _try_create(self):
+        """A method that handles data submission.
+
+        User is redirected to the main view if account creation succeeds.
+
+        Incase validation fails, user is notifitied.
+        """
         if self._entry_password_var and self._entry_username_var and self._entry_role_var and self._entry_password_2_var:
             username_given = self._entry_username_var.get()
             password_given = self._entry_password_var.get()

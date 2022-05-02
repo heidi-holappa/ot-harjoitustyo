@@ -4,14 +4,39 @@ from services.user_management import default_user_management
 
 
 class LoginView:
+    """Creates the login view
+
+    Attributes:
+        root: root component for constructing the view
+        main_view: a reference to the method that calls view MainView
+        counselor_view: a reference to the method that calls view CounselorView
+        admin_view: a reference to the method that calls view AdminView
+        dummy_data: a reference to the method that calls view CreateDummyData
+        default_user_management: default service class for user management
+    """
     def __init__(
-        self, root,
-        main_view,
-        counselor_view,
-        admin_view,
-        dummy_data_view,
-        user_management=default_user_management
-    ):
+            self, root,
+            main_view,
+            counselor_view,
+            admin_view,
+            dummy_data_view,
+            user_management=default_user_management
+            ):
+    
+        """Constructor for initializing an object of the class.
+
+        Args:
+            root (Tk): root component for constructing views
+            main_view (MainView): a reference to the methong that calls view MainView
+            counselor_view (CounselorView): a reference to the method that calls view CounselorView
+            admin_view (AdminView): a reference to the method that calls view AdminView
+            dummy_data (CreateDummyData): a reference to the method that calls view CreateDummyData
+            _frame: a variable for the object Frame
+            _entry_username_var: a variable for the username entry
+            _entry_password_var: a variable for the password entry
+            user_management (UserManagement, optional): Service class object for user management.
+            Defaults to default_user_management.
+        """
 
         self._root = root
         self._main_view = main_view
@@ -28,14 +53,20 @@ class LoginView:
         self._initialize()
 
     def pack(self):
+        """A method to add the widgets to the GUI and make them visible to the user.
+        """
         if self._frame:
             self._frame.pack()
 
     def destroy(self):
+        """A method to destroy the Frame-object and all it's children. 
+        """
         if self._frame:
             self._frame.destroy()
 
     def _initialize(self):
+        """A method that initializes the default view.
+        """
         self._entry_username_var = StringVar()
         self._entry_username_var.set("")
         self._entry_password_var = StringVar()
@@ -138,6 +169,12 @@ class LoginView:
         )
 
     def _try_login(self):
+        """A method that handles a login attempt.
+
+        Currently also handles menu creation. 
+        Menu creation will be moved into a separate class. 
+
+        """
 
         if self._entry_password_var and self._entry_username_var:
             password_given = self._entry_password_var.get()
@@ -183,13 +220,19 @@ class LoginView:
                     3000, lambda: label_login_error.destroy())
 
     def exit(self):
+        """Method that destroys the root component and exits the application.
+        """
         self._root.destroy()
 
     def _open_help(self):
+        """A method that opens the how-to-guide in the operating system's default browser.
+        """
         webbrowser.open_new(
             "https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/how-to-guide.md")
 
     def _show_about(self):
+        """A method that prompts a messabox with project information.
+        """
         messagebox.showinfo(
             title="About the application",
             message="Version 0.1\n\nCreated as a University project in 2022",

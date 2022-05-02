@@ -126,7 +126,7 @@ class CounselorView:
 
         self.init_content(16, 0)
 
-        self.submit(18, 1)
+        self.init_submit(18, 1)
 
     # def _create_menubar(self):
     #     menubar = Menu(self._root)
@@ -423,7 +423,7 @@ class CounselorView:
         content_label.grid(row=r, column=c, pady=10, sticky=constants.EW)
         self._content_field.grid(row=r+1, column=c, sticky=constants.EW)
 
-    def submit(self, r: int, c: int):
+    def init_submit(self, r: int, c: int):
         """Generates a button for submitting the contact
 
         Args:
@@ -510,9 +510,12 @@ class CounselorView:
             self._state = "disabled"
         self.clear_frame(self.age_and_gender_frame)
         self.clear_frame(self.content_frame)
+        
+        #Repeating code, refactor.
         self.init_gender(2, 1)
         self.init_age(8, 1)
         self.init_content(16, 0)
+        self.init_submit(18, 1)
 
     def clear_frame(self, frame: ttk.LabelFrame):
         """A general method for destroying frame content.
