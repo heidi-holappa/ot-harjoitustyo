@@ -8,19 +8,48 @@ class Role(Enum):
 
 class User:
 
+    """Class to create user objects
+
+    Attributes:
+        username: username chosen for the account
+        password: password chosen for the account
+        role: user's role (defaults to Role.COUNSELOR)
+    """
+
     def __init__(self, username: str, password: str, role=Role.COUNSELOR):
+        """Constructor to create a new User object
+
+        Args:
+            username (str): chosen username
+            password (str): submitted password
+            role (_type_, optional): chosen user role. Defaults to Role.COUNSELOR.
+        """
         self.username = username
         self.password = password
         self.role = role
         self.logged = False
 
     def get_role(self):
+        """method to get the attribute role of the user object
+
+        Returns:
+            value of enum Role
+        """
         return self.role.value
 
     def set_admin(self):
+        """Sets user's role to admin
+        """
         self.role = Role.ADMIN
 
     def username_is_valid(self):
+        """Validates given username. Used in account creation.
+
+        Returns:
+           False: if password validation fails
+           True: if validation is success
+        """
+        
         status = ""
         is_valid = bool(len(self.username) > 4)
         if not is_valid:
@@ -29,7 +58,18 @@ class User:
         return (True, status)
 
     def password_is_valid(self, password1: str, password2: str):
-        # Password validation can be expanded easily
+        """Validates given password. Used in account creation.
+
+        Checks passwords match and password length is atleast one character
+
+        Args:
+            password1 (str): given password
+            password2 (str): given re-typed password
+
+        Returns:
+            False: if password validation fails
+            True: if validatoin succeeds.
+        """
         pw_match = bool(password1 == password2)
         pw_long_enough = bool(len(password1) > 0)
         if pw_match and pw_long_enough:
@@ -42,7 +82,21 @@ class User:
         return (False, error)
 
     def get_hashed_password(self):
+        """Returns a generated hash for the password
+
+        Returns:
+            String: creates a hashed password
+        """
         return generate_password_hash(self.password)
 
-    def password_hash_valid(self, retrieved_password):
+    def password_hash_valid(self, retrieved_password: str):
+        """Checks whether given password matches the hashed password in database
+
+        Args:
+            retrieved_password (str): password stored in database
+
+        Returns:
+            True: if passwords match
+            False: if passwords do not match
+        """
         return check_password_hash(retrieved_password, self.password)
