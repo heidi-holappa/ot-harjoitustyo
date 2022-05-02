@@ -1,3 +1,37 @@
+from enum import Enum
+
+# Looking into adding Enums to Contact objets. Work still in progress
+
+
+class Channel(Enum):
+    PHONE = (1, "phone")
+    CHAT = (2, "chat")
+    E_LETTER = (3, "e-letter")
+
+
+class Type(Enum):
+    COUNSELING = "counseling"
+    NON_COUNSELING = "non-counseling"
+    SILENT = "silent"
+    NON_TARGET = "non-target group"
+
+
+class Gender(Enum):
+    GIRL = "girl"
+    BOY = "boy"
+    SOMETHING_ELSE = "something else"
+    UNKNOWN = "unknown"
+
+
+class Age(Enum):
+    UNDER_9 = "under 9"
+    FROM_9_TO_11 = "9-11"
+    FROM_12_TO_14 = "12-14"
+    FROM_15_TO_17 = "15-17"
+    FROM_18_TO_21 = "18-21"
+    FROM_22_TO_25 = "22-25"
+    OVER_25 = "over 25"
+
 
 class Contact:
 
