@@ -12,6 +12,8 @@ class UserRepository:
 
         db_fetch = cursor.execute('''SELECT username, password, role
                                     FROM USERS WHERE username=?''', [username]).fetchone()
+        if not db_fetch:
+            return None
         fetched_user = User(db_fetch["username"], db_fetch["password"])
         if db_fetch["role"] == "admin":
             fetched_user.set_admin()
@@ -36,7 +38,7 @@ class UserRepository:
                     VALUES (?,?,?)''',
                        [new_user.username,
                         password,
-                        new_user.role]
+                        new_user.get_role()]
                        )
         self._connection.commit()
 
