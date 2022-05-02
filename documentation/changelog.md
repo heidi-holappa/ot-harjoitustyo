@@ -52,6 +52,7 @@
 ## Week 6
 * GUI-classes now take advantage of ttk.style(). GUI has a custom style. 
 * Account creation now has validation. 
-* A messagebod added to confirm data deletion
+* A messagebox added to confirm data deletion
 * Counselor view layout restructured
 * Improved counselor view usability. Datafields are enabled only if they are to be filled.
+* Application now has a working menu

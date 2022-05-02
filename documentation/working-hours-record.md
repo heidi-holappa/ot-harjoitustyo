@@ -48,5 +48,7 @@
 | 6 | Fri 29.4.2022 | Study ttk.style properties, build GUI-style | 2 |
 | 6 | Sat 30.4.2022 | Finish initial structure for GUI-style | 2 |
 | 6 | Sun 1.5.2022 | Finish the default look for the GUI-style | 1,5 |
-| **6** | --- | **Total** | **5,5**  |
-| **All**| --- | **Total** | **77** |
+| 6 | Mon 2.5.2022 | Improve Counselor-GUI | 1,5 |
+| 6 | Mon 2.5.2022 | Create menu for the application | 1 |
+| **6** | --- | **Total** | **8**  |
+| **All**| --- | **Total** | **79,5** |
