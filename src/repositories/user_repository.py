@@ -39,7 +39,7 @@ class UserRepository:
         """method for fetching all user data.
 
         Returns:
-            dict: returns a dictionary with usernames as keys and passwords and roles as items. 
+            dict: returns a dictionary with usernames as keys and passwords and roles as items.
         """
         cursor = self._connection.cursor()
 

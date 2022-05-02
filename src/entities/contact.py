@@ -1,13 +1,12 @@
 from enum import Enum
 
-"""Looking into adding enums to Contact class. Work still in progress
-
-Returns:
-    _type_: _description_
-"""
-
-
 class Channel(Enum):
+    """Looking into adding enums to Contact class. Work still in progress
+
+    Returns:
+        _type_: _description_
+    """
+
     PHONE = (1, "phone")
     CHAT = (2, "chat")
     E_LETTER = (3, "e-letter")
@@ -44,13 +43,13 @@ class Contact:
         datetime_as_str: current date and time as String
         channel: selected channel for contact
         c_type: selected type for contact
-        age: selected age 
+        age: selected age
         gender: selected gender
         content: possible written content for the contact
     """
 
     def __init__(self, datetime_as_str: str, channel, c_type, age, gender, content: str):
-        """Constructor for the class to create new contact objects. 
+        """Constructor for the class to create new contact objects.
 
         Args:
             contact_dict (dict): a dictionary of datatypes
@@ -96,13 +95,13 @@ class Contact:
         self.marked = ""
 
     def is_valid(self):
-        """Checks the validity of given data. 
+        """Checks the validity of given data.
 
-        Counseling contacts must have age, gender and written content. 
+        Counseling contacts must have age, gender and written content.
 
         Returns:
             (False, String): if information is missing
-            (True, String): if validation succeeds.  
+            (True, String): if validation succeeds.
         """
         if not self.channel or not self.type:
             return (False, "Each contact must have a channel and a type.")

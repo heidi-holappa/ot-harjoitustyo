@@ -44,9 +44,9 @@ class UserManagement:
 
     # DELETE IF NOT USED
     def get_all_users(self):
-        """A method for querying all user data. 
+        """A method for querying all user data.
 
-        Might not be used anymore. Make sure and delete if not in use. 
+        Might not be used anymore. Make sure and delete if not in use.
 
         Returns:
             dict: Returns a dictionary of all users
@@ -113,7 +113,7 @@ class UserManagement:
                              is_admin: int):
         """A method for handling account creation.
 
-        Validates given information and calls for user creation if data is valid. 
+        Validates given information and calls for user creation if data is valid.
 
         Args:
             username (str): given username
@@ -144,7 +144,7 @@ class UserManagement:
 
         Returns:
             (True, String): If success, return True
-            (False, String): If fails, return False and a status notification as a String. 
+            (False, String): If fails, return False and a status notification as a String.
         """
         if not self._active_user:
             return (False, "No active user created.")

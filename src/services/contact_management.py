@@ -64,7 +64,7 @@ class ContactManagement:
         return self._contact_repository.fetch_treeview_contact_info()
 
     def fetch_contacts_by_user(self, user: User):
-        """Queries contacts from a selected user. 
+        """Queries contacts from a selected user.
 
         This method is not used. Will be deleted.
 
@@ -118,7 +118,7 @@ class ContactManagement:
         self._contact_repository.delete_marked()
 
     def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
-        """A method to manage submission of a new contact. 
+        """A method to manage submission of a new contact.
 
         Calls methods to create a date and time String and to validate given data.
 
@@ -130,7 +130,7 @@ class ContactManagement:
             c_content (str): written content
 
         Returns:
-            (boolean, String): returns a boolean indicating whether submission succeeded 
+            (boolean, String): returns a boolean indicating whether submission succeeded
             and a string of possible status information
         """
         datetime_as_str = self._get_current_time_as_str()
@@ -152,7 +152,7 @@ class ContactManagement:
             contact (Contact): New contact to be submitted
 
         Returns:
-            (True, String): If succeeds, returns True. 
+            (True, String): If succeeds, returns True.
             (False, String): If fails, returns False and a string of status information.
         """
         fetch_user = self._user_management.get_active_user()
@@ -233,7 +233,7 @@ class ContactManagement:
     def create_dummy_content(self, contact: Contact):
         """A method for creating dummy content from dummy quantitative data and lorem ipsum.
 
-        In selected topics referral information is also created. 
+        In selected topics referral information is also created.
 
         Args:
             contact (Contact): contact object

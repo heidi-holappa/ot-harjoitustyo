@@ -12,9 +12,9 @@ class ContactDataRepository:
     """
 
     def __init__(self, connection):
-        """Constructor for the class. 
+        """Constructor for the class.
 
-        Initializes database, initializes variable _all_data. 
+        Initializes database, initializes variable _all_data.
 
         Args:
             connection (sqlite3 object): initialized database connection
@@ -26,7 +26,7 @@ class ContactDataRepository:
         """A method to fetch all contacts stored in database
 
         Returns:
-            Dictionary: returns a dictionary. Rowid's are key's, Strings of data are values. 
+            Dictionary: returns a dictionary. Rowid's are key's, Strings of data are values.
         """
         self._all_data = {}
         cursor = self._connection.cursor()
@@ -133,12 +133,12 @@ class ContactDataRepository:
         return result
 
     def fetch_contacts_by_user(self, user: User):
-        """Method to fetch all contacts from a selected user. 
+        """Method to fetch all contacts from a selected user.
 
-        Not currently used. Will most likely be deleted. 
+        Not currently used. Will most likely be deleted.
 
         Args:
-            user (User): user who's contacts are to be fetched. 
+            user (User): user who's contacts are to be fetched.
 
         Returns:
             dict: returns a dictionary of contacts
