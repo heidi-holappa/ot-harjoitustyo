@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Frame, Text
+from tkinter import ttk, constants, Frame, Text, messagebox
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
@@ -264,7 +264,6 @@ class AdminView:
         item = self.treeview.identify_row(event.y)
         if item:
             selected_item = self.treeview.item(item, 'values')
-            # print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self._mark_contact_for_deletion(selected_item[0])
 
     def _mark_contact_for_deletion(self, c_id):
@@ -276,12 +275,17 @@ class AdminView:
             else:
                 selected_item[-1] = ""
             updated_selected = tuple(selected_item)
-            # print("ROWID", selected_item[0], "Value now: ", selected_item[-1])
             self.treeview.item(selected, text="", values=(updated_selected))
             self._contact_management.mark_contact_for_deletion(
                 c_id, selected_item[-1])
 
     def _delete_marked_contacts(self):
+        check_ok = messagebox.askokcancel(
+            title="Confirm deletion", 
+            message="Selected entries will be deleted.",
+            icon=messagebox.WARNING)
+        if not check_ok:
+            return 
         self.clear_frame(self.textview_frame)
         self.clear_frame(self.treeview_frame)
         self._contact_management.delete_marked_contacts()
@@ -291,9 +295,6 @@ class AdminView:
         self.clear_frame(self.contact_management_frame)
         self._init_contact_management_buttons(self.contact_management_frame)
         self.treeview.bind('<<TreeviewSelect>>', self.item_selected)
-        # for row in self.treeview.get_children():
-        #     if self.treeview.item(row)["values"][-1] == "TRUE":
-        #         self.treeview.delete(row)
 
     def _init_contact_management_buttons(self, selected_frame):
         button_mark_contact = ttk.Button(

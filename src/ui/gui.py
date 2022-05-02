@@ -129,7 +129,7 @@ class UI:
         self.app_style.configure('Custom.TButton',
                         background="grey95", 
                         foreground="black",
-                        focuscolor="pink",
+                        focuscolor="grey48",
                         font='Calibri 10 bold')
         
         self.app_style.map('TButton', background=[("active", "grey78")])

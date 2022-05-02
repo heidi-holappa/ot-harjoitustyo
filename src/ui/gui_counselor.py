@@ -12,6 +12,7 @@ class CounselorView:
         self._main_view = main_view
         self._admin_view = admin_view
         self._frame = None
+        self._state = "disabled"
 
         self._content_var = None
         self._content_field = None
@@ -35,8 +36,52 @@ class CounselorView:
                             padx=50, 
                             pady=50,
                             bg="grey95")
+
+        
         self._create_menubar()
 
+        self.label_and_nav_frame = ttk.LabelFrame(
+            master=self._frame, 
+            text="",
+            style="Custom.TLabelframe"
+        )
+        self.channel_and_type_frame = ttk.LabelFrame(
+            master=self._frame, 
+            text="",
+            style="Custom.TLabelframe"
+        )
+        self.age_and_gender_frame = ttk.LabelFrame(
+            master=self._frame, 
+            text="",
+            style="Custom.TLabelframe"
+        )
+
+        self.content_frame = ttk.LabelFrame(
+            master=self._frame, 
+            text="",
+            style="Custom.TLabelframe"
+        )
+
+        self.label_and_nav_frame.grid(
+            columnspan=2,
+            sticky=constants.EW)
+
+        self.channel_and_type_frame.grid(
+            row=1, 
+            column=0,
+            sticky=constants.NSEW
+        )
+        self.age_and_gender_frame.grid(
+            row=1, 
+            column=1,
+            sticky=constants.NSEW
+        )
+
+        self.content_frame.grid(
+            columnspan=2,
+            sticky=constants.EW)
+
+        
         self.label_and_navigation(0, 0)
 
         self.init_channel(2, 0)
@@ -72,13 +117,13 @@ class CounselorView:
 
     def label_and_navigation(self, r, c):
         label = ttk.Label(
-                master=self._frame, 
+                master=self.label_and_nav_frame, 
                 text="You are now in the Counselor View",
                 style="Header1.TLabel"
                 )
 
         button_logout = ttk.Button(
-            master=self._frame,
+            master=self.label_and_nav_frame,
             text="Logout",
             command=self._main_view,
             style="Custom.TButton"
@@ -86,7 +131,7 @@ class CounselorView:
 
         if self._user_management.get_active_user_role() == "admin":
             button_admin_view = ttk.Button(
-                master=self._frame,
+                master=self.label_and_nav_frame,
                 text="Admin view",
                 command=self._admin_view,
                 style="Custom.TButton"
@@ -104,25 +149,25 @@ class CounselorView:
         # Select channel
         self._channel_var = IntVar()
         channel_label = ttk.Label(
-                        master=self._frame, 
+                        master=self.channel_and_type_frame, 
                         text="Select channel",
                         style="Custom.TLabel"
                         )
         channel_R1 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="phone", 
                         variable=self._channel_var, 
                         value=1,
                         style="Custom.TRadiobutton"
                         )
         channel_R2 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="chat", 
                         variable=self._channel_var, 
                         value=2,
                         style="Custom.TRadiobutton")
         channel_R3 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="e-letter", 
                         variable=self._channel_var, 
                         value=3,
@@ -137,32 +182,36 @@ class CounselorView:
         # Select type
         self._type_var = IntVar()
         type_label = ttk.Label(
-                        master=self._frame, 
+                        master=self.channel_and_type_frame, 
                         text="Select type",
                         style="Custom.TLabel")
-        type_R1 = ttk.Radiobutton(self._frame, 
+        type_R1 = ttk.Radiobutton(self.channel_and_type_frame, 
                         text="counseling",
                         variable=self._type_var, 
                         value=1,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        command=self._change_state)
         type_R2 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="non-counseling", 
                         variable=self._type_var, 
                         value=2,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        command=self._change_state)
         type_R3 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="silent",
                         variable=self._type_var, 
                         value=3,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        command=self._change_state)
         type_R4 = ttk.Radiobutton(
-                        self._frame, 
+                        self.channel_and_type_frame, 
                         text="non-target group", 
                         variable=self._type_var, 
                         value=4,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        command=self._change_state)
 
         type_label.grid(row=r, column=c, sticky=constants.W)
         type_R1.grid(row=r+1, column=c, sticky=constants.W)
@@ -173,33 +222,37 @@ class CounselorView:
     def init_gender(self, r, c):
         self._gender_var = IntVar()
         gender_label = ttk.Label(
-                        master=self._frame, 
+                        master=self.age_and_gender_frame, 
                         text="Select gender",
                         style="Custom.TLabel")
         gender_R1 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="girl",
                         variable=self._gender_var, 
                         value=1,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         gender_R2 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="boy",
                         variable=self._gender_var, 
                         value=2,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         gender_R3 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="something else", 
                         variable=self._gender_var, 
                         value=3,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         gender_R4 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="unknown", 
                         variable=self._gender_var, 
                         value=4,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
 
         gender_label.grid(row=r, column=c, sticky=constants.W)
         gender_R1.grid(row=r+1, column=c, sticky=constants.W)
@@ -210,51 +263,58 @@ class CounselorView:
     def init_age(self, r, c):
         self._age_var = IntVar()
         age_label = ttk.Label(
-                        master=self._frame, 
+                        master=self.age_and_gender_frame, 
                         text="Select age",
                         style="Custom.TLabel")
         age_R1 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="under 9",
                         variable=self._age_var, 
                         value=1,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R2 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="9-11",
                         variable=self._age_var, 
                         value=2,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R3 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="12-14",
                         variable=self._age_var, 
                         value=3,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R4 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="15-17",
                         variable=self._age_var, 
                         value=4,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R5 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="18-21",
                         variable=self._age_var, 
                         value=5,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R6 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="22-25",
                         variable=self._age_var, 
                         value=6,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
         age_R7 = ttk.Radiobutton(
-                        self._frame, 
+                        self.age_and_gender_frame, 
                         text="over 25",
                         variable=self._age_var,
                         value=7,
-                        style="Custom.TRadiobutton")
+                        style="Custom.TRadiobutton",
+                        state=self._state)
 
         age_label.grid(row=r, column=c, sticky=constants.W)
         age_R1.grid(row=r+1, column=c, sticky=constants.W)
@@ -268,15 +328,22 @@ class CounselorView:
     def init_content(self, r, c):
         self._content_var = StringVar()
         content_label = ttk.Label(
-                        master=self._frame, 
+                        master=self.content_frame, 
                         text="Write a summary of the contact",
-                        style="Custom.TLabel")
+                        style="Custom.TLabel"
+                        )
         self._content_field = Text(
-                        self._frame, 
+                        self.content_frame, 
                         height=5, 
                         width=52,
-                        bg="white"
+                        bg="white",
                         )
+        if self._state == "disabled":
+            default_printout = "Content is written only for counseling contacts."
+            self._content_field.insert(1.0, default_printout)
+            self._content_field.configure(state="disabled", bg="grey88")
+        else:
+            self._content_field.configure(state="normal", bg="white")
         content_label.grid(row=r, column=c, pady=10, sticky=constants.W)
         self._content_field.grid(row=r+1, column=c, sticky=constants.W)
 
@@ -329,3 +396,22 @@ class CounselorView:
                         style="Error.TLabel")
             label_success.grid(row=1, column=0, columnspan=4)
             label_success.after(3000, lambda: label_success.destroy())
+
+
+    def _change_state(self):
+        if self._state == "disabled" and self._type_var.get() != 1:
+            return
+        if self._state == "disabled" and self._type_var.get() == 1:
+            self._state = "normal"
+        elif self._type_var.get() != 1:
+            self._state = "disabled"
+        self.clear_frame(self.age_and_gender_frame)
+        self.clear_frame(self.content_frame)
+        self.init_gender(2, 1)
+        self.init_age(8, 1)
+        self.init_content(16, 0)
+    
+    def clear_frame(self, frame: ttk.LabelFrame):
+        for widgets in frame.winfo_children():
+            widgets.destroy()
+
