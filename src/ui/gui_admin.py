@@ -34,28 +34,28 @@ class AdminView:
 
     def _initialize(self):
         self._frame = Frame(
-            master=self._root, 
-            padx=50, 
+            master=self._root,
+            padx=50,
             pady=50,
             bg="grey95"
         )
         self.nav_buttons_frame = ttk.LabelFrame(
-            master=self._frame, 
+            master=self._frame,
             text="Navigation buttons",
             style="Custom.TLabelframe",
         )
         self.treeview_frame = ttk.LabelFrame(
-            master=self._frame, 
+            master=self._frame,
             text="Submitted contacts",
             style="Custom.TLabelframe"
         )
         self.textview_frame = ttk.LabelFrame(
-            master=self._frame, 
+            master=self._frame,
             text="Preview selected contact",
             style="Custom.TLabelframe"
         )
         self.contact_management_frame = ttk.LabelFrame(
-            master=self._frame, 
+            master=self._frame,
             text="Manage selected contact",
             style="Custom.TLabelframe"
         )
@@ -96,9 +96,9 @@ class AdminView:
         )
 
         button_counselor.grid(
-            row=0, 
+            row=0,
             column=0,
-            padx=10, 
+            padx=10,
             pady=5,
             sticky=constants.W
         )
@@ -111,11 +111,11 @@ class AdminView:
         button_logout.grid(
             row=0,
             column=2,
-            padx=10, 
+            padx=10,
             pady=5,
             sticky=constants.E
         )
-    
+
     def _init_treeview(self, selected_frame):
         columns = ("rowid", "username", "date_and_time",
                    "channel", "type", "delete")
@@ -140,8 +140,8 @@ class AdminView:
         self.treeview.heading("delete", text="delete")
 
         scrollbar = ttk.Scrollbar(
-            master=self.treeview_frame, 
-            orient=constants.VERTICAL, 
+            master=self.treeview_frame,
+            orient=constants.VERTICAL,
             command=self.treeview.yview,
             style="Vertical.TScrollbar"
         )
@@ -151,28 +151,28 @@ class AdminView:
             column=0,
             sticky=constants.NSEW
         )
-        
+
         scrollbar.grid(
-            row=0, 
-            column=1, 
+            row=0,
+            column=1,
             sticky=constants.NS
         )
-        
+
         self.treeview.bind("<Button-3>", self._mark_keybind)
 
     def _init_textfield(self, selected_frame):
         # String is composed in this way to get the desired formatting in the Text-widget
         default_printout = "Choose contact to view more details and options.\n \n Hint: once you click an item with left click, you can then use right click to mark item for deletion."
         textfield = Text(
-            master=selected_frame, 
+            master=selected_frame,
             wrap="word",
             bg="white"
         )
         textfield.grid(
-            row=3, 
+            row=3,
             column=0
         )
-        
+
         textfield.insert(1.0, default_printout)
         textfield["state"] = "disabled"
 
@@ -193,18 +193,18 @@ class AdminView:
             printout += ", age: " + str(contact[6])
             printout += "\n\n" + "content:\n"
             printout += str(contact[7])
-        
+
         textfield = Text(
-            master=self.textview_frame, 
+            master=self.textview_frame,
             wrap="word",
             bg="white"
         )
-        
+
         textfield.grid(
             row=3,
             column=0
         )
-        
+
         textfield.insert(1.0, printout)
         textfield["state"] = "disabled"
         if contact[-1] == "TRUE":
@@ -245,7 +245,7 @@ class AdminView:
         )
 
         button_delete.grid(
-            row=0, 
+            row=0,
             column=1,
             padx=10,
             pady=5,
@@ -281,11 +281,11 @@ class AdminView:
 
     def _delete_marked_contacts(self):
         check_ok = messagebox.askokcancel(
-            title="Confirm deletion", 
+            title="Confirm deletion",
             message="Selected entries will be deleted.",
             icon=messagebox.WARNING)
         if not check_ok:
-            return 
+            return
         self.clear_frame(self.textview_frame)
         self.clear_frame(self.treeview_frame)
         self._contact_management.delete_marked_contacts()

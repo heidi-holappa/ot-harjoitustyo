@@ -1,5 +1,6 @@
 from tkinter import ttk, constants, Frame, Menu
 
+
 class MainView:
     def __init__(self, root, login, create_account):
         self._root = root
@@ -33,18 +34,18 @@ class MainView:
 
     def _initialize(self):
 
-        self._frame = Frame(self._root, 
-                            padx=50, 
-                            pady=50, 
+        self._frame = Frame(self._root,
+                            padx=50,
+                            pady=50,
                             bg="grey95")
         self._create_menubar()
         label = ttk.Label(
-            master=self._frame, 
+            master=self._frame,
             text="Welcome to the backup data submission application!",
             style="Header1.TLabel")
 
         label_description = ttk.Label(
-            master=self._frame, 
+            master=self._frame,
             text="You can use this app to temporarily store contact information\nin case the main cloud-services are unavailable. \n\nSee 'help' from menu for additional information.",
             style="Centered.TLabel")
 
@@ -65,16 +66,15 @@ class MainView:
             master=self._frame, text="Already a user? Login here.",
             style="Custom.TLabel"
         )
-        label_create_account  = ttk.Label(
+        label_create_account = ttk.Label(
             master=self._frame, text="New user? Create account here.",
             style="Custom.TLabel"
         )
 
-
         label.grid(
-            row=0, 
-            column=0, 
-            padx=10, 
+            row=0,
+            column=0,
+            padx=10,
             pady=0
         )
 
@@ -83,22 +83,22 @@ class MainView:
             column=0,
             pady=10
         )
-        
+
         label_login.grid(
-            row=2, 
-            column=0, 
+            row=2,
+            column=0,
             pady=10
         )
         button_login.grid(
-            row=3, 
+            row=3,
             column=0
         )
         label_create_account.grid(
-            row=4, 
-            column=0, 
+            row=4,
+            column=0,
             pady=10
         )
         button_create_account.grid(
-            row=5, 
+            row=5,
             column=0
         )

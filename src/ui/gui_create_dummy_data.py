@@ -35,7 +35,7 @@ class CreateDummyData:
             master=self._frame,
             text='''This view is intended for the staging version of this application. User can create between 1 to 100 accounts of dummydata, or delete all contacts for a fresh start. Enter the desired amount of dummy data in the entry field.''',
             style="Custom.TLabel"
-            )
+        )
 
         # THIS DOES NOT WORK. FIX IT.
         user_entry = ttk.Entry(
@@ -65,13 +65,13 @@ class CreateDummyData:
         )
 
         label.grid(
-            row=0, 
+            row=0,
             column=0,
             columnspan=3,
             pady=5,
             sticky=constants.W
         )
-        
+
         user_entry.grid(
             row=2,
             columnspan=3,

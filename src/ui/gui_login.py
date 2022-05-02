@@ -5,14 +5,14 @@ from services.user_management import default_user_management
 
 class LoginView:
     def __init__(
-                self, root, 
-                main_view, 
-                counselor_view, 
-                admin_view,
-                dummy_data_view,
-                user_management=default_user_management
-                ):
-        
+        self, root,
+        main_view,
+        counselor_view,
+        admin_view,
+        dummy_data_view,
+        user_management=default_user_management
+    ):
+
         self._root = root
         self._main_view = main_view
         self._counselor_view = counselor_view
@@ -42,42 +42,42 @@ class LoginView:
         self._entry_password_var.set("")
 
         self._frame = Frame(
-            master=self._root, 
-            padx=50, 
+            master=self._root,
+            padx=50,
             pady=50,
             bg="grey95"
         )
 
         label_title = ttk.Label(
-            master=self._frame, 
+            master=self._frame,
             text="Submit username and password to login",
             style="Header1.TLabel"
         )
 
         label_username = ttk.Label(
-            master=self._frame, 
+            master=self._frame,
             text="username",
             style="Custom.TLabel"
         )
-        
+
         label_password = ttk.Label(
-            master=self._frame, 
+            master=self._frame,
             text="password",
             style="Custom.TLabel"
         )
-        
+
         entry_username = ttk.Entry(
-            master=self._frame, 
+            master=self._frame,
             textvariable=self._entry_username_var,
             style="Custom.TEntry"
         )
-        
+
         entry_password = ttk.Entry(
-            master=self._frame, 
-            show="*", 
+            master=self._frame,
+            show="*",
             textvariable=self._entry_password_var,
             style="Custom.TEntry"
-            )
+        )
 
         button_login = ttk.Button(
             master=self._frame,
@@ -97,21 +97,21 @@ class LoginView:
             column=0,
             columnspan=4
         )
-        
+
         label_username.grid(
             row=2,
             column=1,
             padx=5,
             pady=5
         )
-        
+
         entry_username.grid(
             row=2,
             column=2,
             columnspan=3,
             sticky=constants.EW
         )
-        
+
         label_password.grid(
             row=3,
             column=1,
@@ -126,13 +126,13 @@ class LoginView:
         )
 
         button_login.grid(
-            row=4, 
+            row=4,
             column=3,
             pady=10
         )
-        
+
         button_cancel.grid(
-            row=4, 
+            row=4,
             column=4,
             pady=10
         )
@@ -142,9 +142,8 @@ class LoginView:
         if self._entry_password_var and self._entry_username_var:
             password_given = self._entry_password_var.get()
             username_given = self._entry_username_var.get()
-            self._user_management.create_active_user(
+            login_attempt = self._user_management.login(
                 username_given, password_given)
-            login_attempt = self._user_management.login()
             if login_attempt[0]:
                 menubar = Menu(self._root)
                 filemenu = Menu(menubar, tearoff=0)
@@ -155,17 +154,20 @@ class LoginView:
 
                 if self._user_management.get_active_user_role() == "admin":
                     adminmenu = Menu(menubar, tearoff=0)
-                    adminmenu.add_command(label="Manage data submissions", command=self._admin_view)
-                    adminmenu.add_command(label="Submit data", command=self._counselor_view)
-                    adminmenu.add_command(label="Create dummy content", command=self._dummy_data_view)
+                    adminmenu.add_command(
+                        label="Manage data submissions", command=self._admin_view)
+                    adminmenu.add_command(
+                        label="Submit data", command=self._counselor_view)
+                    adminmenu.add_command(
+                        label="Create dummy content", command=self._dummy_data_view)
                     menubar.add_cascade(label="Admin", menu=adminmenu)
 
                 helpmenu = Menu(menubar, tearoff=0)
-                helpmenu.add_command(label="Help (opens browser)", command=self._open_help)
+                helpmenu.add_command(
+                    label="Help (opens browser)", command=self._open_help)
                 helpmenu.add_command(label="About", command=self._show_about)
                 menubar.add_cascade(label="Help", menu=helpmenu)
                 self._root.config(menu=menubar)
-
 
                 if login_attempt[1] == "counselor":
                     self._counselor_view()
@@ -173,18 +175,19 @@ class LoginView:
                     self._admin_view()
             else:
                 label_login_error = ttk.Label(
-                    master=self._frame, 
-                    text="Error: username or password incorrect. Try again.", 
+                    master=self._frame,
+                    text="Error: username or password incorrect. Try again.",
                     style="Error.TLabel")
                 label_login_error.grid(row=1, column=0, columnspan=4)
-                label_login_error.after(3000, lambda: label_login_error.destroy())
+                label_login_error.after(
+                    3000, lambda: label_login_error.destroy())
 
     def exit(self):
         self._root.destroy()
 
-
     def _open_help(self):
-        webbrowser.open_new("https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/architecture.md")
+        webbrowser.open_new(
+            "https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/how-to-guide.md")
 
     def _show_about(self):
         messagebox.showinfo(
