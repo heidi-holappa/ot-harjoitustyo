@@ -11,8 +11,9 @@ class TestContactRepository(unittest.TestCase):
     def setUp(self):
         self.contact_management = ContactManagement()
         self.contact_management._user_management = default_user_management
-        self.contact_management._user_management.create_active_user(
-            "testuser", "password")
+        self.dummy_user = User("testuser", "password")
+        self.contact_management._user_management.set_active_user(
+            self.dummy_user)
         self.db = initialize_database()
         self.contact_repository = default_contact_repository
 

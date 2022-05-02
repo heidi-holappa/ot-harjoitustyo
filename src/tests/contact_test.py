@@ -8,9 +8,10 @@ from initialize_database import initialize_database
 class TestContactManagement(unittest.TestCase):
     def setUp(self):
         self.contact_management = ContactManagement()
+        self.dummy_user = User("testuser", "password")
         self.contact_management._user_management = default_user_management
-        self.contact_management._user_management.create_active_user(
-            "testuser", "password")
+        self.contact_management._user_management.set_active_user(
+            self.dummy_user)
         self.db = initialize_database()
 
     def test_submit_contact(self):
@@ -35,13 +36,12 @@ class TestContactManagement(unittest.TestCase):
         for i in range(n):
             self.contact_management.manage_new_contact_submission(
                 1, 1, 1, 1, "lorem ipsum")
-        self.contact_management._user_management.create_active_user(
-            "testuser2", "password")
+        testuser = User("testuser2", "password")
+        self.contact_management._user_management.set_active_user(testuser)
         k = 3
         for i in range(k):
             self.contact_management.manage_new_contact_submission(
                 1, 1, 1, 1, "lorem ipsum")
-        testuser = User("testuser2", "password")
         contact_count = len(
             self.contact_management.fetch_contacts_by_user(testuser))
         self.assertEqual(k, contact_count)

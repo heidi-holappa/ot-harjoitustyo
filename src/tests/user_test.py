@@ -7,13 +7,15 @@ from initialize_database import initialize_database
 class TestUserManagement(unittest.TestCase):
     def setUp(self):
         self.user_management = default_user_management
+        self.dummy_user = User("testuser", "password")
         self.db = initialize_database()
 
     def test_create_user(self):
-        self.user_management.create_active_user("testuser1", "salasana")
+        self.user_management.set_active_user(self.dummy_user)
         self.testuser = self.user_management.get_active_user()
         self.user_management.create_user()
-        result = self.user_management.login()
+        result = self.user_management.login(
+            self.dummy_user.username, self.dummy_user.password)
         self.assertEqual(True, result[0])
 
     def test_set_admin(self):
@@ -24,14 +26,14 @@ class TestUserManagement(unittest.TestCase):
     def test_valid_password_false(self):
         password_1 = "password"
         password_2 = "passwoerd"
-        result = self.user_management.password_is_valid(password_1, password_2)
-        self.assertEqual(False, result)
+        result = self.dummy_user.password_is_valid(password_1, password_2)
+        self.assertEqual(False, result[0])
 
     def test_valid_password_true(self):
         password_1 = "password"
         password_2 = "password"
-        result = self.user_management.password_is_valid(password_1, password_2)
-        self.assertEqual(True, result)
+        result = self.dummy_user.password_is_valid(password_1, password_2)
+        self.assertEqual(True, result[0])
 
     def test_get_user(self):
         username = "testuser2"
