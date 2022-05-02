@@ -159,10 +159,7 @@ class UI:
 
     #     self.app_style.configure('Error.TLabel',
     #                              background="grey95",
-    #                              foreground="red",
-    #                              font='Calibri 10 bold',
-    #                              wraplength=400)
-
+    #                              foreground="red",self.style
     #     self.app_style.configure('Header1.TLabel',
     #                              background="grey95",
     #                              foreground="black",
