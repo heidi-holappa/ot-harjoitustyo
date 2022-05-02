@@ -50,5 +50,7 @@
 | 6 | Sun 1.5.2022 | Finish the default look for the GUI-style | 1,5 |
 | 6 | Mon 2.5.2022 | Improve Counselor-GUI | 1,5 |
 | 6 | Mon 2.5.2022 | Create menu for the application | 1 |
-| **6** | --- | **Total** | **8**  |
-| **All**| --- | **Total** | **79,5** |
+| 6 | Mon 2.5.2022 | Refactor code based on labtool feedback | 2 |
+| 6 | Mon 2.5.2022 | Write DocString | 3 |
+| **6** | --- | **Total** | **13**  |
+| **All**| --- | **Total** | **84,5** |

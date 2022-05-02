@@ -10,9 +10,9 @@ The application can be used in two different roles: as a counselor and as a supe
 
 ## User Interface (UI) design
 The initial plan is to have four user screens:
-- **Initial version done:** A login screen
-- **Initial version done:** A screen for creating a new counselor account
-- **Initial version done:** A counselor view for submitting data
+- **Done:** A login screen
+- **Done** A screen for creating a new counselor account
+- **Done:** A counselor view for submitting data
 - **Done:** A supervisor screen for reviewing and managing submitted data
 
 ![login screen](/documentation/images/req-spec-login.png)
@@ -24,27 +24,30 @@ The initial plan is to have four user screens:
 ## Basic functionalities
 
 **Before logging in**
-- **Initial version done:** User can create an account with the role 'counselor'. 
-- **Initial version done:** Account creation has validation (username must have atleast three characters, passwords have to match, name cannot be empty)
+- **Done:** User can create an account with the role 'counselor'. 
+- **Done:** Account creation has validation (username must have atleast three characters, passwords have to match, name cannot be empty)
 - **Done:** User can login into the system
 - **Done:** If login fails, user is notified
 
 **After logging in (role counselor)**
 - **Done:** User with role counselor can submit new data entries
-- Form contains validation (some fields are mandatory, depending on the selections made)
-- **Initial version done:** User can logout
+- **Done:** Form contains validation (some fields are mandatory, depending on the selections made)
+- **Done:** User can logout
+- **Done:** User can exit the app via menu
 
 **After logging in (role supervisor)**
 - **Done:** User with role supervisor can review all data submissions
 - **Done:** User can mark processed submissions as done
 - **Done:** User can permanently delete all submissions marked as done
 - **Done:** User can logout
+- **Done:** User can exit the app via menu
 
 **Additional featurer not in initial specification that have been done:**
 - User with role admin can create dummy data
 - User with role admin can submit contacts
 - User with role admin can delete multiple contacts in one go
-- The application has a menu bar (under work)
+- The application has a menu bar
+- The application has a custom style
 
 ## Further development
 In the future following features could be added:

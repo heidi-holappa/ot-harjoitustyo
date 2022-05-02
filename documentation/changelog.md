@@ -56,3 +56,4 @@
 * Counselor view layout restructured
 * Improved counselor view usability. Datafields are enabled only if they are to be filled.
 * Application now has a working menu
+* Application now has a how-to-guide that can be accessed through the menu in the application. 
