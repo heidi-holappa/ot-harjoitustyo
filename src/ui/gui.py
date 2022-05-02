@@ -48,7 +48,8 @@ class UI:
             self._root,
             self._handle_main_view,
             self._handle_counselor_view,
-            self._handle_admin_view
+            self._handle_admin_view,
+            self._handle_create_dummy_data_view
         )
 
         self._current_view.pack()
@@ -67,7 +68,8 @@ class UI:
         self._current_view = CounselorView(
             self._root,
             self._handle_main_view,
-            self._handle_admin_view
+            self._handle_admin_view,
+            self._handle_create_dummy_data_view
         )
 
         self._current_view.pack()
@@ -114,12 +116,16 @@ class UI:
 
     
     def init_styles(self):
+
+        self._root.option_add('*Dialog.msg.font', 'Calibri 10')
+
+
         self.app_style.configure('Custom.TFrame',
                         background="grey95", 
                         foreground="black")
         
         self.app_style.configure('Custom.TLabelframe',
-                        background="grey95", 
+                        background="grey95",
                         foreground="black")
 
         self.app_style.configure('TLabelframe.Label',
@@ -172,11 +178,14 @@ class UI:
         self.app_style.configure('Custom.TCheckbutton',
                         background="grey95", 
                         foreground="black")
+        self.app_style.map('TCheckbutton', background=[("disabled", "grey95")])
 
         self.app_style.configure('Custom.TRadiobutton',
                         background="grey95", 
                         foreground="black",
                         font='Calibri 10')
+        
+        self.app_style.map('TRadiobutton', background=[("disabled", "grey95")])
 
         self.app_style.configure('Custom.Treeview',
                         background="white", 

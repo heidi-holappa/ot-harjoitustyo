@@ -1,14 +1,23 @@
-from tkinter import ttk, constants, StringVar, Frame
+from tkinter import ttk, constants, StringVar, Frame, Menu, messagebox
+import webbrowser
 from services.user_management import default_user_management
 
 
 class LoginView:
-    def __init__(self, root, main_view, counselor_view, admin_view,
-                 user_management=default_user_management):
+    def __init__(
+                self, root, 
+                main_view, 
+                counselor_view, 
+                admin_view,
+                dummy_data_view,
+                user_management=default_user_management
+                ):
+        
         self._root = root
         self._main_view = main_view
         self._counselor_view = counselor_view
         self._admin_view = admin_view
+        self._dummy_data_view = dummy_data_view
         self._frame = None
 
         self._entry_username_var = None
@@ -137,6 +146,27 @@ class LoginView:
                 username_given, password_given)
             login_attempt = self._user_management.login()
             if login_attempt[0]:
+                menubar = Menu(self._root)
+                filemenu = Menu(menubar, tearoff=0)
+                filemenu.add_command(label="Logout", command=self._main_view)
+                filemenu.add_separator()
+                filemenu.add_command(label="Exit", command=self.exit)
+                menubar.add_cascade(label="File", menu=filemenu)
+
+                if self._user_management.get_active_user_role() == "admin":
+                    adminmenu = Menu(menubar, tearoff=0)
+                    adminmenu.add_command(label="Manage data submissions", command=self._admin_view)
+                    adminmenu.add_command(label="Submit data", command=self._counselor_view)
+                    adminmenu.add_command(label="Create dummy content", command=self._dummy_data_view)
+                    menubar.add_cascade(label="Admin", menu=adminmenu)
+
+                helpmenu = Menu(menubar, tearoff=0)
+                helpmenu.add_command(label="Help (opens browser)", command=self._open_help)
+                helpmenu.add_command(label="About", command=self._show_about)
+                menubar.add_cascade(label="Help", menu=helpmenu)
+                self._root.config(menu=menubar)
+
+
                 if login_attempt[1] == "counselor":
                     self._counselor_view()
                 else:
@@ -148,3 +178,17 @@ class LoginView:
                     style="Error.TLabel")
                 label_login_error.grid(row=1, column=0, columnspan=4)
                 label_login_error.after(3000, lambda: label_login_error.destroy())
+
+    def exit(self):
+        self._root.destroy()
+
+
+    def _open_help(self):
+        webbrowser.open_new("https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/architecture.md")
+
+    def _show_about(self):
+        messagebox.showinfo(
+            title="About the application",
+            message="Version 0.1\n\nCreated as a University project in 2022",
+            icon=messagebox.INFO
+        )
