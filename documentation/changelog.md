@@ -50,5 +50,8 @@
 * New poetry command for creating dummy data. Dummy data can also be created in GUI in admin-mode
 
 ## Week 6
-* GUI-classes now take advantage of ttk.style(). Improved GUI look. 
+* GUI-classes now take advantage of ttk.style(). GUI has a custom style. 
 * Account creation now has validation. 
+* A messagebod added to confirm data deletion
+* Counselor view layout restructured
+* Improved counselor view usability. Datafields are enabled only if they are to be filled.

@@ -44,7 +44,9 @@
 | 5 | Sun 24.4.2022 | Test application | 0,5 |
 | 5 | Sun 24.4.2022 | Write sequence charts | 1,5 |
 | 5 | Tue 26.6.2022 | Test app on virtual machine, run tests, pylint | 0,5 |
+| **5** | --- | **Total** | **24**  |
 | 6 | Fri 29.4.2022 | Study ttk.style properties, build GUI-style | 2 |
 | 6 | Sat 30.4.2022 | Finish initial structure for GUI-style | 2 |
-| **5** | --- | **Total** | **24**  |
-| **All**| --- | **Total** | **71,5** |
+| 6 | Sun 1.5.2022 | Finish the default look for the GUI-style | 1,5 |
+| **6** | --- | **Total** | **5,5**  |
+| **All**| --- | **Total** | **77** |
