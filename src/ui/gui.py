@@ -154,6 +154,7 @@ class UI:
         the method call for building dummy data view"""
         self._show_create_dummy_data_view()
 
+
 def main():
     """A method that launches the application.
     """
