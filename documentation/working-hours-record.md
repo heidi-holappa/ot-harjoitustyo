@@ -52,5 +52,7 @@
 | 6 | Mon 2.5.2022 | Create menu for the application | 1 |
 | 6 | Mon 2.5.2022 | Refactor code based on labtool feedback | 2 |
 | 6 | Mon 2.5.2022 | Write DocString | 3 |
-| **6** | --- | **Total** | **13**  |
-| **All**| --- | **Total** | **84,5** |
+| 6 | Tue 3.5.2022 | Write documentation | 2 |
+| 6 | Tue 3.5.2022 | Refactor code | 1 |
+| **6** | --- | **Total** | **16**  |
+| **All**| --- | **Total** | **87,5** |
