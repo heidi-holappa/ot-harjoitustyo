@@ -3,9 +3,12 @@ University course task - Spring 2022
 
 This application is created for storing data from answered helpline contacts. The purpose of this application is to provide a backup-tool for collecting data in events in which the main data collection application is unusable. 
 
-## Latest release
+## Releases
 
 [Latest release: week 6](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6)
+
+**Previous releases**
+[Release week 5](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Documentation
 
