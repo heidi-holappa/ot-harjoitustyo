@@ -73,8 +73,6 @@ class CounselorView:
                             pady=50,
                             bg="grey95")
 
-        # self._create_menubar()
-
         self.label_and_nav_frame = ttk.LabelFrame(
             master=self._frame,
             text="",
@@ -126,32 +124,6 @@ class CounselorView:
         self.init_content(16, 0)
 
         self.init_submit(18, 1)
-
-    # def _create_menubar(self):
-    #     menubar = Menu(self._root)
-    #     filemenu = Menu(menubar, tearoff=0)
-    #     filemenu.add_command(label="Logout", command=self._main_view)
-    #     filemenu.add_separator()
-    #     filemenu.add_command(label="Exit", command=self.exit)
-    #     menubar.add_cascade(label="File", menu=filemenu)
-
-    #     if self._user_management.get_active_user_role() == "admin":
-    #         adminmenu = Menu(menubar, tearoff=0)
-    #         adminmenu.add_command(label="Manage submission", command=self._admin_view)
-    #         adminmenu.add_command(label="Create dummy content", command=self._dummy_data_view)
-    #         menubar.add_cascade(label="Admin", menu=adminmenu)
-
-    #     helpmenu = Menu(menubar, tearoff=0)
-    #     helpmenu.add_command(label="Help (opens browser)", command=self._open_help)
-    #     helpmenu.add_command(label="About", command=self._show_about)
-    #     menubar.add_cascade(label="Help", menu=helpmenu)
-    #     self._root.config(menu=menubar)
-
-    # def donothing(self):
-    #     pass
-
-    # def exit(self):
-    #     self._root.destroy()
 
     def label_and_navigation(self, r: int, c: int):
         """A method that creates the heading label and navigation buttons for the view
@@ -460,17 +432,6 @@ class CounselorView:
         submission_status = self._contact_management.manage_new_contact_submission(
             c_channel, c_type, c_age, c_gender, input)
         if submission_status[0]:
-            # label_success = ttk.Label(
-            #     master=self._frame,
-            #     text="Contact stored successfully.",
-            #     style="Success.TLabel"
-            # )
-            # label_success.grid(
-            #     row=1,
-            #     column=0,
-            #     columnspan=4
-            # )
-            # label_success.after(3000, lambda: label_success.destroy())
             messagebox.showinfo(
                 title="Success!",
                 message="Contact stored successfully.",
@@ -480,14 +441,6 @@ class CounselorView:
             self._gender_var.set(0)
             self._age_var.set(0)
         else:
-            # label_success = ttk.Label(
-            #             master=self._frame,
-            #             text=submission_status[1],
-            #             foreground="red",
-            #             style="Error.TLabel")
-            # label_success.grid(row=1, column=0, columnspan=4)
-            # label_success.after(3000, lambda: label_success.destroy())
-
             messagebox.showinfo(
                 title="Error!",
                 message=submission_status[1],
@@ -524,13 +477,3 @@ class CounselorView:
         """
         for widgets in frame.winfo_children():
             widgets.destroy()
-
-    # def _open_help(self):
-    #     webbrowser.open_new("https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/architecture.md")
-
-    # def _show_about(self):
-    #     messagebox.showinfo(
-    #         title="About the application",
-    #         message="Version 0.1\n\nCreated as a University project in 2022",
-    #         icon=messagebox.INFO
-    #     )

@@ -30,9 +30,6 @@ class UI:
         self._user_management = default_user_management
         self.style = "default"
         setTheme(self._root)
-        # self.app_style = ttk.Style(root)
-        # self.app_style.theme_use("clam")
-        # self.init_styles()
 
     def start(self):
         """Calls a method that initiates the building of the main view
@@ -156,96 +153,6 @@ class UI:
         """A method that can be referenced and then handles 
         the method call for building dummy data view"""
         self._show_create_dummy_data_view()
-
-    # Style moved to another class. Erase.
-    # def init_styles(self):
-
-    #     self._root.option_add('*Dialog.msg.font', 'Calibri 10')
-
-    #     self.app_style.configure('Custom.TFrame',
-    #                              background="grey95",
-    #                              foreground="black")
-
-    #     self.app_style.configure('Custom.TLabelframe',
-    #                              background="grey95",
-    #                              foreground="black")
-
-    #     self.app_style.configure('TLabelframe.Label',
-    #                              background="grey95",
-    #                              foreground="black")
-
-    #     self.app_style.configure('Custom.TButton',
-    #                              background="grey95",
-    #                              foreground="black",
-    #                              focuscolor="grey48",
-    #                              font='Calibri 10 bold')
-
-    #     self.app_style.map('TButton', background=[("active", "grey78")])
-
-    #     self.app_style.configure('Custom.TLabel',
-    #                              background="grey95",
-    #                              foreground="grey12",
-    #                              font='Calibri 10 bold',
-    #                              wraplength=400)
-
-    #     self.app_style.configure('Centered.TLabel',
-    #                              background="grey95",
-    #                              foreground="grey12",
-    #                              justify="center",
-    #                              font='Calibri 10 bold',
-    #                              wraplength=400)
-
-    #     self.app_style.configure('Success.TLabel',
-    #                              background="grey95",
-    #                              foreground="green",
-    #                              font='Calibri 10 bold',
-    #                              wraplength=400)
-
-    #     self.app_style.configure('Error.TLabel',
-    #                              background="grey95",
-    #                              foreground="red",self.style
-    #     self.app_style.configure('Header1.TLabel',
-    #                              background="grey95",
-    #                              foreground="black",
-    #                              font='Cambria 14 bold')
-
-    #     self.app_style.configure('Custom.TEntry',
-    #                              background="grey95",
-    #                              foreground="black",
-    #                              font='Calibri 10')
-
-    #     self.app_style.configure('Custom.TCheckbutton',
-    #                              background="grey95",
-    #                              foreground="black")
-    #     self.app_style.map('TCheckbutton', background=[("disabled", "grey95")])
-
-    #     self.app_style.configure('Custom.TRadiobutton',
-    #                              background="grey95",
-    #                              foreground="black",
-    #                              font='Calibri 10')
-
-    #     self.app_style.map('TRadiobutton', background=[("disabled", "grey95")])
-
-    #     self.app_style.configure('Custom.Treeview',
-    #                              background="white",
-    #                              foreground="black",
-    #                              font='Calibri 10')
-
-    #     self.app_style.configure('Vertical.TScrollbar',
-    #                              background="grey95",
-    #                              foreground="black")
-
-    # # TEST BUILDING DARK MODE HERE
-    # # ADD SELECTION TO LOGIN AS A FIRST STEP
-    # def set_dark_mode(self):
-    #     self.app_style.configure('Custom.TLabel',
-    #                              background="grey14",
-    #                              foreground="grey82",
-    #                              font='Helvetica 8 bold',
-    #                              wraplength=400)
-
-
-# Launch the GUI
 
 def main():
     """A method that launches the application.
