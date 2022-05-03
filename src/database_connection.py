@@ -6,4 +6,9 @@ connection.row_factory = sqlite3.Row
 
 
 def get_database_connection():
+    """A method for returning the connection object
+
+    Returns:
+        connection (connect object): an object that enables the database connection.
+    """
     return connection

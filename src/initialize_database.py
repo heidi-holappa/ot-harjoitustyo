@@ -1,7 +1,11 @@
 from database_connection import get_database_connection
 
-
 def drop_tables(connection):
+    """Destroys the tables from the database.
+
+    Args:
+        connection (connect object): an object that enables the database connection.
+    """
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -16,6 +20,11 @@ def drop_tables(connection):
 
 
 def create_tables(connection):
+    """Creates database tables for the application
+
+    Args:
+        connection (connect object): an object that enables the database connection.
+    """
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -43,6 +52,11 @@ def create_tables(connection):
 
 
 def initialize_database():
+    """Calls a method to activate the object that enables database connection.
+
+    Calls methods to delete and create tables to database.
+
+    """
     connection = get_database_connection()
 
     drop_tables(connection)

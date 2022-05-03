@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Channel(Enum):
     """Looking into adding enums to Contact class. Work still in progress
 
