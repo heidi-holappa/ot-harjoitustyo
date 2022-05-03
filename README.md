@@ -8,6 +8,7 @@ This application is created for storing data from answered helpline contacts. Th
 [Latest release: week 6](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6)
 
 **Previous releases**
+
 [Release week 5](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Documentation
