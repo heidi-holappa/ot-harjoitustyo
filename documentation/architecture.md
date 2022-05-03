@@ -97,27 +97,63 @@ UI ->> UI: show appropriate view or notify of validation error
 ```
 
 ### Submit contact data
-When user fills the data submission form and submits new data, the following chain of actions is carried out:
+When user fills the data submission form and submits new data, the following chain of actions is carried out in the case of valid submission:
 
 ```mermaid
 sequenceDiagram
 actor user
 participant UI
-participant ContactManagement
-participant UserManagement
 participant ContactRepository
 participant Contact
+participant ContactManagement
+participant UserManagement
 user ->> UI: fills form, clicks submit
-UI ->> ContactManagement: manage_contact_submission()
-ContactManagement ->> Contact: contact(arguments)
+UI ->> ContactManagement: manage_new_contact_submission(channel, type, gender, age, content)
+activate ContactManagement
+ContactManagement ->> Contact: contact(args)
+activate Contact
 Contact -->> ContactManagement: contact
+deactivate Contact
 ContactManagement ->> Contact: contact.is_valid()
-Contact -->> ContactManagement: boolean
-ContactManagement ->> ContactManagement: submit_contact()
+activate Contact
+Contact -->> ContactManagement: True
+deactivate Contact
+ContactManagement ->> ContactManagement: submit_contact(contact)
 ContactManagement ->> UserManagement: get_active_user()
-ContactManagement ->> ContactRepository: add_contact(username, contact)
-ContactManagement -->> UI: status (boolean) + message
-UI ->> UI: Check if success, show appropriate notification
+UserManagement -->> ContactManagement: User object
+ContactManagement ->> ContactRepository: add_contact(user.username, contact)
+activate ContactRepository
+ContactRepository -->> ContactManagement: (True, "")
+deactivate ContactRepository
+ContactManagement -->> UI: (True, "")
+deactivate ContactManagement
+UI ->> UI: Construct a messagebox notifying of success. 
+```
+
+Incase the validation fails (for instance a counseling contact is missing required data) the following sequence takes place:
+
+```mermaid
+sequenceDiagram
+actor user
+participant UI
+participant ContactRepository
+participant Contact
+participant ContactManagement
+participant UserManagement
+user ->> UI: fills form, clicks submit
+UI ->> ContactManagement: manage_new_contact_submission(channel, type, gender, age, content)
+activate ContactManagement
+ContactManagement ->> Contact: contact(args)
+activate Contact
+Contact -->> ContactManagement: contact
+deactivate Contact
+ContactManagement ->> Contact: contact.is_valid()
+activate Contact
+Contact -->> ContactManagement: False
+deactivate Contact
+ContactManagement -->> UI: (False, "Error message indicating what is wrong")
+deactivate ContactManagement
+UI ->> UI: Construct a messagebox with a error-message.
 ```
 
 ### Mark contact data for deletion
@@ -131,15 +167,26 @@ participant ContactManagement
 participant ContactRepository
 user ->> UI: activates and object in treeview
 user ->> UI: clicks button "mark for deletion"
-UI ->> UI: event activates method call
-UI ->> ContactManagement: mark_contact_for_deletion(contact_id, status)
-ContactManagement ->> ContactRepository: mark_contact_for_deletion(contact_id, status)
+UI ->> UI: event activates method _mark_contact_for_deletion(contact_id)
+UI ->> ContactManagement: mark_contact_for_deletion(contact_id, "TRUE")
+ContactManagement ->> ContactRepository: mark_contact_for_deletion(contact_id, "TRUE")
 UI -->> user: UI is refreshed
 user ->> UI: clicks 'delete marked' -button
-UI ->> UI: event activates method call
-UI ->> UI: manage widget content
+UI ->> UI: event activates method _delete_marked_contacts()
+UI ->> UI: constructs a messagebox for confirmation
+user ->> UI: user presses "Confirm"
+UI ->> UI: destroys widgets from frames treeview and text_view
 UI ->> ContactManagement: delete_marked_contacts()
-UI ->> UI: manage widget content
-UI -->> user: UI is refreshed
 ContactManagement ->> ContactRepository: delete_marked_contacts()
+UI ->> UI: constructs widgets to populate frames treeview and text_view
+UI ->> UI: populates treeview with items
+UI ->> UI: destroys widgets from contact_magement_frame
+UI ->> UI: populates contact_magement_frame with widgets
+UI -->> user: UI is refreshed
 ```
+
+## Known issues
+
+The counselor view is not as intuitive as it could be. Instructive texts could be added to guide users. 
+
+The application has some repeating code which could be refactored. For example the Menu widget could be moved to it's own class. Some methods are no longer used and should be removed. 
