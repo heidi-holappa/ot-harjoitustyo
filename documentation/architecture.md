@@ -1,7 +1,7 @@
 # Architecture
 
 ## Structure
-The structure of the application follows the layered architecture framework. At the current initial stage the structure has open issues that will be fixed in the future. For instance in the next phase the goal is to disconnet UI from the Entities-package. 
+The structure of the application follows the layered architecture framework.  
 
 ```mermaid
     stateDiagram
@@ -24,12 +24,12 @@ The structure of the application follows the layered architecture framework. At 
     UI --> Service
     Service --> Repositories
     Service --> Entities
-    UI --> Entities: this will be refactored
     Repositories --> Entities
 ```
-The package UI includes the classes responsible for the objects that create the graphical user interface and it's functionalities. The package Service works as a hub controlling the logic of the application. 
-
-Package Entities contains the objects that contain the different data structures used by the application. The package Repositories handles the database queries (retrieving and storing data).
+* The package UI includes the classes used to create objects that construct the graphical user interface views and it's interactive functionalities. 
+* The package Service works as a hub controlling the logic of the application. 
+* Package Entities contains the objects that contain the different data structures used by the application. 
+* The package Repositories handles the database queries (retrieving and storing data).
 
 ## Class diagram
 
@@ -78,17 +78,22 @@ participant UserManagement
 participant UserRepository
 participant User
 user ->> UI: clicks Login-button
-UI ->> UI: changes to login view
+UI ->> UI: main view is destroyed and login view constructed
 user ->> UI: inputs credentials, presses submit
-UI ->> UserManagement: create_active_user
-UserManagement ->> User: User(username, password)
-User -->> UserManagement: self._active_user
-UI ->> UserManagement: login()
-UserManagement ->> UserRepository: get_user_data
-UserRepository -->> UserManagement: user_data
-UserManagement ->> UserManagement: validate login
-UserManagement ->> UI: return boolean + message
-UI ->> UI: show appropriate view or fail notification
+UI ->> UserManagement: login("heidi", "password123")
+activate UserManagement
+UserManagement ->> User: user = User("heidi", "password123")
+UserManagement ->> UserManagement: self._set_active_user(user)
+UserManagement ->> UserRepository: get_user("heidi")
+UserRepository -->> UserManagement: user_found
+UserManagement ->> User: password_hash_valid(hashed_password)
+activate User
+User -->> UserManagement: boolean
+deactivate User
+UserManagement ->> UserManagement: self._set_active_user(user_found)
+UserManagement ->> UI: return (True, empty string)
+deactivate UserManagement
+UI ->> UI: show appropriate view or notify of validation error
 ```
 
 ### Submit contact data
