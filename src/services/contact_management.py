@@ -224,9 +224,14 @@ class ContactManagement:
     def create_random_contacts(self, given_n=10):
         """A method for creating multiple dummy contacts.
 
+        A maximum of 100 contacts can be created at one time.
+
         Args:
             given_n (int, optional): Number of contacts to create. Defaults to 10.
         """
+        if given_n > 100:
+            return
+
         for _ in range(given_n):
             self.create_random_contact()
 
