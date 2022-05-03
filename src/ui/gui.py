@@ -150,7 +150,6 @@ class UI:
     def _handle_admin_view(self):
         """A method that can be referenced and then handles 
         the method call for building admin view"""
-        print(self._show_admin_view)
         self._show_admin_view()
 
     def _handle_create_dummy_data_view(self):

@@ -68,7 +68,6 @@ class CounselorView:
 
         Please note that the method has multiple method calls. 
         """
-        print(self._user_management.get_active_user())
         self._frame = Frame(master=self._root,
                             padx=50,
                             pady=50,
