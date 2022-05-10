@@ -7,10 +7,10 @@ class GuiMenu:
 
     def __init__(self, 
             root,
-            main_view,
-            counselor_view,
-            admin_view,
-            dummy_data_view,
+            # main_view,
+            # counselor_view,
+            # admin_view,
+            # dummy_data_view,
             user_management=default_user_management):
         """Constructor for initializing an object of the class.
 
@@ -23,26 +23,45 @@ class GuiMenu:
             admin_view (AdminView): a reference to the method that calls view AdminView
             dummy_data (CreateDummyData): a reference to the method that calls view CreateDummyData
             _frame: a variable for the object Frame
-            _entry_username_var: a variable for the username entry
-            _entry_password_var: a variable for the password entry
             user_management (UserManagement, optional): Service class object for user management.
             Defaults to default_user_management.
         """
 
         self._root = root
-        self._main_view = main_view
-        self._counselor_view = counselor_view
-        self._admin_view = admin_view
-        self._dummy_data_view = dummy_data_view
-        self._frame = None
+        # self._main_view = main_view
+        # self._counselor_view = counselor_view
+        # self._admin_view = admin_view
+        # self._dummy_data_view = dummy_data_view
 
         self._user_management = user_management
 
+    def init_default_menu(self,
+                            login,
+                            create_account):
+        """A method that creates an initial menu bar.
 
-    def init_menu(self):
+        Args:
+            login (method reference): calls for the initialization of login view
+            create_account (method reference): calls for the initalization of create account view
+        """
         menubar = Menu(self._root)
         filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Logout", command=self._main_view)
+        filemenu.add_command(label="Login", command=login)
+        filemenu.add_command(label="Create account",
+                             command=create_account)
+        filemenu.add_separator()
+        filemenu.add_command(label="Exit", command=self.exit)
+        menubar.add_cascade(label="File", menu=filemenu)
+        self._root.config(menu=menubar)
+
+    def init_logged_menu(self, 
+                            main_view,
+                            counselor_view,
+                            admin_view,
+                            dummy_data_view):
+        menubar = Menu(self._root)
+        filemenu = Menu(menubar, tearoff=0)
+        filemenu.add_command(label="Logout", command=main_view)
         filemenu.add_separator()
         filemenu.add_command(label="Exit", command=self.exit)
         menubar.add_cascade(label="File", menu=filemenu)
@@ -50,11 +69,11 @@ class GuiMenu:
         if self._user_management.get_active_user_role() == Role.ADMIN:
             adminmenu = Menu(menubar, tearoff=0)
             adminmenu.add_command(
-                label="Manage data submissions", command=self._admin_view)
+                label="Manage data submissions", command=admin_view)
             adminmenu.add_command(
-                label="Submit data", command=self._counselor_view)
+                label="Submit data", command=counselor_view)
             adminmenu.add_command(
-                label="Create dummy content", command=self._dummy_data_view)
+                label="Create dummy content", command=dummy_data_view)
             menubar.add_cascade(label="Admin", menu=adminmenu)
 
         helpmenu = Menu(menubar, tearoff=0)
@@ -63,7 +82,6 @@ class GuiMenu:
         helpmenu.add_command(label="About", command=self._show_about)
         menubar.add_cascade(label="Help", menu=helpmenu)
         return menubar
-        # self._root.config(menu=menubar)
 
     def exit(self):
         """Method that destroys the root component and exits the application.

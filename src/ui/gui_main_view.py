@@ -1,4 +1,5 @@
 from tkinter import ttk, constants, Frame, Menu
+from ui.gui_menu import GuiMenu
 
 
 class MainView:
@@ -33,19 +34,22 @@ class MainView:
 
     # Refactor. Move to another class
     def _create_menubar(self):
-        """A method that creates an initial menu bar.
-
-        Will be refactored and moved to another class. 
+        """A method that calls for the construction of default menu bar.
         """
-        menubar = Menu(self._root)
-        filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Login", command=self._login)
-        filemenu.add_command(label="Create account",
-                             command=self._create_account)
-        filemenu.add_separator()
-        filemenu.add_command(label="Exit", command=self.exit)
-        menubar.add_cascade(label="File", menu=filemenu)
+        create_menu = GuiMenu(self._root)
+        menubar = create_menu.init_default_menu(
+                                        self._login, 
+                                        self._create_account)
         self._root.config(menu=menubar)
+        # menubar = Menu(self._root)
+        # filemenu = Menu(menubar, tearoff=0)
+        # filemenu.add_command(label="Login", command=self._login)
+        # filemenu.add_command(label="Create account",
+        #                      command=self._create_account)
+        # filemenu.add_separator()
+        # filemenu.add_command(label="Exit", command=self.exit)
+        # menubar.add_cascade(label="File", menu=filemenu)
+        # self._root.config(menu=menubar)
 
     def exit(self):
         """Destroys the root component and exits the application
