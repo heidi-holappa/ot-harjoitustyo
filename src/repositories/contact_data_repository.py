@@ -22,6 +22,31 @@ class ContactDataRepository:
         self._connection = connection
         self._all_data = None
 
+        self.contact_dict = {
+            "channel": [None,
+                        "phone",
+                        "chat",
+                        "e-letter"],
+            "type": [None,
+                     "counseling",
+                     "non-counseling",
+                     "silent",
+                     "non-target group"],
+            "gender": [None,
+                       "girl",
+                       "boy",
+                       "something else",
+                       "unknown"],
+            "age": [None,
+                    "under 9",
+                    "9-11",
+                    "12-14",
+                    "15-17",
+                    "18-21",
+                    "22-25",
+                    "over 25"]
+        }
+
     def fetch_all_contacts(self):
         """A method to fetch all contacts stored in database
 
@@ -181,10 +206,10 @@ class ContactDataRepository:
                         VALUES (?,?,?,?,?,?,?,?)''',
                        [username,
                         contact.datetime_as_str,
-                        contact.channel,
-                        contact.type,
-                        contact.age,
-                        contact.gender,
+                        self.contact_dict["channel"][contact.channel.value],
+                        self.contact_dict["type"][contact.type.value],
+                        self.contact_dict["age"][contact.age.value],
+                        self.contact_dict["gender"][contact.gender.value],
                         contact.content,
                         contact.marked]
                        )

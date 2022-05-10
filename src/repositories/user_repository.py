@@ -1,4 +1,4 @@
-from entities.user import User
+from entities.user import User, Role
 from database_connection import get_database_connection
 
 
@@ -31,8 +31,7 @@ class UserRepository:
         if not db_fetch:
             return None
         fetched_user = User(db_fetch["username"], db_fetch["password"])
-        if db_fetch["role"] == "admin":
-            fetched_user.set_admin()
+        fetched_user.role = Role(db_fetch["role"])
         return fetched_user
 
     def fetch_all_users(self):
@@ -65,7 +64,7 @@ class UserRepository:
                     VALUES (?,?,?)''',
                        [new_user.username,
                         password,
-                        new_user.get_role()]
+                        new_user.role.value]
                        )
         self._connection.commit()
 
