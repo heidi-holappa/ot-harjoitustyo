@@ -1,5 +1,5 @@
 from repositories.user_repository import default_user_repository
-from entities.user import User
+from entities.user import User, Role
 
 
 class UserManagement:
@@ -39,7 +39,7 @@ class UserManagement:
             String: returns the value of the enum from class Role
         """
         if self._active_user:
-            return self._active_user.get_role()
+            return self._active_user.role
         return None
 
     # DELETE IF NOT USED
@@ -86,8 +86,8 @@ class UserManagement:
             user = user_found
             user.logged = True
             self._active_user = user
-            return (True, user.get_role())
-        return (False, None)
+            return True, user.role
+        return False, None
 
     def get_active_user(self):
         """Gets the attribute self._active_user

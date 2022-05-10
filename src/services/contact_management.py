@@ -117,16 +117,21 @@ class ContactManagement:
         """
         self._contact_repository.delete_marked()
 
-    def manage_new_contact_submission(self, c_channel, c_type, c_age, c_gender, c_content):
+    def manage_new_contact_submission(self,
+                                    c_channel: int,
+                                    c_type: int,
+                                    c_age: int,
+                                    c_gender: int,
+                                    c_content: str):
         """A method to manage submission of a new contact.
 
         Calls methods to create a date and time String and to validate given data.
 
         Args:
-            c_channel (str): selected channel
-            c_type (str): selected type
-            c_age (str): selected age
-            c_gender (str): selected gender
+            c_channel (int): selected channel
+            c_type (int): selected type
+            c_age (int): selected age
+            c_gender (int): selected gender
             c_content (str): written content
 
         Returns:
@@ -137,7 +142,7 @@ class ContactManagement:
         if c_type != 1:
             c_age = 0
             c_gender = 0
-            c_content = None
+            c_content = ""
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
         result = contact.is_valid()
