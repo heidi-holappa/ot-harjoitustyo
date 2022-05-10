@@ -1,5 +1,5 @@
 import unittest
-from entities.user import User
+from entities.user import User, Role
 from services.user_management import default_user_management
 from initialize_database import initialize_database
 
@@ -21,7 +21,7 @@ class TestUserManagement(unittest.TestCase):
     def test_set_admin(self):
         self.user_management.make_admin()
         role = self.user_management.get_active_user_role()
-        self.assertEqual("admin", role)
+        self.assertEqual(Role.ADMIN, role)
 
     def test_valid_password_false(self):
         password_1 = "password"
