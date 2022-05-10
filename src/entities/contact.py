@@ -1,40 +1,60 @@
 from enum import Enum
 
 
-class Channel(Enum):
-    """Looking into adding enums to Contact class. Work still in progress
+class ContactChannel(Enum):
+    """Enum constants for data values regarding selected channel
+    in the data submission view. 
 
-    Returns:
-        _type_: _description_
+    Args:
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
     """
+    NOVALUE = 0
+    PHONE = 1
+    CHAT = 2
+    E_LETTER = 3
 
-    PHONE = (1, "phone")
-    CHAT = (2, "chat")
-    E_LETTER = (3, "e-letter")
 
+class ContactType(Enum):
+    """Enum constants for data values regarding selected contact type
+    in the data submission view
 
-class Type(Enum):
-    COUNSELING = "counseling"
-    NON_COUNSELING = "non-counseling"
-    SILENT = "silent"
-    NON_TARGET = "non-target group"
+    Args:
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+    """
+    NOVALUE = 0
+    COUNSELING = 1
+    NON_COUNSELING = 2
+    SILENT = 3
+    NON_TARGET = 4
 
 
 class Gender(Enum):
-    GIRL = "girl"
-    BOY = "boy"
-    SOMETHING_ELSE = "something else"
-    UNKNOWN = "unknown"
+    """Enum constants for data values regarding selected gender in the data submisison view. 
+
+    Args:
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+    """
+    NOVALUE = 0
+    GIRL = 1
+    BOY = 2
+    SOMETHING_ELSE = 3
+    UNKNOWN = 4
 
 
-class Age(Enum):
-    UNDER_9 = "under 9"
-    FROM_9_TO_11 = "9-11"
-    FROM_12_TO_14 = "12-14"
-    FROM_15_TO_17 = "15-17"
-    FROM_18_TO_21 = "18-21"
-    FROM_22_TO_25 = "22-25"
-    OVER_25 = "over 25"
+class AgeGroup(Enum):
+    """Enum constans for data values regarding selected Age in th edata submission view.
+
+    Args:
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+    """
+    NOVALUE = 0
+    UNDER_9 = 1
+    FROM_9_TO_11 = 2
+    FROM_12_TO_14 = 3
+    FROM_15_TO_17 = 4
+    FROM_18_TO_21 = 5
+    FROM_22_TO_25 = 6
+    OVER_25 = 7
 
 
 class Contact:
@@ -49,52 +69,49 @@ class Contact:
         content: possible written content for the contact
     """
 
-    def __init__(self, datetime_as_str: str, channel, c_type, age, gender, content: str):
+    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: str):
         """Constructor for the class to create new contact objects.
 
         Args:
-            contact_dict (dict): a dictionary of datatypes
             datetime_as_str (str): current date and time
-            channel (_type_): selected channel
-            c_type (_type_): selected type
-            age (_type_): selected age
-            gender (_type_): selected gender
+            channel (Enum): selected channel
+            c_type (Enum): selected type
+            age (Enum): selected age
+            gender (Enum): selected gender
             content (str): content for the contact
             marked: "informs whether the contact is marked for deletion"
         """
-        self.contact_dict = {
-            "channel": [None,
-                        "phone",
-                        "chat",
-                        "e-letter"],
-            "type": [None,
-                     "counseling",
-                     "non-counseling",
-                     "silent",
-                     "non-target group"],
-            "gender": [None,
-                       "girl",
-                       "boy",
-                       "something else",
-                       "unknown"],
-            "age": [None,
-                    "under 9",
-                    "9-11",
-                    "12-14",
-                    "15-17",
-                    "18-21",
-                    "22-25",
-                    "over 25"]
-        }
 
         self.datetime_as_str = datetime_as_str
-        self.channel = self.contact_dict["channel"][channel]
-        self.type = self.contact_dict["type"][c_type]
-        self.age = self.contact_dict["age"][age]
-        self.gender = self.contact_dict["gender"][gender]
+        self.channel = ContactChannel(channel)
+        self.age = AgeGroup(age)
+        self.type = ContactType(c_type)
+        self.gender = Gender(gender)
         self.content = content
         self.marked = ""
 
+    
+
+    # @property
+    # def age_group(self):
+    #     if self.age == 0:
+    #         return 0
+    #     elif self.age < 9:
+    #         return AgeGroup.UNDER_9
+    #     elif self.age <= 11:
+    #         return AgeGroup.FROM_9_TO_11
+    #     elif self.age <= 14:
+    #         return AgeGroup.FROM_12_TO_14
+    #     elif self.age <= 17:
+    #         return AgeGroup.FROM_15_TO_17
+    #     elif self.age <= 21:
+    #         return AgeGroup.FROM_18_TO_21
+    #     elif self.age <= 25:
+    #         return AgeGroup.FROM_22_TO_25
+    #     else:
+    #         return AgeGroup.OVER_25
+        
+    
     def is_valid(self):
         """Checks the validity of given data.
 
@@ -104,10 +121,10 @@ class Contact:
             (False, String): if information is missing
             (True, String): if validation succeeds.
         """
-        if not self.channel or not self.type:
+        if not self.channel.value or not self.type.value:
             return (False, "Each contact must have a channel and a type.")
-        counseling_is_valid = bool(self.age and self.gender and self.content)
-        if self.type == self.contact_dict["type"][1] and not counseling_is_valid:
+        counseling_is_valid = bool(self.age.value and self.gender.value and self.content)
+        if self.type == ContactType.COUNSELING and not counseling_is_valid:
             return (False,
                     "Counseling contact must include age, gender and description on content.")
         return (True, "")

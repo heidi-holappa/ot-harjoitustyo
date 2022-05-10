@@ -30,7 +30,7 @@ class User:
         self.role = role
         self.logged = False
 
-    def get_role(self):
+    def get_role(self) -> str:
         """method to get the attribute role of the user object
 
         Returns:
