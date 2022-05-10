@@ -1,4 +1,5 @@
 from tkinter import ttk, constants, StringVar, Frame, Menu, messagebox
+from entities.user import Role
 import webbrowser
 from services.user_management import default_user_management
 
@@ -179,9 +180,9 @@ class LoginView:
         if self._entry_password_var and self._entry_username_var:
             password_given = self._entry_password_var.get()
             username_given = self._entry_username_var.get()
-            login_attempt = self._user_management.login(
+            login_successful, user_role  = self._user_management.login(
                 username_given, password_given)
-            if login_attempt[0]:
+            if login_successful:
                 menubar = Menu(self._root)
                 filemenu = Menu(menubar, tearoff=0)
                 filemenu.add_command(label="Logout", command=self._main_view)
@@ -189,7 +190,7 @@ class LoginView:
                 filemenu.add_command(label="Exit", command=self.exit)
                 menubar.add_cascade(label="File", menu=filemenu)
 
-                if self._user_management.get_active_user_role() == "admin":
+                if self._user_management.get_active_user_role() == Role.ADMIN:
                     adminmenu = Menu(menubar, tearoff=0)
                     adminmenu.add_command(
                         label="Manage data submissions", command=self._admin_view)
@@ -206,7 +207,7 @@ class LoginView:
                 menubar.add_cascade(label="Help", menu=helpmenu)
                 self._root.config(menu=menubar)
 
-                if login_attempt[1] == "counselor":
+                if user_role == Role.COUNSELOR:
                     self._counselor_view()
                 else:
                     self._admin_view()

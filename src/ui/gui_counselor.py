@@ -1,5 +1,6 @@
 from tkinter import ttk, constants, Frame, StringVar, IntVar, Text, Menu, messagebox
 import webbrowser
+from entities.user import Role
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
 
@@ -145,7 +146,7 @@ class CounselorView:
             style="Custom.TButton"
         )
 
-        if self._user_management.get_active_user_role() == "admin":
+        if self._user_management.get_active_user_role() == Role.ADMIN:
             button_admin_view = ttk.Button(
                 master=self.label_and_nav_frame,
                 text="Admin view",
