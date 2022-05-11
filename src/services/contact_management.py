@@ -118,11 +118,11 @@ class ContactManagement:
         self._contact_repository.delete_marked()
 
     def manage_new_contact_submission(self,
-                                    c_channel: int,
-                                    c_type: int,
-                                    c_age: int,
-                                    c_gender: int,
-                                    c_content: str):
+                                      c_channel: int,
+                                      c_type: int,
+                                      c_age: int,
+                                      c_gender: int,
+                                      c_content: str):
         """A method to manage submission of a new contact.
 
         Calls methods to create a date and time String and to validate given data.
@@ -181,8 +181,8 @@ class ContactManagement:
             content = self.create_dummy_content(contact)
         else:
             content = ""
-        self.manage_dummy_contact_submission(random_user,
-                                             c_channel, c_type, c_age, c_gender, content)
+        return self.manage_dummy_contact_submission(random_user,
+                                                    c_channel, c_type, c_age, c_gender, content)
 
     def manage_dummy_contact_submission(self,
                                         user: str,
@@ -212,10 +212,10 @@ class ContactManagement:
             c_content = "No content."
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
-        result = contact.is_valid()
-        if result[0]:
+        result, status_msg = contact.is_valid()
+        if result:
             self._submit_dummy_contact(user, contact)
-        return result
+        return result, status_msg
 
     def _submit_dummy_contact(self, user: str, contact: Contact):
         """A method for submitting new dummy contact
@@ -229,16 +229,17 @@ class ContactManagement:
     def create_random_contacts(self, given_n=10):
         """A method for creating multiple dummy contacts.
 
-        A maximum of 100 contacts can be created at one time.
+        Calls a method to create a dummy contact as many times as given as an argument.
 
         Args:
             given_n (int, optional): Number of contacts to create. Defaults to 10.
         """
-        if given_n > 100:
-            return
 
         for _ in range(given_n):
-            self.create_random_contact()
+            result, status_msg = self.create_random_contact()
+            if not result:
+                return False, status_msg
+        return True, ""
 
     def create_dummy_content(self, contact: Contact):
         """A method for creating dummy content from dummy quantitative data and lorem ipsum.
