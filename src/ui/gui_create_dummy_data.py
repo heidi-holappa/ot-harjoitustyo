@@ -68,13 +68,6 @@ class CreateDummyData:
             style="Custom.TEntry")
         user_entry.insert(constants.END, "0")
 
-        button_logout = ttk.Button(
-            master=self._frame,
-            text="Cancel",
-            command=self._admin_view,
-            style="Custom.TButton"
-        )
-
         button_create_dummy_data = ttk.Button(
             master=self._frame,
             text="Create data",
@@ -86,6 +79,13 @@ class CreateDummyData:
             master=self._frame,
             text="Delete all contacts",
             command=self._delete_all_data,
+            style="Custom.TButton"
+        )
+
+        button_logout = ttk.Button(
+            master=self._frame,
+            text="Cancel",
+            command=self._admin_view,
             style="Custom.TButton"
         )
 
@@ -135,17 +135,24 @@ class CreateDummyData:
             can type in the value, invalid data types are prepared for.
         """
         failed = False
+        status = ""
         if not input.isnumeric() or not input.isdigit():
             failed = True
+            status = "Value must be a positivive integer between 1 and 100. "
         n_of_contacts = 0
         try:
             n_of_contacts = int(input)
         except (TypeError, ValueError) as e:
             failed = True
+            status = "Value must be a positive integer between 1 and 100. "
+        if not failed:
+            failed = bool(n_of_contacts < 1 or 100 < n_of_contacts)
+            if failed:
+                status += "Value must be between 1 and 100."
         if failed:
             label_fail = ttk.Label(
                 master=self._frame,
-                text="Input is not a number, please input an integer value.",
+                text=status,
                 style="Error.TLabel"
             )
             label_fail.grid(row=1, column=0, columnspan=4)
