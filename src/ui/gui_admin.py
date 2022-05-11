@@ -110,12 +110,6 @@ class AdminView:
         Args:
             selected_frame (LabelFrame): LabelFrame widget in which the buttons are to be embedded.
         """
-        button_logout = ttk.Button(
-            master=selected_frame,
-            text="Logout",
-            command=self._main_view,
-            style="Custom.TButton"
-        )
 
         button_counselor = ttk.Button(
             master=selected_frame,
@@ -124,10 +118,17 @@ class AdminView:
             style="Custom.TButton"
         )
 
-        button_admin_stuff = ttk.Button(
+        button_dummy_data = ttk.Button(
             master=selected_frame,
             text="Create dummy data",
             command=self._create_dummy_data,
+            style="Custom.TButton"
+        )
+
+        button_logout = ttk.Button(
+            master=selected_frame,
+            text="Logout",
+            command=self._main_view,
             style="Custom.TButton"
         )
 
@@ -138,7 +139,7 @@ class AdminView:
             pady=5,
             sticky=constants.W
         )
-        button_admin_stuff.grid(
+        button_dummy_data.grid(
             row=0,
             column=1,
             padx=20,
