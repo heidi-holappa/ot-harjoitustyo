@@ -55,4 +55,7 @@
 | 6 | Tue 3.5.2022 | Write documentation | 2 |
 | 6 | Tue 3.5.2022 | Refactor code | 1 |
 | **6** | --- | **Total** | **16**  |
+| 7 | Mon 9.5.2022 | Create and integrate Enum constants (commit made on 10.5.2022) | 2 |
+| 7 | Tue 10.5.2022 | Refactor Menu to own class. | 2 |
+| 7 | Wed 11.5.2022 | Fix bugs found in extra peer-testing (validation issues, error messages) | 1 |
 | **All**| --- | **Total** | **87,5** |
