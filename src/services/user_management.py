@@ -20,54 +20,6 @@ class UserManagement:
         self._user_repository = user_repository
         self._active_user = None
 
-    def get_user(self, username: str):
-        """A method to query fetching of selected user
-
-        Args:
-            username (str): username to query for
-
-        Returns:
-            None: if no user is found
-            User: user object of information found with the username
-        """
-        return self._user_repository.fetch_selected_user(username)
-
-    def get_active_user_role(self):
-        """A method to retrieve the role of the logged in user
-
-        Returns:
-            String: returns the value of the enum from class Role
-        """
-        if self._active_user:
-            return self._active_user.role
-        return None
-
-    # DELETE IF NOT USED
-    def get_all_users(self):
-        """A method for querying all user data.
-
-        Might not be used anymore. Make sure and delete if not in use.
-
-        Returns:
-            dict: Returns a dictionary of all users
-        """
-        return self._user_repository.fetch_all_users()
-
-    def add_user(self, user: User):
-        """Calls a repository method to add a new user
-
-        Args:
-            user (User): User object to be added
-
-        Returns:
-            True: if all succeeds
-            False: if something fails
-        """
-        result = self._user_repository.add_user(user)
-        if result:
-            return True
-        return False
-
     def login(self, username, password):
         """A method for attempting to login with the information provided
 
@@ -89,6 +41,26 @@ class UserManagement:
             return True, user.role
         return False, None
 
+    def get_user(self, username: str):
+        """A method to query fetching of selected user
+
+        Args:
+            username (str): username to query for
+
+        Returns:
+            None: if no user is found
+            User: user object of information found with the username
+        """
+        return self._user_repository.fetch_selected_user(username)
+
+    def set_active_user(self, user: User):
+        """Sets a user object as the active user
+
+        Args:
+            user (User): a user object of current logged in user
+        """
+        self._active_user = user
+
     def get_active_user(self):
         """Gets the attribute self._active_user
 
@@ -98,13 +70,20 @@ class UserManagement:
         """
         return self._active_user
 
-    def set_active_user(self, user: User):
-        """Sets a user object as the active user
+    def get_active_user_role(self):
+        """A method to retrieve the role of the logged in user
 
-        Args:
-            user (User): a user object of current logged in user
+        Returns:
+            String: returns the value of the enum from class Role
         """
-        self._active_user = user
+        if self._active_user:
+            return self._active_user.role
+        return None
+
+    def logout(self):
+        """Clear active user.
+        """
+        self._active_user = None
 
     def handle_user_creation(self,
                              username: str,
@@ -138,6 +117,12 @@ class UserManagement:
             self._active_user.set_admin()
         return self.create_user()
 
+    def make_admin(self):
+        """Set current user role to Role.ADMIN
+        """
+        if self._active_user:
+            self._active_user.set_admin()
+
     def create_user(self):
         """A method for creating a new user.
 
@@ -156,16 +141,30 @@ class UserManagement:
         self._user_repository.add_user(self.get_active_user(), hashed_password)
         return (True, "")
 
-    def make_admin(self):
-        """Set current user role to Role.ADMIN
-        """
-        if self._active_user:
-            self._active_user.set_admin()
+    def add_user(self, user: User):
+        """Calls a repository method to add a new user
 
-    def logout(self):
-        """Clear active user.
-        """
-        self._active_user = None
+        Args:
+            user (User): User object to be added
 
+        Returns:
+            True: if all succeeds
+            False: if something fails
+        """
+        result = self._user_repository.add_user(user)
+        if result:
+            return True
+        return False
+
+    def get_all_users(self):
+        """A method for querying all user data.
+
+        This method is used to test that multiple accounts
+        can be created.
+
+        Returns:
+            dict: Returns a dictionary of all users
+        """
+        return self._user_repository.fetch_all_users()
 
 default_user_management = UserManagement()

@@ -167,7 +167,10 @@ class ContactManagement:
         return self._contact_repository.add_contact(username, contact)
 
     def create_random_contact(self):
-        """A method for creating dummy data
+        """A method for creating dummy contact data. Method uses randint to 
+        select username and contact selected variables. If contact type is
+        counseling, another method is called to create dummy content. The finished
+        contact is passed to another method that handles contact submission. 
         """
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
                       "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]
