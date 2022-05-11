@@ -122,9 +122,8 @@ class Contact:
             (True, String): if validation succeeds.
         """
         if not self.channel.value or not self.type.value:
-            return (False, "Each contact must have a channel and a type.")
+            return False, "Each contact must have a channel and a type."
         counseling_is_valid = bool(self.age.value and self.gender.value and self.content)
         if self.type == ContactType.COUNSELING and not counseling_is_valid:
-            return (False,
-                    "Counseling contact must include age, gender and description on content.")
-        return (True, "")
+            return False, "Counseling contact must include age, gender and description on content."
+        return True, ""

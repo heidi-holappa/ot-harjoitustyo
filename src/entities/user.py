@@ -55,8 +55,8 @@ class User:
         is_valid = bool(len(self.username) >= 4)
         if not is_valid:
             status += "Error: Username must have atleast four characters."
-            return (False, status)
-        return (True, status)
+            return False, status
+        return True, status
 
     def password_is_valid(self, password1: str, password2: str):
         """Validates given password. Used in account creation.
@@ -74,13 +74,13 @@ class User:
         pw_match = bool(password1 == password2)
         pw_long_enough = bool(len(password1) >= 6)
         if pw_match and pw_long_enough:
-            return (True, "")
+            return True, ""
         error = "Error: "
         if not pw_match:
             error += "Passwords do not match. "
         if not pw_long_enough:
             error += "Password must have 6 characters"
-        return (False, error)
+        return False, error
 
     def get_hashed_password(self):
         """Returns a generated hash for the password
