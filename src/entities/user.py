@@ -52,7 +52,7 @@ class User:
         """
 
         status = ""
-        is_valid = bool(len(self.username) > 4)
+        is_valid = bool(len(self.username) >= 4)
         if not is_valid:
             status += "Error: Username must have atleast four characters."
             return (False, status)
@@ -61,7 +61,7 @@ class User:
     def password_is_valid(self, password1: str, password2: str):
         """Validates given password. Used in account creation.
 
-        Checks passwords match and password length is atleast one character
+        Checks passwords match and password length is atleast six characters
 
         Args:
             password1 (str): given password
@@ -72,7 +72,7 @@ class User:
             (True, String): if validatoin succeeds.
         """
         pw_match = bool(password1 == password2)
-        pw_long_enough = bool(len(password1) > 0)
+        pw_long_enough = bool(len(password1) >= 6)
         if pw_match and pw_long_enough:
             return (True, "")
         error = "Error: "
