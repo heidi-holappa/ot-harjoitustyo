@@ -58,12 +58,12 @@ class TestContactManagement(unittest.TestCase):
 
     def test_validity_check_fails_when_counseling_contact_is_missing_content(self):
         result = self.contact_management.manage_new_contact_submission(
-            1, 1, 1, 1, None)
+            1, 1, 1, 1, "")
         self.assertEqual(result[0], False)
 
     def test_validity_check_fails_when_counseling_contact_is_missing_type(self):
         result = self.contact_management.manage_new_contact_submission(
-            0, 1, 1, 1, None)
+            0, 1, 1, 1, "")
         self.assertEqual(result[0], False)
 
     def test_validity_check_passes_when_counseling_has_age_gender_content(self):
