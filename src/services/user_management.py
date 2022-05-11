@@ -129,7 +129,8 @@ class UserManagement:
         valid_username, username_status_msg = new_user.username_is_valid()
         if not valid_username:
             return valid_username, username_status_msg
-        valid_password, pw_status_msg = new_user.password_is_valid(password1, password2)
+        valid_password, pw_status_msg = new_user.password_is_valid(
+            password1, password2)
         if not valid_password:
             return valid_password, pw_status_msg
         self.set_active_user(new_user)

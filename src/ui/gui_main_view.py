@@ -38,8 +38,8 @@ class MainView:
         """
         create_menu = GuiMenu(self._root)
         menubar = create_menu.init_default_menu(
-                                        self._login, 
-                                        self._create_account)
+            self._login,
+            self._create_account)
         self._root.config(menu=menubar)
         # menubar = Menu(self._root)
         # filemenu = Menu(menubar, tearoff=0)

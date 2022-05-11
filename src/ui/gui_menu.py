@@ -3,15 +3,16 @@ import webbrowser
 from entities.user import Role
 from services.user_management import default_user_management
 
+
 class GuiMenu:
 
-    def __init__(self, 
-            root,
-            # main_view,
-            # counselor_view,
-            # admin_view,
-            # dummy_data_view,
-            user_management=default_user_management):
+    def __init__(self,
+                 root,
+                 # main_view,
+                 # counselor_view,
+                 # admin_view,
+                 # dummy_data_view,
+                 user_management=default_user_management):
         """Constructor for initializing an object of the class.
 
         Args:
@@ -36,8 +37,8 @@ class GuiMenu:
         self._user_management = user_management
 
     def init_default_menu(self,
-                            login,
-                            create_account):
+                          login,
+                          create_account):
         """A method that creates an initial menu bar.
 
         Args:
@@ -54,11 +55,11 @@ class GuiMenu:
         menubar.add_cascade(label="File", menu=filemenu)
         self._root.config(menu=menubar)
 
-    def init_logged_menu(self, 
-                            main_view,
-                            counselor_view,
-                            admin_view,
-                            dummy_data_view):
+    def init_logged_menu(self,
+                         main_view,
+                         counselor_view,
+                         admin_view,
+                         dummy_data_view):
         menubar = Menu(self._root)
         filemenu = Menu(menubar, tearoff=0)
         filemenu.add_command(label="Logout", command=main_view)

@@ -181,15 +181,15 @@ class LoginView:
         if self._entry_password_var and self._entry_username_var:
             password_given = self._entry_password_var.get()
             username_given = self._entry_username_var.get()
-            login_successful, user_role  = self._user_management.login(
+            login_successful, user_role = self._user_management.login(
                 username_given, password_given)
             if login_successful:
                 menu_object = GuiMenu(self._root)
                 menubar = menu_object.init_logged_menu(
-                                                self._main_view,
-                                                self._counselor_view,
-                                                self._admin_view,
-                                                self._dummy_data_view)
+                    self._main_view,
+                    self._counselor_view,
+                    self._admin_view,
+                    self._dummy_data_view)
 
                 # menubar = Menu(self._root)
                 # filemenu = Menu(menubar, tearoff=0)

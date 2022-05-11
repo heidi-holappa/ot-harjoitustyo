@@ -158,7 +158,17 @@ class CreateDummyData:
             label_fail.grid(row=1, column=0, columnspan=4)
             label_fail.after(3000, lambda: label_fail.destroy())
             return
-        self._contact_management.create_random_contacts(n_of_contacts)
+        result, status_msg = self._contact_management.create_random_contacts(
+            n_of_contacts)
+        if not result:
+            label_fail = ttk.Label(
+                master=self._frame,
+                text=status_msg,
+                style="Error.TLabel"
+            )
+            label_fail.grid(row=1, column=0, columnspan=4)
+            label_fail.after(3000, lambda: label_fail.destroy())
+            return
         self._admin_view()
 
     def _delete_all_data(self):
