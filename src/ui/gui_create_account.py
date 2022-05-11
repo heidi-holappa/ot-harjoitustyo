@@ -182,17 +182,17 @@ class CreateAccountView:
             password_given = self._entry_password_var.get()
             password_2_given = self._entry_password_2_var.get()
             is_admin = self._entry_role_var.get()
-            result = self._user_management.handle_user_creation(
+            result, status_msg = self._user_management.handle_user_creation(
                 username_given,
                 password_given,
                 password_2_given,
                 is_admin)
-            if result[0]:
+            if result:
                 self._main_view()
             else:
                 label_login_error = ttk.Label(
                     master=self._frame,
-                    text=result[1],
+                    text=status_msg,
                     foreground="red",
                     style="Custom.TLabel")
                 label_login_error.grid(row=1, column=0, columnspan=4)

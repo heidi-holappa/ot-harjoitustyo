@@ -153,12 +153,12 @@ class CounselorView:
                 command=self._admin_view,
                 style="Custom.TButton"
             )
-            button_admin_view.grid(row=r, column=c+2,
+            button_admin_view.grid(row=r, column=c+1,
                                    padx=10, pady=5,
                                    sticky=constants.E)
 
         label.grid(row=r, column=c, pady=5, sticky=constants.W)
-        button_logout.grid(row=r, column=c+1,
+        button_logout.grid(row=r, column=c+2,
                            padx=10, pady=5,
                            sticky=constants.E)
 
@@ -430,9 +430,9 @@ class CounselorView:
         c_type = self._type_var.get()
         c_age = self._age_var.get()
         c_gender = self._gender_var.get()
-        submission_status = self._contact_management.manage_new_contact_submission(
+        submission_is_valid, status_msg = self._contact_management.manage_new_contact_submission(
             c_channel, c_type, c_age, c_gender, input)
-        if submission_status[0]:
+        if submission_is_valid:
             messagebox.showinfo(
                 title="Success!",
                 message="Contact stored successfully.",
@@ -444,7 +444,7 @@ class CounselorView:
         else:
             messagebox.showinfo(
                 title="Error!",
-                message=submission_status[1],
+                message=status_msg,
                 icon=messagebox.ERROR)
 
     def _change_state(self):
