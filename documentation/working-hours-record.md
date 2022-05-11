@@ -53,7 +53,7 @@
 | 6 | Mon 2.5.2022 | Refactor code based on labtool feedback | 2 |
 | 6 | Mon 2.5.2022 | Write DocString | 3 |
 | 6 | Tue 3.5.2022 | Write documentation | 2 |
-| 6 | Tue 3.5.2022 | Refactor code | 1 |
+| 6 | Tue 3.5.2022 | Refactor code, change return types from tuples to two arguments.  | 2 |
 | **6** | --- | **Total** | **16**  |
 | 7 | Mon 9.5.2022 | Create and integrate Enum constants (commit made on 10.5.2022) | 2 |
 | 7 | Tue 10.5.2022 | Refactor Menu to own class. | 2 |
