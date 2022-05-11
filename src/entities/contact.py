@@ -3,10 +3,10 @@ from enum import Enum
 
 class ContactChannel(Enum):
     """Enum constants for data values regarding selected channel
-    in the data submission view. 
+    in the data submission view.
 
     Args:
-        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons.
     """
     NOVALUE = 0
     PHONE = 1
@@ -19,7 +19,7 @@ class ContactType(Enum):
     in the data submission view
 
     Args:
-        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons.
     """
     NOVALUE = 0
     COUNSELING = 1
@@ -29,10 +29,10 @@ class ContactType(Enum):
 
 
 class Gender(Enum):
-    """Enum constants for data values regarding selected gender in the data submisison view. 
+    """Enum constants for data values regarding selected gender in the data submisison view.
 
     Args:
-        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons.
     """
     NOVALUE = 0
     GIRL = 1
@@ -45,7 +45,7 @@ class AgeGroup(Enum):
     """Enum constans for data values regarding selected Age in th edata submission view.
 
     Args:
-        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons. 
+        Enum (int): integer values that match the IntVar attributes in GUI-radiobuttons.
     """
     NOVALUE = 0
     UNDER_9 = 1
@@ -69,7 +69,13 @@ class Contact:
         content: possible written content for the contact
     """
 
-    def __init__(self, datetime_as_str: str, channel: int, c_type: int, age: int, gender: int, content: str):
+    def __init__(self,
+                datetime_as_str: str,
+                channel: int,
+                c_type: int,
+                age: int,
+                gender: int,
+                content: str):
         """Constructor for the class to create new contact objects.
 
         Args:
@@ -90,8 +96,6 @@ class Contact:
         self.content = content
         self.marked = ""
 
-    
-
     # @property
     # def age_group(self):
     #     if self.age == 0:
@@ -110,8 +114,7 @@ class Contact:
     #         return AgeGroup.FROM_22_TO_25
     #     else:
     #         return AgeGroup.OVER_25
-        
-    
+
     def is_valid(self):
         """Checks the validity of given data.
 
@@ -123,7 +126,8 @@ class Contact:
         """
         if not self.channel.value or not self.type.value:
             return False, "Each contact must have a channel and a type."
-        counseling_is_valid = bool(self.age.value and self.gender.value and self.content)
+        counseling_is_valid = bool(
+            self.age.value and self.gender.value and self.content)
         if self.type == ContactType.COUNSELING and not counseling_is_valid:
             return False, "Counseling contact must include age, gender and description on content."
         return True, ""
