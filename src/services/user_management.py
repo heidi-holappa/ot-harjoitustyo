@@ -126,12 +126,12 @@ class UserManagement:
             method call: calls method self.create_user() which return a tuple
         """
         new_user = User(username, password1)
-        valid_username = new_user.username_is_valid()
-        if not valid_username[0]:
-            return valid_username
-        valid_password = new_user.password_is_valid(password1, password2)
-        if not valid_password[0]:
-            return valid_password
+        valid_username, username_status_msg = new_user.username_is_valid()
+        if not valid_username:
+            return valid_username, username_status_msg
+        valid_password, pw_status_msg = new_user.password_is_valid(password1, password2)
+        if not valid_password:
+            return valid_password, pw_status_msg
         self.set_active_user(new_user)
         if is_admin and self._active_user:
             self._active_user.set_admin()

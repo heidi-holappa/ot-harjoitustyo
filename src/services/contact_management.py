@@ -145,10 +145,10 @@ class ContactManagement:
             c_content = ""
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
-        result = contact.is_valid()
-        if result[0]:
+        result, status_msg = contact.is_valid()
+        if result:
             self.submit_contact(contact)
-        return result
+        return result, status_msg
 
     def submit_contact(self, contact: Contact):
         """A method for submitting a contact
