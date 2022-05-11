@@ -72,7 +72,7 @@ class setTheme:
         self.app_style.configure('Error.TLabel',
                                  background="grey95",
                                  foreground="red",
-                                 font='Calibri 10 bold',
+                                 font='Calibri 12 bold',
                                  wraplength=400)
 
         self.app_style.configure('Header1.TLabel',
