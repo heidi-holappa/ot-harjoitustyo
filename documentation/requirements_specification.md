@@ -76,14 +76,14 @@ In the future following features could be added (preliminary time-estimates incl
   - Admin can delete accounts
   - Admin can reset user passwords
   - Admin can create new supervisor accounts
-- Time estimate: 1-2 work days (8-16)
+- Time-estimate: 1-2 work days (8-16)
 - Note: could be done together with the next item (view and edit account details). Same estimate would apply to these both together. 
 
 **View and edit account details (all users)**
 - Details:
   - All users can view their account information
   - All users can change their password
-- Time estimate: 1-2 work days (8-16 hours)
+- Time-estimate: 1-2 work days (8-16 hours)
 - Note: could be done together with the previous item (account management). Same estimate would apply to these both together. 
 
 **Counselors can manage their own data submissions**
