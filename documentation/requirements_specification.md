@@ -12,51 +12,51 @@ The application can be used in two different roles: as a counselor and as a supe
 
 ## User Interface (UI) design
 The application has the following views:
-- **Done:** A main view that is shown when user logs in. 
-- **Done:** A login view
-- **Done** A view for creating a new account
-- **Done:** A counselor view for submitting data
-- **Done:** A supervisor view for reviewing and managing submitted data
-- **Done:** A supervisor view for creating dummy data. 
+- A main view that is shown when user logs in. 
+- A login view
+- A view for creating a new account
+- A counselor view for submitting data
+- A supervisor view for reviewing and managing submitted data
+- A supervisor view for creating dummy data. 
 
 Each view can be seen in the [how to -guide of the application](how-to-guide.md)
 
 ## Basic functionalities
 
 **Main view**
-- **Done:** User can either log in or create a new account
-- **Done:** User can exit the application from menu
+- User can either log in or create a new account
+- User can exit the application from menu
 
 **Create account view**
-- **Done:** User can create an account with the role 'counselor' or with the role 'admin'. 
-- **Done:** Account creation has validation. Username must have four charcters. Passwords have to match and have atleast six characters. 
+- User can create an account with the role 'counselor' or with the role 'admin'. 
+- Account creation has validation. Username must have four charcters. Passwords have to match and have atleast six characters. 
 
 **Login view**
-- **Done:** User can login into the system with a username and a password.
-- **Done:** Login is authenticated. If login fails, user is notified
+- User can login into the system with a username and a password.
+- Login is authenticated. If login fails, user is notified
 
 **After logging in (role counselor)**
-- **Done:** Role counselor can submit new data entries
-- **Done:** Form contains validation (for counseling contacts all fields are mandatory)
-- **Done:** User can logout
-- **Done:** User can view how to - documentation via menu. 
-- **Done:** User can exit the app via menu
+- Role counselor can submit new data entries
+- Form contains validation (for counseling contacts all fields are mandatory)
+- User can logout
+- User can view how to - documentation via menu. 
+- User can exit the app via menu
 
 **After logging in (role admin)**
-- **Done:** Role admin can access all available views. 
-- **Done:** In all the following views role admin can logout or exit the app via menu.
-- **Done:** In all the following views role admin can view how to - documentation via menu. 
+- Role admin can access all available views. 
+- In all the following views role admin can logout or exit the app via menu.
+- In all the following views role admin can view how to - documentation via menu. 
 
 **Contact management view**
-- **Done:** Role admin can review all data submissions.
-- **Done:** User can mark processed submissions as done.
-- **Done:** User can permanently delete all submissions marked as done.
+- Role admin can review all data submissions.
+- User can mark processed submissions as done.
+- User can permanently delete all submissions marked as done.
 
 **Contact submission view**
-- **Done:** User with role admin can submit contacts
-- **Done:** The view is the same as the view role counselor uses to submit data. 
-- **Done:** Users with role admin have additional features in data submission view (for navigation)
-- **Done:** User can create dummy data for easier testing of the application
+- User with role admin can submit contacts
+- The view is the same as the view role counselor uses to submit data. 
+- Users with role admin have additional features in data submission view (for navigation)
+- User can create dummy data for easier testing of the application
 
 **Dummy data creation view**
 - **Done** User with role admin can create from 1 to 100 dummy contact to populate the contact management treeview. 
