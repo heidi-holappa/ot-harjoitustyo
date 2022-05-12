@@ -71,32 +71,28 @@ Each view can be seen in the [how to -guide of the application](how-to-guide.md)
 In the future following features could be added (preliminary time-estimates included):
 
 **Account management (role admin)**
-- Admin can view all accounts
-- Admin can delete accounts
-- Admin can reset user passwords
-- Admin can create new supervisor accounts
-
-Time estimate: 1-2 work days (8-16)
-
-Note: could be done together with the next item (view and edit account details). Same estimate would apply to these both together. 
+- Details:
+  - Admin can view all accounts
+  - Admin can delete accounts
+  - Admin can reset user passwords
+  - Admin can create new supervisor accounts
+- Time estimate: 1-2 work days (8-16)
+- Note: could be done together with the next item (view and edit account details). Same estimate would apply to these both together. 
 
 **View and edit account details (all users)**
-- All users can view their account information
-- All users can change their password
-
-Time estimate: 1-2 work days (8-16 hours)
-
-Note: could be done together with the previous item (account management). Same estimate would apply to these both together. 
+- Details:
+  - All users can view their account information
+  - All users can change their password
+- Time estimate: 1-2 work days (8-16 hours)
+- Note: could be done together with the previous item (account management). Same estimate would apply to these both together. 
 
 **Counselors can manage their own data submissions**
-Since service disruptions in cloud based services are often short in duration, it might be beneficial if the counselor could also process submissions they themselves have made during their own shift, when possible. 
-- Counselors can view their data submissions
-- Counselors can mark data submissions as processed
-- Counselors can delete submissions marked as processed
-
-Time-estimate: 4-6 hours
+- Details: Since service disruptions in cloud based services are often short in duration, it might be beneficial if the counselor could also process submissions they themselves have made during their own shift, when possible. 
+  - Counselors can view their data submissions
+  - Counselors can mark data submissions as processed
+  - Counselors can delete submissions marked as processed
+- Time-estimate: 4-6 hours
 
 **Dark mode**
-Creating a custom theme made it possible to offer users alternate themes in the future. With further development new themes could be added. An initial version of dark mode already exists in the guiTheme -class, but the style needs futher work and the code also needs some re-factoring. 
-
-Time-estimate: 4-6 hours. 
+- Details: Creating a custom theme made it possible to offer users alternate themes in the future. With further development new themes could be added. An initial version of dark mode already exists in the guiTheme -class, but the style needs futher work and the code also needs some re-factoring. 
+- Time-estimate: 4-6 hours. 
