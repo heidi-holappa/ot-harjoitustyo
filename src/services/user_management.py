@@ -166,4 +166,5 @@ class UserManagement:
         """
         return self._user_repository.fetch_all_users()
 
+
 default_user_management = UserManagement()

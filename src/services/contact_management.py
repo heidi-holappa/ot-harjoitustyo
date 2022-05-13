@@ -68,9 +68,9 @@ class ContactManagement:
         return self._contact_repository.fetch_contacts_by_user(user)
 
     def delete_contact(self, c_id):
-        """A method to query a contact deletion. 
+        """A method to query a contact deletion.
 
-        Note: not used by the application, but useful for automated tests. 
+        Note: not used by the application, but useful for automated tests.
 
         Args:
             c_id (_type_): An id to identify the contact to be deleted
@@ -160,10 +160,10 @@ class ContactManagement:
         return self._contact_repository.add_contact(username, contact)
 
     def create_random_contact(self):
-        """A method for creating dummy contact data. Method uses randint to 
+        """A method for creating dummy contact data. Method uses randint to
         select username and contact selected variables. If contact type is
         counseling, another method is called to create dummy content. The finished
-        contact is passed to another method that handles contact submission. 
+        contact is passed to another method that handles contact submission.
         """
         rand_users = ["carol", "cynthia", "max", "alex", "murphy", "peter",
                       "jill", "jane", "rhonda", "whoopie", "keanu", "johnny", "fiona"]

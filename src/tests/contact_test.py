@@ -28,7 +28,8 @@ class TestContactManagement(unittest.TestCase):
         for i in range(n):
             self.contact_management.manage_new_contact_submission(
                 1, 1, 1, 1, "lorem ipsum")
-        contact_count = len(self.contact_management.fetch_all_contacts_as_tuples())
+        contact_count = len(
+            self.contact_management.fetch_all_contacts_as_tuples())
         self.assertEqual(n, contact_count)
 
     def test_fetch_contacts_by_user(self):

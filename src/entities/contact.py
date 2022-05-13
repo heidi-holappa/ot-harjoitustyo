@@ -70,12 +70,12 @@ class Contact:
     """
 
     def __init__(self,
-                datetime_as_str: str,
-                channel: int,
-                c_type: int,
-                age: int,
-                gender: int,
-                content: str):
+                 datetime_as_str: str,
+                 channel: int,
+                 c_type: int,
+                 age: int,
+                 gender: int,
+                 content: str):
         """Constructor for the class to create new contact objects.
 
         Args:
