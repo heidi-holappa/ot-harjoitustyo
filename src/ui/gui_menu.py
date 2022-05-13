@@ -8,32 +8,18 @@ class GuiMenu:
 
     def __init__(self,
                  root,
-                 # main_view,
-                 # counselor_view,
-                 # admin_view,
-                 # dummy_data_view,
                  user_management=default_user_management):
         """Constructor for initializing an object of the class.
 
         Args:
             root (Tk): root component for constructing viewsself._entry_username_var = None
         self._entry_password_var = None
-
-            main_view (MainView): a reference to the methong that calls view MainView
-            counselor_view (CounselorView): a reference to the method that calls view CounselorView
-            admin_view (AdminView): a reference to the method that calls view AdminView
-            dummy_data (CreateDummyData): a reference to the method that calls view CreateDummyData
             _frame: a variable for the object Frame
             user_management (UserManagement, optional): Service class object for user management.
             Defaults to default_user_management.
         """
 
         self._root = root
-        # self._main_view = main_view
-        # self._counselor_view = counselor_view
-        # self._admin_view = admin_view
-        # self._dummy_data_view = dummy_data_view
-
         self._user_management = user_management
 
     def init_default_menu(self,
@@ -60,6 +46,14 @@ class GuiMenu:
                          counselor_view,
                          admin_view,
                          dummy_data_view):
+        """A method that constructs a new Menu after user logs in.
+        
+        Agrs:
+            main_view (MainView): a reference to the methong that calls view MainView
+            counselor_view (CounselorView): a reference to the method that calls view CounselorView
+            admin_view (AdminView): a reference to the method that calls view AdminView
+            dummy_data (CreateDummyData): a reference to the method that calls view CreateDummyData
+        """
         menubar = Menu(self._root)
         filemenu = Menu(menubar, tearoff=0)
         filemenu.add_command(label="Logout", command=main_view)
