@@ -68,5 +68,4 @@ class UserRepository:
                        )
         self._connection.commit()
 
-
 default_user_repository = UserRepository(get_database_connection())
