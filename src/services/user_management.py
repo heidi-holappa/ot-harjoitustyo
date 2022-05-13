@@ -1,5 +1,5 @@
 from repositories.user_repository import default_user_repository
-from entities.user import User, Role
+from entities.user import User
 
 
 class UserManagement:
