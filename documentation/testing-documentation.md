@@ -33,4 +33,5 @@ ALl functionalities listed in the [requirements specification](requirements-spec
 * The error message is not user fiendly when the project is not initialized with the command 'poetry run invoke build.'
 * Exception handling in the application logic could be improved by using tailored exceptions
 * In the contact preview text-widget text layout has spacing issues. 
+* Contact preview window does not have a scrollbar. Content can be scrolled with a mouse wheel or by selecting content.
 
