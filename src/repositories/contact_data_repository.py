@@ -1,5 +1,6 @@
 from database_connection import get_database_connection
 from entities.contact import Contact
+from entities.contact import ContactChannel, ContactType, Gender, AgeGroup
 from entities.user import User
 
 
@@ -23,29 +24,27 @@ class ContactDataRepository:
         self._connection = connection
         self._all_data = None
 
-        self._contact_dict = {
-            "channel": [None,
-                        "phone",
-                        "chat",
-                        "e-letter"],
-            "type": [None,
-                     "counseling",
-                     "non-counseling",
-                     "silent",
-                     "non-target group"],
-            "gender": [None,
-                       "girl",
-                       "boy",
-                       "something else",
-                       "unknown"],
-            "age": [None,
-                    "under 9",
-                    "9-11",
-                    "12-14",
-                    "15-17",
-                    "18-21",
-                    "22-25",
-                    "over 25"]
+        self.contact_dict = {
+            ContactChannel.PHONE: "phone",
+            ContactChannel.CHAT: "chat",
+            ContactChannel.E_LETTER: "e-letter",
+            ContactType.COUNSELING: "counseling",
+            ContactType.NON_COUNSELING: "non-counseling",
+            ContactType.SILENT: "silent",
+            ContactType.NON_TARGET: "non-target group",
+            Gender.NOVALUE: None,
+            Gender.GIRL: "girl",
+            Gender.BOY: "boy",
+            Gender.SOMETHING_ELSE: "something else",
+            Gender.UNKNOWN: "unknown",
+            AgeGroup.NOVALUE: None,
+            AgeGroup.UNDER_9: "under 9",
+            AgeGroup.FROM_9_TO_11: "9-11",
+            AgeGroup.FROM_12_TO_14: "12-14",
+            AgeGroup.FROM_15_TO_17: "15-17",
+            AgeGroup.FROM_18_TO_21: "18-21",
+            AgeGroup.FROM_22_TO_25: "22-25",
+            AgeGroup.OVER_25: "over 25"
         }
 
     def fetch_all_contacts_as_tuples(self):
@@ -155,10 +154,14 @@ class ContactDataRepository:
                         VALUES (?,?,?,?,?,?,?,?)''',
                        [username,
                         contact.datetime_as_str,
-                        self._contact_dict["channel"][contact.channel.value],
-                        self._contact_dict["type"][contact.type.value],
-                        self._contact_dict["age"][contact.age.value],
-                        self._contact_dict["gender"][contact.gender.value],
+                        # self.contact_dict["channel"][contact.channel.value],
+                        # self.contact_dict["type"][contact.type.value],
+                        # self.contact_dict["age"][contact.age.value],
+                        # self.contact_dict["gender"][contact.gender.value],
+                        self.contact_dict[contact.channel],
+                        self.contact_dict[contact.type],
+                        self.contact_dict[contact.age],
+                        self.contact_dict[contact.gender],
                         contact.content,
                         contact.marked]
                        )
