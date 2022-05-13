@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Frame, StringVar, IntVar, Radiobutton, Text
+from tkinter import ttk, constants, Frame, messagebox
 from services.contact_management import ContactManagement
 
 
@@ -62,7 +62,6 @@ class CreateDummyData:
             style="Custom.TLabel"
         )
 
-        # THIS DOES NOT WORK. FIX IT.
         user_entry = ttk.Entry(
             master=self._frame,
             style="Custom.TEntry")
@@ -174,5 +173,11 @@ class CreateDummyData:
     def _delete_all_data(self):
         """A method that initiates deletion of all contacts from the database.
         """
+        check_ok = messagebox.askokcancel(
+            title="Confirm deletion",
+            message="Are you sure? All contact data will be deleted.",
+            icon=messagebox.WARNING)
+        if not check_ok:
+            return
         self._contact_management.delete_all_contacts()
         self._admin_view()
