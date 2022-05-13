@@ -27,15 +27,6 @@ class ContactManagement:
         self._contact_repository = contact_repository
         self._user_management = user_management
 
-    # DELETE THIS WHEN NOT NEEDED ANY MORE
-    def fetch_all_contacts(self):
-        """A method to be deleted when made sure it is not needed.
-
-        Returns:
-            dict: returns a dictionary with all stored contacts
-        """
-        return self._contact_repository.fetch_all_contacts()
-
     def fetch_all_contacts_as_tuples(self):
         """Returns contact data as tuples for the treeview widget
 
@@ -77,7 +68,9 @@ class ContactManagement:
         return self._contact_repository.fetch_contacts_by_user(user)
 
     def delete_contact(self, c_id):
-        """A method to query a contact deletion
+        """A method to query a contact deletion. 
+
+        Note: not used by the application, but useful for automated tests. 
 
         Args:
             c_id (_type_): An id to identify the contact to be deleted
@@ -135,7 +128,7 @@ class ContactManagement:
             c_content (str): written content
 
         Returns:
-            (boolean, String): returns a boolean indicating whether submission succeeded
+            boolean, String: returns a boolean indicating whether submission succeeded
             and a string of possible status information
         """
         datetime_as_str = self._get_current_time_as_str()
@@ -147,7 +140,7 @@ class ContactManagement:
                           c_type, c_age, c_gender, c_content)
         result, status_msg = contact.is_valid()
         if result:
-            self.submit_contact(contact)
+            return self.submit_contact(contact)
         return result, status_msg
 
     def submit_contact(self, contact: Contact):
@@ -157,12 +150,12 @@ class ContactManagement:
             contact (Contact): New contact to be submitted
 
         Returns:
-            (True, String): If succeeds, returns True.
-            (False, String): If fails, returns False and a string of status information.
+            False, String: If fails, returns False and a string of status information.
+            method call: If succeeds, call a method to add contact to databse.
         """
         fetch_user = self._user_management.get_active_user()
         if not fetch_user:
-            return (False, "Error. No user logged in.")
+            return False, "Error. No user logged in."
         username = fetch_user.username
         return self._contact_repository.add_contact(username, contact)
 

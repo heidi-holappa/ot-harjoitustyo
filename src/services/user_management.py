@@ -28,15 +28,14 @@ class UserManagement:
             password (str): password submitted
 
         Returns:
-            (False, None): If validation fails, return False and no role
-            (True, String): if succeeds, return True and the role for the user
+            False, None: If validation fails, return False and no role
+            True, String: if succeeds, return True and the role for the user
         """
         user = User(username, password)
         self.set_active_user(user)
         user_found = self.get_user(user.username)
         if user_found and user.password_hash_valid(user_found.password):
             user = user_found
-            user.logged = True
             self._active_user = user
             return True, user.role
         return False, None
@@ -101,7 +100,7 @@ class UserManagement:
             is_admin (int): boolean to indicate whether an admin account is to be created
 
         Returns:
-            (False, String): If validation fails, returns False and a status as a String.
+            False, String: If validation fails, returns False and a status as a String.
             method call: calls method self.create_user() which return a tuple
         """
         new_user = User(username, password1)
@@ -129,8 +128,8 @@ class UserManagement:
         Handles repository queries, checks that username does not exist.
 
         Returns:
-            (True, String): If success, return True
-            (False, String): If fails, return False and a status notification as a String.
+            True, String: If success, return True
+            False, String: If fails, return False and a status notification as a String.
         """
         if not self._active_user:
             return (False, "No active user created.")
