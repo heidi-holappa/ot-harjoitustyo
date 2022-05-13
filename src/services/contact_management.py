@@ -140,7 +140,7 @@ class ContactManagement:
                           c_type, c_age, c_gender, c_content)
         result, status_msg = contact.is_valid()
         if result:
-            return self.submit_contact(contact)
+            self.submit_contact(contact)
         return result, status_msg
 
     def submit_contact(self, contact: Contact):
@@ -205,7 +205,7 @@ class ContactManagement:
         if c_type != 1:
             c_age = 0
             c_gender = 0
-            c_content = "No content."
+            c_content = "No content (only counseling contacts have age, gender and a description)."
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
         result, status_msg = contact.is_valid()
@@ -248,8 +248,8 @@ class ContactManagement:
         Returns:
             String: returns created content.
         """
-        c_channel = contact.channel
-        age = contact.age
+        c_channel = default_contact_repository.contact_dict[contact.channel]
+        age = default_contact_repository.contact_dict[contact.age]
         randtopic = [
             "mental health",
             "phsyical health",
@@ -261,13 +261,12 @@ class ContactManagement:
             "peer relationships",
             "school",
         ]
-        intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service."
+        intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service. "
         topic_id = randint(0, len(randtopic)-1)
-        topics = f'''They wanted to talk about {randtopic[topic_id]}.
-                        A summary of the discussion: \n\n'''
+        topics = f'''They wanted to talk about {randtopic[topic_id]}. A summary of the discussion: \n\n'''
         dummytext = lorem.paragraph()
         content = intro + topics + dummytext
         if topic_id < 5:
-            content += f'''\n\nI referred the child to appropriate
-                        services that provide more help with {randtopic[topic_id]}'''
+            content += f"\n\nI referred the child to appropriate services" 
+            content += f" that provide more help with {randtopic[topic_id]}"
         return content
