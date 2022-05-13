@@ -9,6 +9,7 @@ class ContactDataRepository:
     Attributes:
         connection: database connection
         _all_data (): a variable for handling fetched data
+        _contact_dict = values for data types used in data submission form
     """
 
     def __init__(self, connection):
@@ -22,7 +23,7 @@ class ContactDataRepository:
         self._connection = connection
         self._all_data = None
 
-        self.contact_dict = {
+        self._contact_dict = {
             "channel": [None,
                         "phone",
                         "chat",
@@ -46,29 +47,6 @@ class ContactDataRepository:
                     "22-25",
                     "over 25"]
         }
-
-    def fetch_all_contacts(self):
-        """A method to fetch all contacts stored in database
-
-        Returns:
-            Dictionary: returns a dictionary. Rowid's are key's, Strings of data are values.
-        """
-        self._all_data = {}
-        cursor = self._connection.cursor()
-
-        cursor.execute('''SELECT ROWID, username, datetime, channel,
-                type, gender, age, content FROM CONTACTS''')
-
-        rows = cursor.fetchall()
-        for row in rows:
-            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + \
-                str(row["datetime"]) + ";" + \
-                str(row["channel"]) + ";" + \
-                str(row["type"]) + ";" + \
-                str(row["gender"]) + \
-                ";" + str(row["age"]) + \
-                ";" + str(row["content"])
-        return self._all_data
 
     def fetch_all_contacts_as_tuples(self):
         """Method to return all contacts as tuples for the Treeview widget.
@@ -157,35 +135,6 @@ class ContactDataRepository:
         )
         return result
 
-    def fetch_contacts_by_user(self, user: User):
-        """Method to fetch all contacts from a selected user.
-
-        Not currently used. Will most likely be deleted.
-
-        Args:
-            user (User): user who's contacts are to be fetched.
-
-        Returns:
-            dict: returns a dictionary of contacts
-        """
-        self._all_data = {}
-        cursor = self._connection.cursor()
-
-        cursor.execute('''SELECT ROWID, username, datetime, channel,
-                type, gender, age, content FROM CONTACTS
-                WHERE username=?''', [user.username])
-
-        rows = cursor.fetchall()
-        for row in rows:
-            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + \
-                str(row["datetime"]) + ";" + \
-                str(row["channel"]) + ";" + \
-                str(row["type"]) + ";" + \
-                str(row["gender"]) + ";" + \
-                str(row["age"]) + ";" + \
-                str(row["content"])
-        return self._all_data
-
     def add_contact(self, username, contact: Contact):
         """Add's a new contact to the database
 
@@ -206,10 +155,10 @@ class ContactDataRepository:
                         VALUES (?,?,?,?,?,?,?,?)''',
                        [username,
                         contact.datetime_as_str,
-                        self.contact_dict["channel"][contact.channel.value],
-                        self.contact_dict["type"][contact.type.value],
-                        self.contact_dict["age"][contact.age.value],
-                        self.contact_dict["gender"][contact.gender.value],
+                        self._contact_dict["channel"][contact.channel.value],
+                        self._contact_dict["type"][contact.type.value],
+                        self._contact_dict["age"][contact.age.value],
+                        self._contact_dict["gender"][contact.gender.value],
                         contact.content,
                         contact.marked]
                        )
@@ -245,13 +194,43 @@ class ContactDataRepository:
         cursor.execute('''DELETE FROM CONTACTS''')
         self._connection.commit()
 
-    # REMOVE THIS WHEN DELETE MARKED IS INTEGRATED TO APP
     def delete_contact(self, c_id):
-        """An obsolete method to be deleted when it is certain it is not used anymore"""
+        """A method used in automated tests to test database management"""
         cursor = self._connection.cursor()
         cursor.execute('''DELETE FROM CONTACTS
                         WHERE ROWID = ?''', [c_id])
         self._connection.commit()
+
+    def fetch_contacts_by_user(self, user: User):
+        """Method to fetch all contacts from a selected user.
+
+        Not currently used. As the feature to browse contacts by user
+        is on future development list, I will leave this as ground work
+        for future development.
+
+        Args:
+            user (User): user who's contacts are to be fetched.
+
+        Returns:
+            dict: returns a dictionary of contacts
+        """
+        self._all_data = {}
+        cursor = self._connection.cursor()
+
+        cursor.execute('''SELECT ROWID, username, datetime, channel,
+                type, gender, age, content FROM CONTACTS
+                WHERE username=?''', [user.username])
+
+        rows = cursor.fetchall()
+        for row in rows:
+            self._all_data[row["ROWID"]] = str(row["username"]) + ";" + \
+                str(row["datetime"]) + ";" + \
+                str(row["channel"]) + ";" + \
+                str(row["type"]) + ";" + \
+                str(row["gender"]) + ";" + \
+                str(row["age"]) + ";" + \
+                str(row["content"])
+        return self._all_data
 
 
 default_contact_repository = ContactDataRepository(get_database_connection())
