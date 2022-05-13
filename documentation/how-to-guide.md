@@ -2,7 +2,7 @@
 Start by downloading the [latest release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6) by choosing 'Source code' from the section Assets. 
 
 ## Configuration
-
+You can configure the database filename in file .env. Default filename is database.db. 
 
 ## Installation and starting the application
 
@@ -18,7 +18,6 @@ poetry run invoke build
 ```
 poetry run invoke start
 ```
-
 
 ## Application tutorial
 
