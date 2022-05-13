@@ -63,3 +63,6 @@
 * Code refactored for easier future maintenance. More detailed docstring added.
 * Account creation validation improved.
 * Dummy data creation validation improved. Error notifications added. 
+* A confirmation messagebox added before deleting all data. 
+* Menu refactored into it's own class
+* Enums introduced
