@@ -32,7 +32,6 @@ class MainView:
         if self._frame:
             self._frame.destroy()
 
-    # Refactor. Move to another class
     def _create_menubar(self):
         """A method that calls for the construction of default menu bar.
         """
@@ -41,20 +40,6 @@ class MainView:
             self._login,
             self._create_account)
         self._root.config(menu=menubar)
-        # menubar = Menu(self._root)
-        # filemenu = Menu(menubar, tearoff=0)
-        # filemenu.add_command(label="Login", command=self._login)
-        # filemenu.add_command(label="Create account",
-        #                      command=self._create_account)
-        # filemenu.add_separator()
-        # filemenu.add_command(label="Exit", command=self.exit)
-        # menubar.add_cascade(label="File", menu=filemenu)
-        # self._root.config(menu=menubar)
-
-    def exit(self):
-        """Destroys the root component and exits the application
-        """
-        self._root.destroy()
 
     def _initialize(self):
         """Initializes the widgets in the main view. 

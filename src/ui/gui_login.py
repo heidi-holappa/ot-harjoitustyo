@@ -191,28 +191,6 @@ class LoginView:
                     self._admin_view,
                     self._dummy_data_view)
 
-                # menubar = Menu(self._root)
-                # filemenu = Menu(menubar, tearoff=0)
-                # filemenu.add_command(label="Logout", command=self._main_view)
-                # filemenu.add_separator()
-                # filemenu.add_command(label="Exit", command=self.exit)
-                # menubar.add_cascade(label="File", menu=filemenu)
-
-                # if self._user_management.get_active_user_role() == Role.ADMIN:
-                #     adminmenu = Menu(menubar, tearoff=0)
-                #     adminmenu.add_command(
-                #         label="Manage data submissions", command=self._admin_view)
-                #     adminmenu.add_command(
-                #         label="Submit data", command=self._counselor_view)
-                #     adminmenu.add_command(
-                #         label="Create dummy content", command=self._dummy_data_view)
-                #     menubar.add_cascade(label="Admin", menu=adminmenu)
-
-                # helpmenu = Menu(menubar, tearoff=0)
-                # helpmenu.add_command(
-                #     label="Help (opens browser)", command=self._open_help)
-                # helpmenu.add_command(label="About", command=self._show_about)
-                # menubar.add_cascade(label="Help", menu=helpmenu)
                 self._root.config(menu=menubar)
 
                 if user_role == Role.COUNSELOR:
@@ -227,23 +205,3 @@ class LoginView:
                 label_login_error.grid(row=1, column=0, columnspan=4)
                 label_login_error.after(
                     3000, lambda: label_login_error.destroy())
-
-    # def exit(self):
-    #     """Method that destroys the root component and exits the application.
-    #     """
-    #     self._root.destroy()
-
-    # def _open_help(self):
-    #     """A method that opens the how-to-guide in the operating system's default browser.
-    #     """
-    #     webbrowser.open_new(
-    #         "https://github.com/heidi-holappa/ot-harjoitustyo/blob/master/documentation/how-to-guide.md")
-
-    # def _show_about(self):
-    #     """A method that prompts a messabox with project information.
-    #     """
-    #     messagebox.showinfo(
-    #         title="About the application",
-    #         message="Version 0.1\n\nCreated as a University project in 2022",
-    #         icon=messagebox.INFO
-    #     )
