@@ -263,10 +263,11 @@ class ContactManagement:
         ]
         intro = f"A child/youth aged {age} contacted the helpline's {c_channel} service. "
         topic_id = randint(0, len(randtopic)-1)
-        topics = f'''They wanted to talk about {randtopic[topic_id]}. A summary of the discussion: \n\n'''
+        topics = f"They wanted to talk about {randtopic[topic_id]}. "
+        topics += "A summary of the discussion: \n\n"
         dummytext = lorem.paragraph()
         content = intro + topics + dummytext
         if topic_id < 5:
-            content += f"\n\nI referred the child to appropriate services" 
+            content += "\n\nI referred the child to appropriate services"
             content += f" that provide more help with {randtopic[topic_id]}"
         return content
