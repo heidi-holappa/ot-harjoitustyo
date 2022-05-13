@@ -59,5 +59,6 @@
 | 7 | Tue 10.5.2022 | Refactor Menu to own class. | 2 |
 | 7 | Wed 11.5.2022 | Fix bugs found in extra peer-testing (validation issues, error messages) | 1 |
 | 7 | Thu 12.5.2022 | Update documentation | 1,5 |
-| **7** | --- | **Total** | **6,5** |
-| **All**| --- | **Total** | **94** |
+| 7 | Fri 13.5.2022 | Add Enums to repository dictionary, refactor code, improve documentation | 2,5 |
+| **7** | --- | **Total** | **9** |
+| **All**| --- | **Total** | **96,5** |
