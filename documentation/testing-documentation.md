@@ -31,5 +31,6 @@ ALl functionalities listed in the [requirements specification](requirements-spec
 
 ## Existing quality issues
 * The error message is not user fiendly when the project is not initialized with the command 'poetry run invoke build.'
+* Exception handling in the application logic could be improved by using tailored exceptions
 * In the contact preview text-widget text layout has spacing issues. 
 
