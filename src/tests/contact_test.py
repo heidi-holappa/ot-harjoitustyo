@@ -15,11 +15,11 @@ class TestContactManagement(unittest.TestCase):
         self.db = initialize_database()
 
     def test_submit_contact(self):
-        dict_1 = self.contact_management.fetch_all_contacts()
+        dict_1 = self.contact_management.fetch_all_contacts_as_tuples()
         len_1 = len(dict_1)
         self.contact_management.manage_new_contact_submission(
             1, 1, 1, 1, "lorem ipsum")
-        dict_2 = self.contact_management.fetch_all_contacts()
+        dict_2 = self.contact_management.fetch_all_contacts_as_tuples()
         len_2 = len(dict_2)
         self.assertEqual(len_1 + 1, len_2)
 
@@ -28,7 +28,7 @@ class TestContactManagement(unittest.TestCase):
         for i in range(n):
             self.contact_management.manage_new_contact_submission(
                 1, 1, 1, 1, "lorem ipsum")
-        contact_count = len(self.contact_management.fetch_all_contacts())
+        contact_count = len(self.contact_management.fetch_all_contacts_as_tuples())
         self.assertEqual(n, contact_count)
 
     def test_fetch_contacts_by_user(self):

@@ -86,5 +86,5 @@ class TestContactRepository(unittest.TestCase):
         self.contact_management.create_random_contacts(10)
         self.contact_repository.delete_all_data()
         n_of_contacts_after_deletion = len(
-            self.contact_repository.fetch_all_contacts())
+            self.contact_repository.fetch_all_contacts_as_tuples())
         self.assertEqual(n_of_contacts_after_deletion, 0)
