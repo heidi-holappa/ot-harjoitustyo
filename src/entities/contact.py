@@ -96,25 +96,6 @@ class Contact:
         self.content = content
         self.marked = ""
 
-    # @property
-    # def age_group(self):
-    #     if self.age == 0:
-    #         return 0
-    #     elif self.age < 9:
-    #         return AgeGroup.UNDER_9
-    #     elif self.age <= 11:
-    #         return AgeGroup.FROM_9_TO_11
-    #     elif self.age <= 14:
-    #         return AgeGroup.FROM_12_TO_14
-    #     elif self.age <= 17:
-    #         return AgeGroup.FROM_15_TO_17
-    #     elif self.age <= 21:
-    #         return AgeGroup.FROM_18_TO_21
-    #     elif self.age <= 25:
-    #         return AgeGroup.FROM_22_TO_25
-    #     else:
-    #         return AgeGroup.OVER_25
-
     def is_valid(self):
         """Checks the validity of given data.
 

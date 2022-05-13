@@ -28,7 +28,6 @@ class User:
         self.username = username
         self.password = password
         self.role = role
-        self.logged = False
 
     def get_role(self) -> str:
         """method to get the attribute role of the user object
