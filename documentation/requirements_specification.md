@@ -77,14 +77,14 @@ In the future following features could be added (preliminary time-estimates incl
   - Admin can reset user passwords
   - Admin can create new supervisor accounts
 - Time-estimate: 1-2 work days (8-16)
-- Note: could be done together with the next item (view and edit account details). Same estimate would apply to these both together. 
+- Note: could be done together with the next item (view and edit account details). Same estimate would apply to these both were built at the same time. 
 
 **View and edit account details (all users)**
 - Details:
   - All users can view their account information
   - All users can change their password
 - Time-estimate: 1-2 work days (8-16 hours)
-- Note: could be done together with the previous item (account management). Same estimate would apply to these both together. 
+- Note: could be done together with the previous item (account management). Same estimate would apply if these both were built at the same time. 
 
 **Counselors can manage their own data submissions**
 - Details: Since service disruptions in cloud based services are often short in duration, it might be beneficial if the counselor could also process submissions they themselves have made during their own shift, when possible. 
@@ -92,7 +92,9 @@ In the future following features could be added (preliminary time-estimates incl
   - Counselors can mark data submissions as processed
   - Counselors can delete submissions marked as processed
 - Time-estimate: 4-6 hours
+- Note: Methods for fetching data submissions from selected user exist in repository and service classes. 
 
 **Dark mode**
 - Details: Creating a custom theme made it possible to offer users alternate themes in the future. With further development new themes could be added. An initial version of dark mode already exists in the guiTheme -class, but the style needs futher work and the code also needs some re-factoring. 
 - Time-estimate: 4-6 hours. 
+- Note: Initial dark mode theme exists in class setTheme()
