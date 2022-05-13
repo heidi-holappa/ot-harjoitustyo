@@ -106,11 +106,12 @@ class setTheme:
                                  background="grey95",
                                  foreground="black")
 
-        # INITIAL BUILD.
     def set_dark_mode(self):
-        """A method containing style configuration for dark mode.
+        """A method containing an initial style configuration for dark mode.
 
-        Not finished at the moment. 
+        Note: this is not currently used in the application. 
+        Dark mode is one of the suggestions for future development and
+        this theme is left to make future improvements easier. 
         """
 
         self._root.option_add('*Dialog.msg.font', 'Calibri 10')
