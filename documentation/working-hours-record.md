@@ -60,5 +60,6 @@
 | 7 | Wed 11.5.2022 | Fix bugs found in extra peer-testing (validation issues, error messages) | 1 |
 | 7 | Thu 12.5.2022 | Update documentation | 1,5 |
 | 7 | Fri 13.5.2022 | Add Enums to repository dictionary, refactor code, improve documentation | 2,5 |
-| **7** | --- | **Total** | **9** |
-| **All**| --- | **Total** | **96,5** |
+| 7 | Sun 15.5.2022 | Refactor code, write tests, polish documentation, test application | 5 |
+| **7** | --- | **Total** | **14** |
+| **All**| --- | **Total** | **101,5** |
