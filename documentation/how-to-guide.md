@@ -1,5 +1,5 @@
 # How to use the application
-Start by downloading the [latest release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release) by choosing 'Source code' from the section Assets. 
+Start by downloading the [latest release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release-updated) by choosing 'Source code' from the section Assets. 
 
 ## Configuration
 You can configure the database filename in file .env. Default filename is database.db. 
