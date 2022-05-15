@@ -43,7 +43,7 @@ Each view can be seen in the [how to -guide of the application](how-to-guide.md)
 - User can exit the app via menu
 
 **After logging in (role admin)**
-- Role admin can access all available views. 
+- Role admin can access all available views either via navigation buttons or through menu. 
 - In all the following views role admin can logout or exit the app via menu.
 - In all the following views role admin can view how to - documentation via menu. 
 
@@ -59,12 +59,12 @@ Each view can be seen in the [how to -guide of the application](how-to-guide.md)
 - User can create dummy data for easier testing of the application
 
 **Dummy data creation view**
-- **Done** User with role admin can create from 1 to 100 dummy contact to populate the contact management treeview. 
-- **Done** User with role admin can delete all contacts at once.
+- User with role admin can create from 1 to 100 dummy contact to populate the contact management treeview. 
+- User with role admin can delete all contacts at once.
 
 
 **General features**
-- The application has a menu bar in all views. Menu bar has different options for logged in user. Features depend on user role. 
+- The application has a menubar in all views. Menu bar has different options for logged in user. Features depend on user role. 
 - The application has a custom style. 
 
 ## Further development
@@ -92,9 +92,9 @@ In the future following features could be added (preliminary time-estimates incl
   - Counselors can mark data submissions as processed
   - Counselors can delete submissions marked as processed
 - Time-estimate: 4-6 hours
-- Note: Methods for fetching data submissions from selected user exist in repository and service classes. 
+- Note: Methods for fetching data submissions from selected user exist in repository and service classes. These were consciously left to save time on further development. 
 
 **Dark mode**
 - Details: Creating a custom theme made it possible to offer users alternate themes in the future. With further development new themes could be added. An initial version of dark mode already exists in the guiTheme -class, but the style needs futher work and the code also needs some re-factoring. 
 - Time-estimate: 4-6 hours. 
-- Note: Initial dark mode theme exists in class SetTheme()
+- Note: Initial dark mode theme exists in class SetTheme. It was consciously left to save time on further development.
