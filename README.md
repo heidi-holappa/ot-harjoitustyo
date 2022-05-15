@@ -5,12 +5,12 @@ This application is created for storing data from answered helpline contacts. Th
 
 ## Releases
 
-**Most recent release**
-[Final release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release)  
+**Most recent release**  
+* [Final release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release)  
 
 **Previous releases**  
-[Release week 6](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6)
-[Release week 5](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko5)
+* [Release week 6](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6)  
+* [Release week 5](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Documentation
 
