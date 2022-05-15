@@ -41,6 +41,12 @@ class GuiMenu:
         menubar.add_cascade(label="File", menu=filemenu)
         self._root.config(menu=menubar)
 
+        helpmenu = Menu(menubar, tearoff=0)
+        helpmenu.add_command(
+            label="Help (opens browser)", command=self._open_help)
+        helpmenu.add_command(label="About", command=self._show_about)
+        menubar.add_cascade(label="Help", menu=helpmenu)
+
     def init_logged_menu(self,
                          main_view,
                          counselor_view,
