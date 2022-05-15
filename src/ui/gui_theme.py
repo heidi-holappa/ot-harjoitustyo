@@ -1,7 +1,7 @@
 from tkinter import Tk, ttk
 
 
-class setTheme:
+class SetTheme:
     """A class containing the style elements for the application.
 
     Default style is ready. Alternative styles can be later added. 

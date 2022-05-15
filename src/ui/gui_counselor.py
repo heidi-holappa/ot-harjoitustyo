@@ -1,5 +1,4 @@
-from tkinter import ttk, constants, Frame, StringVar, IntVar, Text, Menu, messagebox
-import webbrowser
+from tkinter import ttk, constants, Frame, StringVar, IntVar, Text, messagebox
 from entities.user import Role
 from services.contact_management import ContactManagement
 from services.user_management import default_user_management
@@ -423,8 +422,6 @@ class CounselorView:
             self._content_field.delete(1.0, constants.END)
         else:
             input = ""
-
-        # MANAGE CONTACT SUBMISSION
 
         c_channel = self._channel_var.get()
         c_type = self._type_var.get()

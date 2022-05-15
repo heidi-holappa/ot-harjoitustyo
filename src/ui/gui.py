@@ -4,7 +4,7 @@ from ui.gui_login import LoginView
 from ui.gui_create_account import CreateAccountView
 from ui.gui_counselor import CounselorView
 from ui.gui_admin import AdminView
-from ui.gui_theme import setTheme
+from ui.gui_theme import SetTheme
 from ui.gui_create_dummy_data import CreateDummyData
 from services.user_management import default_user_management
 
@@ -29,7 +29,7 @@ class UI:
         self._current_view = None
         self._user_management = default_user_management
         self.style = "default"
-        setTheme(self._root)
+        SetTheme(self._root)
 
     def start(self):
         """Calls a method that initiates the building of the main view
