@@ -1,5 +1,5 @@
 # How to use the application
-Start by downloading the [latest release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6) by choosing 'Source code' from the section Assets. 
+Start by downloading the [latest release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release) by choosing 'Source code' from the section Assets. 
 
 ## Configuration
 You can configure the database filename in file .env. Default filename is database.db. 
@@ -17,6 +17,17 @@ poetry run invoke build
 3. Run the project with the command
 ```
 poetry run invoke start
+```
+
+## Testing
+
+To run tests use the command
+```
+poetry run invoke test
+```
+To create an HTML report of tests branch coverage use the command
+```
+poetry run invoke coverage-report
 ```
 
 ## Application tutorial
