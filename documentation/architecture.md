@@ -33,9 +33,7 @@ The structure of the application follows the layered architecture framework.
 
 ## Class diagram
 
-Below is a visualization of the current class diagram and dependencies. The vision is to make refactor the code in week 5 to make the dependencies more structured. Feedback and tips on how to work towards this are very welcome!
-
-At the time being the application uses one object instance of the classes in UI, service and repository classes. UI-classes 'remember' the service classes they use and the service classes 'remember' the repositories used. None of the GUI, service or repository classes 'remember' objects from the entities classes, even if many of them use them temporarily. 
+Below is a visualization of the class diagram and dependencies. The application uses default object instances of service and repository classes. UI-classes 'remember' the instances of service classes they use and the service classes 'remember' the instances of repository class objects used. None of the GUI, service or repository classes 'remember' instances from the entities classes, even if many of them use them temporarily. Exception being the active user that is referenced in the service class UserManagement. 
 
 
 ```mermaid
@@ -157,7 +155,7 @@ UI ->> UI: Construct a messagebox with a error-message.
 ```
 
 ### Mark contact data for deletion
-Users with role admin can preview data submission, mark them for deletion and delete marked submission. The next sequence diagram showcases the chain of events that is carried out when a user first marks an item for deletion and then deletes marked items. 
+Users with role admin can preview data submission, mark them for deletion and delete marked submission. The next sequence diagram showcases the chain of events that is carried out when a user first marks an item for deletion and then deletes marked items. This sequence diagram has more internal logic of GUI object instance described to give an understanding on the logic GUI classes have been constructed with. 
 
 ```mermaid
 sequenceDiagram
@@ -184,9 +182,3 @@ UI ->> UI: destroys widgets from contact_magement_frame
 UI ->> UI: populates contact_magement_frame with widgets
 UI -->> user: UI is refreshed
 ```
-
-## Known issues
-
-The counselor view is not as intuitive as it could be. Instructive texts could be added to guide users. 
-
-The application has some repeating code which could be refactored. For example the Menu widget could be moved to it's own class. Some methods are no longer used and should be removed. 

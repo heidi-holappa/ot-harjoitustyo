@@ -97,4 +97,4 @@ In the future following features could be added (preliminary time-estimates incl
 **Dark mode**
 - Details: Creating a custom theme made it possible to offer users alternate themes in the future. With further development new themes could be added. An initial version of dark mode already exists in the guiTheme -class, but the style needs futher work and the code also needs some re-factoring. 
 - Time-estimate: 4-6 hours. 
-- Note: Initial dark mode theme exists in class setTheme()
+- Note: Initial dark mode theme exists in class SetTheme()
