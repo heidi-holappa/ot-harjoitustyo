@@ -386,7 +386,7 @@ class CounselorView:
             font="calibri 10"
         )
         if self._state == "disabled":
-            default_printout = "Content is written only for counseling contacts."
+            default_printout = "Content is written only for counseling contacts.\nOnly counseling contacts include gender and age."
             self._content_field.insert(1.0, default_printout)
             self._content_field.configure(state="disabled", bg="grey88")
         else:
