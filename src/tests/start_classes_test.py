@@ -34,5 +34,3 @@ class TestStartClasses(unittest.TestCase):
             self.contact_management.fetch_all_contacts_as_tuples())
         self.assertEqual(n_of_data_at_beginning, n_of_data_at_end)
 
-    # Tests to be written
-    # Launch app (Ask in workshop how to test this!)

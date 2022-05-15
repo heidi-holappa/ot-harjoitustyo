@@ -461,7 +461,6 @@ class CounselorView:
         self.clear_frame(self.age_and_gender_frame)
         self.clear_frame(self.content_frame)
 
-        # Repeating code, refactor.
         self.init_gender(2, 1)
         self.init_age(8, 1)
         self.init_content(16, 0)

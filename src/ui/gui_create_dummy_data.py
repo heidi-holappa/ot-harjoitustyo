@@ -125,7 +125,6 @@ class CreateDummyData:
             sticky=constants.E
         )
 
-    # Consider moving data validation to service class
     def _create_dummy_data(self, input):
         """A method that handles creation of contact data.
 
