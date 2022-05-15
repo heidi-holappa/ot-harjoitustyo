@@ -140,21 +140,6 @@ class UserManagement:
         self._user_repository.add_user(self.get_active_user(), hashed_password)
         return (True, "")
 
-    def add_user(self, user: User):
-        """Calls a repository method to add a new user
-
-        Args:
-            user (User): User object to be added
-
-        Returns:
-            True: if all succeeds
-            False: if something fails
-        """
-        result = self._user_repository.add_user(user)
-        if result:
-            return True
-        return False
-
     def get_all_users(self):
         """A method for querying all user data.
 

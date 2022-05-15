@@ -138,10 +138,10 @@ class ContactManagement:
             c_content = ""
         contact = Contact(datetime_as_str, c_channel,
                           c_type, c_age, c_gender, c_content)
-        result, status_msg = contact.is_valid()
-        if result:
+        contact_is_valid, status_msg = contact.is_valid()
+        if contact_is_valid:
             self.submit_contact(contact)
-        return result, status_msg
+        return contact_is_valid, status_msg
 
     def submit_contact(self, contact: Contact):
         """A method for submitting a contact
@@ -153,11 +153,11 @@ class ContactManagement:
             False, String: If fails, returns False and a string of status information.
             method call: If succeeds, call a method to add contact to databse.
         """
+        username = "no user logged in"
         fetch_user = self._user_management.get_active_user()
-        if not fetch_user:
-            return False, "Error. No user logged in."
-        username = fetch_user.username
-        return self._contact_repository.add_contact(username, contact)
+        if fetch_user:
+            username = fetch_user.username
+        self._contact_repository.add_contact(username, contact)
 
     def create_random_contact(self):
         """A method for creating dummy contact data. Method uses randint to
@@ -230,6 +230,9 @@ class ContactManagement:
         Args:
             given_n (int, optional): Number of contacts to create. Defaults to 10.
         """
+        if given_n < 1 or given_n > 100:
+            return False, "You can create between 1 to 100 cases of dummy contacts at once."
+
 
         for _ in range(given_n):
             result, status_msg = self.create_random_contact()
