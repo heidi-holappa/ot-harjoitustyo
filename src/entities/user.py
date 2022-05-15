@@ -29,14 +29,6 @@ class User:
         self.password = password
         self.role = role
 
-    def get_role(self) -> str:
-        """method to get the attribute role of the user object
-
-        Returns:
-            value of enum Role
-        """
-        return self.role.value
-
     def set_admin(self):
         """Sets user's role to admin
         """
