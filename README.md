@@ -6,7 +6,7 @@ This application is created for storing data from answered helpline contacts. Th
 ## Releases
 
 **Most recent release**  
-* [Final release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release)  
+* [Final release](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/final-release-updated)  
 
 **Previous releases**  
 * [Release week 6](https://github.com/heidi-holappa/ot-harjoitustyo/releases/tag/viikko6)  
